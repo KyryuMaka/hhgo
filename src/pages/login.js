@@ -25,7 +25,7 @@ function LogIn(props){
             toast.show();
         }
     }
-        
+
     return(
         <div class="signin">
             <Helmet titleTemplate="%s | Quản lý Đội xe Hùng Hậu">
@@ -50,14 +50,14 @@ function LogIn(props){
                             <input type="checkbox" value="remember-me" /> Ghi nhớ đăng nhập
                         </div>
                         <button class="w-100 btn btn-lg btn-primary" id="loginBtn" type="submit">Đăng nhập</button>
-                        <p class="mt-5">Copyright 2021 &copy; <b>HungHau holding</b></p>
+                        <p class="mt-5">Copyright 2021 &copy; <b>HungHau Holding</b></p>
                     </form>
-                    <div class="position-fixed bottom-0 end-0 p-3" style={{"z-index": "11"}}>
-                        <div id="falseLoginToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-container position-fixed top-0 end-0 p-3" id="notifications" style={{"z-index": "11"}}>
+                        <div id="falseLoginToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                             <div class="toast-header">
                                 <img src="./favicon.ico" class="rounded me-2" alt="..." style={{"height":"25px"}} />
                                 <strong class="me-auto">Lỗi đăng nhập</strong>
-                                <small>1 giây trước</small>
+                                <small>Vài giây trước</small>
                                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                             </div>
                             <div class="toast-body bg-primary">
