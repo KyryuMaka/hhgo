@@ -36,85 +36,55 @@ a:hover{
   background: #555;
 }
 
-.btn-green{
-  color: white;
-  background-color: #a4cf66;
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 
-.btn-green:hover{
-  background-color: #8DC33F;
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
 }
 
-.btn-orange{
-  color: white;
-  background-color: #FFB969;
-}
-
-.btn-orange:hover{
-  background-color: #FFA136;
-}
-
-.vcenter{
-  margin-top:auto;
-  margin-bottom: auto;
-  margin-left: 2px;
-  margin-right: 2px;
-}
-
-.content-div{
-  border: 1px solid #a4cf66;
-  border-radius: 10px;
-  margin-bottom: 25px;
-  background-color: #dcedc5;
-  list-style: none;
-}
-
-.content-div a{
-  text-decoration: none;
-}
-
-.content-div h4{
-  margin: 0;
-}
-
-.content-div-title{
-  background: #a4cf66;
-  border-top-left-radius: 10px !important;
-  border-top-right-radius: 10px !important;
-  text-align: center;
-  font-weight: bold;
-  padding-top: 10px;
-  padding-bottom: 10px;
+.text-center {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-image: url('./images/background-hhh-2021.jpg');
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
   color: white;
 }
 
-.content-div-title:hover{
-  color: white;
+.text-center::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(0, 17, 102, 0.8);
 }
 
-.content-div-item-end{
-  background-color: #dcedc5;
-  border-bottom-left-radius: 10px !important;
-  border-bottom-right-radius: 10px !important;
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  z-index: 1;
 }
 
-.content-div-item{
-  background-color: #dcedc5;
+.form-signin .checkbox {
+  font-weight: 400;
 }
 
-.footer-icon{
-  width: 24px;
-}
-
-.content-icon{
-  width: 100px;
-}
-
-.tj p, h1, q{
-  text-align: justify;
-  text-justify: inter-word;
-}
-
-.fix-content{
-  position: fixed;
+.form-signin .form-floating:focus-within {
+  z-index: 2;
 }

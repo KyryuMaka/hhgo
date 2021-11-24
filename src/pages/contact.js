@@ -18,9 +18,9 @@ const getData = async (folder,name) =>{
 function Contact(props){
     return(
         <div>
-            <Helmet titleTemplate="%s | Đội xe Hùng Hậu">
+            <Helmet titleTemplate="%s | Quản lý Đội xe Hùng Hậu">
                 <title>{props.value}</title>
-                <meta name="description" content="Shop Rùa Ăn Vặt tọa lạc tại số 449/31/3 (407/42/53) Sư Vạn Hạnh, Phường 12, Quận 10, TP.Hồ Chí Minh. Chuyên kinh doanh bánh kẹo nhập khẩu, đồ ăn vặt thủ công"/>
+                <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>
             <p>hi</p>
         </div>
