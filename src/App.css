@@ -8,6 +8,25 @@
   text-decoration: none;
 }
 
+html {
+  height: -webkit-fill-available;
+}
+
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+main {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100vh;
+  height: -webkit-fill-available;
+  max-height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 a{
   color: inherit;
 }
@@ -56,14 +75,17 @@ a:hover{
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
+  color: white;
+}
+
+.ctbg{
   background-image: url('./images/background-hhh-2021.jpg');
   background-size: cover;
   width: 100vw;
   height: 100vh;
-  color: white;
 }
 
-.text-center::before {
+.ctbg::before {
   content: "";
   position: absolute;
   top: 0px;
@@ -87,4 +109,10 @@ a:hover{
 
 .form-signin .form-floating:focus-within {
   z-index: 2;
+}
+
+/* sidebar */
+.b-example-divider {
+  flex-shrink: 0;
+  height: 100vh;
 }
