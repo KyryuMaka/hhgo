@@ -17,13 +17,12 @@ const getData = async (folder,name) =>{
 }
 
 function Index(props){
-    function e() {
-        // 'use strict'
+    useEffect(() => {
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-          new bootstrap.Tooltip(tooltipTriggerEl)
-        })
-    }
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+    },[]);    
     return(
         <div>
             <Helmet titleTemplate="%s | Quản lý Đội xe Hùng Hậu">
@@ -31,97 +30,57 @@ function Index(props){
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>
             <main>
-                <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style={{"width": "50px;"}}>
-                    <a href="/" class="d-flex align-items-center ms-auto me-auto text-white text-decoration-none">
-                        <img src="./logo-HungHau.png" class="bi me-2" height="80" />
+                <div class="d-flex flex-column flex-shrink-0 text-white" style={{"width": "4.5rem", "background-color": "rgba(0, 17, 102, 0.8)"}}>
+                    <a href="https://hunghau.vn/" class="d-block p-3 link-dark text-decoration-none" title="HungHau" data-bs-toggle="tooltip" data-bs-placement="right">
+                        {/* <svg class="bi" width="40" height="32"><use xlink:href="#bootstrap"/></svg> */}
+                        <img src="./favicon.ico" class="bi" width="40" />
                     </a>
-                    <hr />
-                    <ul class="nav nav-pills flex-column mb-auto">
+                    <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
                         <li class="nav-item">
-                            <a href="#" class="nav-link active" aria-current="page">
+                            <a href="/home" class="nav-link py-3 border-bottom" aria-current="page" title="Home" data-bs-toggle="tooltip" data-bs-placement="right">
                                 <i class="bi bi-house-door"></i>
-                                <span class="">Home</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link text-white">
-                                <i class="bi bi-speedometer2"></i> Dashboard
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">
-                                <i class="bi bi-table"></i> Orders
+                            <a href="#" class="nav-link py-3 border-bottom" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
+                                <i class="bi bi-speedometer2"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">
-                                <i class="bi bi-grid"></i> Products
+                            <a href="#" class="nav-link py-3 border-bottom" title="Orders" data-bs-toggle="tooltip" data-bs-placement="right">
+                                <i class="bi bi-table"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">
-                                <i class="bi bi-person-circle"></i> Customers
+                            <a href="#" class="nav-link py-3 border-bottom" title="Products" data-bs-toggle="tooltip" data-bs-placement="right">
+                                <i class="bi bi-grid"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link py-3 border-bottom" title="Customers" data-bs-toggle="tooltip" data-bs-placement="right">
+                                <i class="bi bi-person-circle"></i>
                             </a>
                         </li>
                     </ul>
-                    <hr />
-                    <div class="dropdown">
-                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2" />
-                            <strong>mdo</strong>
+                    <div class="dropdown border-top">
+                        <a href="#" class="d-flex align-items-center justify-content-center p-3 text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle"/>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
                             <li><a class="dropdown-item" href="#">New project...</a></li>
                             <li><a class="dropdown-item" href="#">Settings</a></li>
                             <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li><hr class="dropdown-divider" /></li>
+                            <li><hr class="dropdown-divider"/></li>
                             <li><a class="dropdown-item" href="#">Sign out</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="b-example-divider"></div>
-                
+                <div class="d-flex flex-column flex-shrink-0"></div>
             </main>
-            
-            
-            {/* <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">
-                        <img src="./logo-HungHau.png" height="80px" class="d-inline-block align-text-top" />
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><hr class="dropdown-divider" /></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled">Disabled</a>
-                            </li>
-                        </ul>
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form>
-                    </div>
-                </div>
-            </nav> */}
+            <div>
+                
+            </div>
         </div>
     );
 }
