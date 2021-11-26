@@ -1,5 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import * as Realm from "realm-web";
+import * as bootstrap from 'bootstrap';
 import _ from 'lodash'
 import {Helmet} from 'react-helmet';
 
