@@ -29,10 +29,10 @@ function LogIn(props){
     return(
         <div class="signin">
             <Helmet titleTemplate="%s | Quản lý Đội xe Hùng Hậu">
-                <title>{props.title}</title>
+                <title>{props.value}</title>
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>
-            <div class="text-center ctbg">
+            <div class="text-center">
                 <div class="form-signin">
                     <form onSubmit={handleSubmit}>
                         <img class="mb-4" src="./favicon.ico" alt="" width="100" />

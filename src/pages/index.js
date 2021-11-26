@@ -1,6 +1,5 @@
 import React, {useState,useEffect} from 'react'
 import * as Realm from "realm-web";
-import * as bootstrap from 'bootstrap';
 import _ from 'lodash'
 import {Helmet} from 'react-helmet';
 
@@ -17,18 +16,22 @@ const getData = async (folder,name) =>{
 }
 
 function Index(props){
+<<<<<<< HEAD
     useEffect(() => {
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
         });
     },[]);    
+=======
+>>>>>>> parent of a68f2b1 (11h10 - 25.11.201)
     return(
         <div>
             <Helmet titleTemplate="%s | Quản lý Đội xe Hùng Hậu">
-                <title>{props.title}</title>
+                <title>{props.value}</title>
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>
+<<<<<<< HEAD
             <main>
                 <div class="d-flex flex-column flex-shrink-0 text-white" style={{"width": "4.5rem", "background-color": "rgba(0, 17, 102, 0.8)"}}>
                     <a href="https://hunghau.vn/" class="d-block p-3 link-dark text-decoration-none" title="HungHau" data-bs-toggle="tooltip" data-bs-placement="right">
@@ -81,6 +84,9 @@ function Index(props){
             <div>
                 
             </div>
+=======
+            
+>>>>>>> parent of a68f2b1 (11h10 - 25.11.201)
         </div>
     );
 }

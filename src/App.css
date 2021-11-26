@@ -8,6 +8,7 @@
   text-decoration: none;
 }
 
+<<<<<<< HEAD
 html {
   height: -webkit-fill-available;
 }
@@ -28,6 +29,8 @@ main {
   overflow-y: hidden;
 }
 
+=======
+>>>>>>> parent of a68f2b1 (11h10 - 25.11.201)
 a{
   color: inherit;
 }
@@ -76,17 +79,14 @@ a:hover{
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  color: white;
-}
-
-.ctbg{
   background-image: url('./images/background-hhh-2021.jpg');
   background-size: cover;
   width: 100vw;
   height: 100vh;
+  color: white;
 }
 
-.ctbg::before {
+.text-center::before {
   content: "";
   position: absolute;
   top: 0px;
@@ -110,6 +110,7 @@ a:hover{
 
 .form-signin .form-floating:focus-within {
   z-index: 2;
+<<<<<<< HEAD
 }
 
 /* sidebar */
@@ -179,3 +180,6 @@ a:hover{
 
 .fw-semibold { font-weight: 600; }
 .lh-tight { line-height: 1.25; }
+=======
+}
+>>>>>>> parent of a68f2b1 (11h10 - 25.11.201)

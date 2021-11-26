@@ -19,7 +19,7 @@ function About(props){
     return(
         <div>
             <Helmet titleTemplate="%s | Quản lý Đội xe Hùng Hậu">
-                <title>{props.title}</title>
+                <title>{props.value}</title>
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>
         </div>
