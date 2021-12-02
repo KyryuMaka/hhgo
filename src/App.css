@@ -91,3 +91,16 @@ a:hover{
 .form-signin .form-floating:focus-within {
   z-index: 2;
 }
+
+.sticky{
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+
+.sidebar{
+  width: 4.5rem;
+  height: 100vh;
+  background-color: rgba(0, 17, 102, 0.8);
+  float: left;
+}
