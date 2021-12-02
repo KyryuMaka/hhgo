@@ -50,20 +50,23 @@ a:hover{
   }
 }
 
-.text-center {
+.t-center {
   position: relative;
   display: flex;
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
+  color: white;
+}
+
+.bg-hunghau{
   background-image: url('./images/background-hhh-2021.jpg');
   background-size: cover;
   width: 100vw;
   height: 100vh;
-  color: white;
 }
 
-.text-center::before {
+.bg-hunghau::before {
   content: "";
   position: absolute;
   top: 0px;
