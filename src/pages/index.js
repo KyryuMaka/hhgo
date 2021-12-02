@@ -25,8 +25,15 @@ function Index(props){
                 <title>{props.value}</title>
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>
-            <SideBar />
-            Hi
+            <div className="d-flex">
+                <SideBar />
+                <div className="main">
+                    <div className="container">
+                        dsajdhkjasdhashdjk
+                    </div>
+                </div>
+            </div>
+            
         </div>
     );
 }

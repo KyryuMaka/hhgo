@@ -94,7 +94,7 @@ a:hover{
 
 .sticky{
   position: -webkit-sticky; /* Safari */
-  position: sticky;
+  position: fixed;
   top: 0;
 }
 
@@ -103,4 +103,9 @@ a:hover{
   height: 100vh;
   background-color: rgba(0, 17, 102, 0.8);
   float: left;
+}
+
+.main{
+  width: 100%;
+  margin-left: 4.5rem;
 }
