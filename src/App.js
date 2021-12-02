@@ -12,10 +12,10 @@ function App() {
   return (
     <BrowserRouter>
       {/* <Route exact path="/" component={IndexPage}/> */}
-      <Route exact path="/" render={props => <LoginPage {...props} value="Đăng nhập" />} />
-      <Route exact path="/home" render={props => <IndexPage {...props} value="Trang chủ" />} />
-      <Route exact path="/about" render={props => <AboutPage {...props} value="Về chúng tôi" />} />
-      <Route exact path="/contact" render={props => <ContactPage {...props} value="Liên hệ" />}/>
+      <Route exact path="/" render={props => <LoginPage {...props} title="Đăng nhập" />} />
+      <Route exact path="/home" render={props => <IndexPage {...props} title="Trang chủ" />} />
+      <Route exact path="/about" render={props => <AboutPage {...props} title="Về chúng tôi" />} />
+      <Route exact path="/contact" render={props => <ContactPage {...props} title="Liên hệ" />}/>
     </BrowserRouter>
   );
 }

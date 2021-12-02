@@ -31,13 +31,13 @@ function LogIn(props){
     return(
         <div className="signin">
             <Helmet titleTemplate="%s | Quản lý Đội xe Hùng Hậu">
-                <title>{props.value}</title>
+                <title>{props.title}</title>
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>
             <div className="t-center text-center bg-hunghau">
                 <div className="form-signin">
                     <form onSubmit={handleSubmit}>
-                        <img className="mb-4" src="./favicon.ico" alt="" width="100" />
+                        <img className="mb-3" src="./Logo-HungHau.png" alt="" width="150" />
                         <h1 className="mb-3"><b>Đăng nhập</b></h1>
 
                         <div className="form-floating mb-2">

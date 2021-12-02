@@ -22,14 +22,33 @@ function Index(props){
     return(
         <div>
             <Helmet titleTemplate="%s | Quản lý Đội xe Hùng Hậu">
-                <title>{props.value}</title>
+                <title>{props.title}</title>
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>
             <div className="d-flex">
                 <SideBar />
                 <div className="main">
-                    <div className="container">
-                        dsajdhkjasdhashdjk
+                    <div className="row m-3 text-center">
+                        <div className="col">
+                            <div className="btn card">
+                                đạgkasdhashdjkakhj
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="card">
+                                đạgkasdhashdjkakhj
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="card">
+                                đạgkasdhashdjkakhj
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="card">
+                                đạgkasdhashdjkakhj
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
