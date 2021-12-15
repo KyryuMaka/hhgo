@@ -4,8 +4,6 @@ import * as bootstrap from 'bootstrap';
 import _ from 'lodash'
 import {Helmet} from 'react-helmet';
 
-import BootstrapTable from 'react-bootstrap-table-next';
-
 import SideBar from '../components/sideBar'
 import axios from 'axios';
 
@@ -22,35 +20,8 @@ var realmUser;
 
 
 function Dashboard(props){
-    const columns = [{
-        dataField: 'id',
-        text: 'Mã'
-    },{
-        dataField: 'driver',
-        text: 'Tài xế'
-    },{
-        dataField: 'car',
-        text: 'Xe'
-    },{
-        dataField: 'carNumber',
-        text: 'Biển số xe'
-    },{
-        dataField: 'cary',
-        text: 'Chở'
-    },{
-        dataField: 'from',
-        text: 'Từ'
-    },{
-        dataField: 'to',
-        text: 'Đến'
-    },{
-        dataField: 'when',
-        text: 'Vào lúc'
-    },{
-        dataField: 'status',
-        text: 'Trạng thái'
-    }];
-
+    var stt1 = 0;
+    var stt2 = 0;
     const [data, setData] = useState([]);
     // const [driver, setDriver] = useState();
     // const [car, setCar] = useState();
@@ -78,17 +49,79 @@ function Dashboard(props){
             <div className="d-flex">
                 <SideBar />
                 <div className="main">
-                    <div className="row">
+                    <div className="row m-0">
                         <div className="col-xxl-6">
                             <div className="container p-3">
                                 <h3 className="table-caption">DANH SÁCH CÁC XE ĐANG ĐƯA ĐÓN</h3>
-                                <BootstrapTable keyField='id' data={ data } columns={ columns }  striped hover />
+                                <table className="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">TT</th>
+                                            <th scope="col">Tài xế</th>
+                                            <th scope="col">Xe</th>
+                                            <th scope="col">Biển số xe</th>
+                                            <th scope="col">Chở</th>
+                                            <th scope="col">Từ</th>
+                                            <th scope="col">Đến</th>
+                                            <th scope="col">Vào lúc</th>
+                                            <th scope="col">Trạng thái</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {data.map(item => {
+                                            stt1++;
+                                            return(
+                                            <tr>
+                                                <th scope="row">{stt1}</th>
+                                                <td>{item.driver}</td>
+                                                <td>{item.car}</td>
+                                                <td>{item.carNumber}</td>
+                                                <td>{item.cary}</td>
+                                                <td>{item.from}</td>
+                                                <td>{item.to}</td>
+                                                <td>{item.when}</td>
+                                                <td>{item.status}</td>
+                                            </tr>
+                                        )})}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                         <div className="col-xxl-6">
                             <div className="container p-3">
                                 <h3 className="table-caption">DANH SÁCH CÁC XE ĐANG TRỐNG</h3>
-                                <BootstrapTable keyField='id' data={ data } columns={ columns }  striped hover />
+                                <table className="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">TT</th>
+                                            <th scope="col">Tài xế</th>
+                                            <th scope="col">Xe</th>
+                                            <th scope="col">Biển số xe</th>
+                                            <th scope="col">Chở</th>
+                                            <th scope="col">Từ</th>
+                                            <th scope="col">Đến</th>
+                                            <th scope="col">Vào lúc</th>
+                                            <th scope="col">Trạng thái</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {data.map(item => {
+                                            stt2++;
+                                            return(
+                                            <tr>
+                                                <th scope="row">{stt2}</th>
+                                                <td>{item.driver}</td>
+                                                <td>{item.car}</td>
+                                                <td>{item.carNumber}</td>
+                                                <td>{item.cary}</td>
+                                                <td>{item.from}</td>
+                                                <td>{item.to}</td>
+                                                <td>{item.when}</td>
+                                                <td>{item.status}</td>
+                                            </tr>
+                                        )})}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

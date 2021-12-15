@@ -26,7 +26,7 @@ function SideBar(props){
     return(
         <div className="sticky">
             <div className="d-flex flex-column flex-shrink-0 sidebar">
-                <a href="/" className="d-block p-3 link-dark text-decoration-none" title="HungHau Holdings" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="/" className="d-block p-3 link-dark text-decoration-none text-center" title="HungHau Holdings" data-bs-toggle="tooltip" data-bs-placement="right">
                     <img src="./favicon.ico" width="40"/>
                     <span className="visually-hidden">Icon-only</span>
                 </a>

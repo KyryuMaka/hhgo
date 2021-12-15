@@ -1,6 +1,6 @@
 @import 'bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons.css';
-@import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+/* @import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'; */
 
 *{
   margin: 0;
@@ -100,7 +100,7 @@ a:hover{
 }
 
 .sidebar{
-  width: 4.5rem;
+  width: 75px;
   height: 100vh;
   background-color: rgba(0, 17, 102, 0.8);
   float: left;
@@ -108,14 +108,14 @@ a:hover{
 
 .main{
   width: 100%;
-  margin-left: 4.5rem;
+  margin-left: 75px;
   background: #f1f1f1;
 }
 
 .table-caption{
   border-radius: 0.25em;
   text-align: center;
-  color: purple;
-  border: 1px solid purple;
-  padding: 0.5em;
+  color: rgba(0, 17, 102, 0.8);
+  border: 1px solid rgba(0, 17, 102, 0.8);
+  padding: 0.5em 0;
 }
