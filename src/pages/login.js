@@ -18,7 +18,7 @@ function LogIn(props){
     const handleSubmit = (e) => {
         e.preventDefault();
         if(user.toLowerCase() === 'ad@hunghau.vn' && pass === 'HH@@2016'){
-            window.location.href = '/home';
+            window.location.href = '/dashboard';
         }else{
             var trigger = document.getElementById('falseLoginToast');
             var toast = new bootstrap.Toast(trigger);

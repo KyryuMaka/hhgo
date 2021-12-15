@@ -19,9 +19,7 @@ var realmUser;
 //     .then(data => {return data});
 // }
 
-
-
-function Dashboard(props){
+function History(props){
     const columns = [{
         dataField: 'id',
         text: 'Mã'
@@ -51,6 +49,13 @@ function Dashboard(props){
         text: 'Trạng thái'
     }];
 
+    const remote = [{
+        filter: true,
+        pagination: true,
+        sort: true,
+        cellEdit: true
+    }];
+
     const [data, setData] = useState([]);
     // const [driver, setDriver] = useState();
     // const [car, setCar] = useState();
@@ -67,7 +72,7 @@ function Dashboard(props){
             setData(await realmUser.callFunction('getAllData', {}));
         }
         dataName();
-    });
+    },[]);
         
     return(
         <div>
@@ -78,24 +83,14 @@ function Dashboard(props){
             <div className="d-flex">
                 <SideBar />
                 <div className="main">
-                    <div className="row">
-                        <div className="col-xxl-6">
-                            <div className="container p-3">
-                                <h3 className="table-caption">DANH SÁCH CÁC XE ĐANG ĐƯA ĐÓN</h3>
-                                <BootstrapTable keyField='id' data={ data } columns={ columns }  striped hover />
-                            </div>
-                        </div>
-                        <div className="col-xxl-6">
-                            <div className="container p-3">
-                                <h3 className="table-caption">DANH SÁCH CÁC XE ĐANG TRỐNG</h3>
-                                <BootstrapTable keyField='id' data={ data } columns={ columns }  striped hover />
-                            </div>
-                        </div>
+                    <div className="container">
+                        <h3 className="table-caption">LỊCH SỬ</h3>
+                        <BootstrapTable keyField='id' data={ data } columns={ columns } remote={ remote } striped hover />
                     </div>
-                    
                 </div>
             </div>
+            
         </div>
     );
 }
-export default Dashboard;
+export default History;

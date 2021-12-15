@@ -3,11 +3,26 @@ import * as bootstrap from 'bootstrap';
 
 function SideBar(props){
     useEffect(() => {
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
         tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
         });
     },[]);
+
+    function activeList() {
+        switch(props.href){
+            case '/':{
+                document.querySelector(".active");
+                break;
+            }
+            case '/dashboard':{
+                break;
+            }
+            default:
+                break;
+        }
+    };
+
     return(
         <div className="sticky">
             <div className="d-flex flex-column flex-shrink-0 sidebar">
@@ -17,13 +32,13 @@ function SideBar(props){
                 </a>
                 <ul className="nav nav-pills nav-flush flex-column mb-auto text-center">
                     <li className="nav-item">
-                        <a href="#" className="nav-link active py-3 border-bottom text-white" aria-current="page" title="Home" data-bs-toggle="tooltip" data-bs-placement="right">
-                            <i className="bi bi-house-door"></i>
+                        <a href="/dashboard" className="nav-link active py-3 border-bottom text-white" aria-current="page" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
+                            <i className="bi bi-speedometer2"></i>
                         </a>
                     </li>
-                    <li>
-                        <a href="#" className="nav-link py-3 border-bottom text-white" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
-                            <i className="bi bi-speedometer2"></i>
+                    <li className="nav-item">
+                        <a href="/history" className="nav-link py-3 border-bottom text-white" title="History" data-bs-toggle="tooltip" data-bs-placement="right">
+                            <i class="bi bi-clock-history"></i>
                         </a>
                     </li>
                     <li>
