@@ -53,7 +53,7 @@ function Dashboard(props){
                         <div className="col-xxl-6">
                             <div className="container p-3">
                                 <h3 className="table-caption">DANH SÁCH CÁC XE ĐANG ĐƯA ĐÓN</h3>
-                                <table className="table table-striped table-hover">
+                                <table className="table table-striped table-hover table-bordered table-sm align-middle">
                                     <thead>
                                         <tr>
                                             <th scope="col">TT</th>
@@ -90,7 +90,7 @@ function Dashboard(props){
                         <div className="col-xxl-6">
                             <div className="container p-3">
                                 <h3 className="table-caption">DANH SÁCH CÁC XE ĐANG TRỐNG</h3>
-                                <table className="table table-striped table-hover">
+                                <table className="table table-striped table-hover table-bordered table-sm align-middle">
                                     <thead>
                                         <tr>
                                             <th scope="col">TT</th>

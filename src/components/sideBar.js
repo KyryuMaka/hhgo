@@ -9,18 +9,14 @@ function SideBar(props){
         });
     },[]);
 
-    function activeList() {
-        switch(props.href){
-            case '/':{
-                document.querySelector(".active");
-                break;
-            }
-            case '/dashboard':{
-                break;
-            }
-            default:
-                break;
-        }
+    function slidebarClick(e){
+        e.preventDefault();
+        var slidebarTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        slidebarTriggerList.shift();
+        console.log(slidebarTriggerList);
+        // slidebarTriggerList.map(function (slidebarTrigger){
+            
+        // });
     };
 
     return(
@@ -28,7 +24,6 @@ function SideBar(props){
             <div className="d-flex flex-column flex-shrink-0 sidebar">
                 <a href="/" className="d-block p-3 link-dark text-decoration-none text-center" title="HungHau Holdings" data-bs-toggle="tooltip" data-bs-placement="right">
                     <img src="./favicon.ico" width="40"/>
-                    <span className="visually-hidden">Icon-only</span>
                 </a>
                 <ul className="nav nav-pills nav-flush flex-column mb-auto text-center">
                     <li className="nav-item">

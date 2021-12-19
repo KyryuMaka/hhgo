@@ -46,9 +46,9 @@ function History(props){
             <div className="d-flex">
                 <SideBar />
                 <div className="main">
-                    <div className="container">
+                    <div className="container p-3">
                         <h3 className="table-caption">DANH SÁCH CÁC XE ĐANG ĐƯA ĐÓN</h3>
-                        <table className="table table-striped table-hover">
+                        <table className="table table-striped table-hover table-bordered table-sm align-middle">
                             <thead>
                                 <tr>
                                     <th scope="col">TT</th>
