@@ -8,25 +8,19 @@ import IndexPage from './pages/index';
 import AboutPage from './pages/history';
 // import ContactPage from './pages/contact';
 
-function App() {
-  const [isUserAuthenticated, setUserAuthenticated] = useState(true);
-
-  var authenticateCallBack = (loginData) => {
-    setUserAuthenticated(loginData);
-  };
-
+function App(props) {
+  const [isUserAuthenticated, setUserAuthenticated] = useState(false);
+  
   return (
     <BrowserRouter>
       {/* <Route exact path="/" component={IndexPage}/> */}
-      <Route exact path="/" render={() => {
+      <Route exact path="/" render={props => {
         return(
           isUserAuthenticated ?
-          <Redirect to={{pathname: "/dashboard", state:{title: "Trang chủ", href:"/dashboard"}}}/> :
-          <Redirect to="/login" />
+          <IndexPage {...props} handleChange={isUserAuthenticated} title="Trang chủ" href="/dashboard" /> : 
+          <LoginPage {...props} title="Đăng nhập" href="/login"/>
         )
       }} />
-      <Route exact path="/login" render={props => <LoginPage {...props} title="Đăng nhập" href="/login"/>} />
-      <Route exact path="/dashboard" render={props => <IndexPage {...props} title="Trang chủ" href="/dashboard"/>} />
       <Route exact path="/history" render={props => <AboutPage {...props} title="Lịch sử" href="/history"/>} />
       {/* <Route exact path="/contact" render={props => <ContactPage {...props} title="Liên hệ" />}/> */}
     </BrowserRouter>

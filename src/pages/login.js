@@ -18,7 +18,8 @@ function LogIn(props){
     const handleSubmit = (e) => {
         e.preventDefault();
         if(user.toLowerCase() === 'ad@hunghau.vn' && pass === 'HH@@2016'){
-            window.location.href = '/dashboard';
+            // props.handleChange = true;
+            window.location.href = '/';
         }else{
             var trigger = document.getElementById('falseLoginToast');
             var toast = new bootstrap.Toast(trigger);
@@ -42,11 +43,11 @@ function LogIn(props){
 
                         <div className="form-floating mb-2">
                             <input type="text" className="form-control" id="ftun" placeholder="Tài khoản" required value={user} onChange={(e) => setUser(e.target.value)} />
-                            <label for="ftun" style={{"color": "black"}}>Tài khoản</label>
+                            <label htmlFor="ftun" style={{"color": "black"}}>Tài khoản</label>
                         </div>
                         <div className="form-floating mb-3">
                             <input type="password" className="form-control" id="flpw" placeholder="Mật khẩu" required value={pass} onChange={(e) => setPass(e.target.value)}/>
-                            <label for="flpw" style={{"color": "black"}}>Mật khẩu</label>
+                            <label htmlFor="flpw" style={{"color": "black"}}>Mật khẩu</label>
                         </div>
                         <div className="checkbox mb-3">
                             <input type="checkbox" value="remember-me" /> Ghi nhớ đăng nhập
@@ -54,7 +55,7 @@ function LogIn(props){
                         <button className="w-100 btn btn-lg btn-primary" id="loginBtn" type="submit">Đăng nhập</button>
                         <p className="mt-5">Copyright 2021 &copy; <b>HungHau Holding</b></p>
                     </form>
-                    <div className="toast-container position-fixed top-0 end-0 p-3" id="notifications" style={{"z-index": "11"}}>
+                    <div className="toast-container position-fixed top-0 end-0 p-3" id="notifications" style={{"zIndex": "11"}}>
                         <div id="falseLoginToast" className="toast" role="alert" aria-live="assertive" aria-atomic="true">
                             <div className="toast-header">
                                 <img src="./favicon.ico" className="rounded me-2" alt="..." style={{"height":"25px"}} />
