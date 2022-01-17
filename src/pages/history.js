@@ -32,7 +32,7 @@ function History(props){
     useEffect(()=>{
         async function dataName(params){
             const realmUser = await realmapp.logIn(credentials);
-            setData(await realmUser.callFunction('getAllData', {}));
+            setData(await realmUser.callFunction('getDBData', {}));
         }
         dataName();
     });

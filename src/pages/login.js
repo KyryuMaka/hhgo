@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import * as Realm from "realm-web";
 import * as bootstrap from 'bootstrap';
 import _ from 'lodash'
@@ -14,20 +14,32 @@ var realm_user
 function LogIn(props){
     const [user, setUser] = useState('');
     const [pass, setPass] = useState('');
+    const [dt, setDT] = useState([]);
+
+    useEffect(()=>{
+        async function dataName(params){
+            const realmUser = await realmapp.logIn(credentials);
+            setDT(await realmUser.callFunction('getUserbyName', {"user": user}));
+        }
+        dataName();
+    });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(user.toLowerCase() === 'ad@hunghau.vn' && pass === 'HH@@2016'){
-            console.log(isAuthenticated);
-            window.location.href = '/';
-        }else{
-            var trigger = document.getElementById('falseLoginToast');
-            var toast = new bootstrap.Toast(trigger);
-            toast.show();
-            setUser("");
-            setPass("");
-        }
+        dt.map(u => {
+            if(!_.isEmpty(dt) || pass === u.pass){
+                console.log("Đăng nhập thành công");
+                // window.location.href = '/';
+            }else{
+                var trigger = document.getElementById('falseLoginToast');
+                var toast = new bootstrap.Toast(trigger);
+                toast.show();
+                setUser("");
+                setPass("");
+            }
+        });
     }
+
 
     return(
         <div className="signin">
