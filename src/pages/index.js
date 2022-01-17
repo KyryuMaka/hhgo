@@ -23,7 +23,7 @@ function Dashboard(props){
     var stt1 = 0;
     var stt2 = 0;
     const [data, setData] = useState([]);
-    // const [driver, setDriver] = useState();
+    // const [driver, setDriver] = useState(); 
     // const [car, setCar] = useState();
     // const [carNumber, setCarNumber] = useState();
     // const [carry, setCarry] = useState();
@@ -42,7 +42,7 @@ function Dashboard(props){
         
     return(
         <div>
-            <Helmet titleTemplate="%s | Quản lý Đội xe Hùng Hậu">
+            <Helmet titleTemplate="%s | HHGo">
                 <title>{props.title}</title>
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>

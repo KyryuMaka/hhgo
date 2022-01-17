@@ -39,7 +39,7 @@ function History(props){
         
     return(
         <div>
-            <Helmet titleTemplate="%s | Quản lý Đội xe Hùng Hậu">
+            <Helmet titleTemplate="%s | HHGo">
                 <title>{props.title}</title>
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>

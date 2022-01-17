@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import bootstrap from 'bootstrap';
 import './App.css';
-import {Route, BrowserRouter, Redirect} from 'react-router-dom';
+import {Route, BrowserRouter} from 'react-router-dom';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { loadPosts } from './redux/actions/postAction';
 
 import LoginPage from './pages/login';
 import IndexPage from './pages/index';
@@ -10,6 +13,14 @@ import AboutPage from './pages/history';
 
 function App(props) {
   const [isUserAuthenticated, setUserAuthenticated] = useState(false);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadPosts());
+  }, [dispatch]);
+
+  const data = useSelector((state) => state.posts.data);
+  const requesting = useSelector((state) => state.posts.requesting);
   
   return (
     <BrowserRouter>
@@ -17,8 +28,8 @@ function App(props) {
       <Route exact path="/" render={props => {
         return(
           isUserAuthenticated ?
-          <IndexPage {...props} handleChange={isUserAuthenticated} title="Trang chủ" href="/dashboard" /> : 
-          <LoginPage {...props} title="Đăng nhập" href="/login"/>
+          <IndexPage {...props} title="Trang chủ" href="/dashboard" /> : 
+          <LoginPage {...props} title="Đăng nhập" href="/login" />
         )
       }} />
       <Route exact path="/history" render={props => <AboutPage {...props} title="Lịch sử" href="/history"/>} />
