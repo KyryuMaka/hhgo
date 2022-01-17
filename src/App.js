@@ -9,11 +9,11 @@ import { loadPosts } from './redux/actions/postAction';
 import LoginPage from './pages/login';
 import IndexPage from './pages/index';
 import AboutPage from './pages/history';
+
+import { isAuthenticated } from './redux/constants/post'
 // import ContactPage from './pages/contact';
 
 function App(props) {
-  const [isUserAuthenticated, setUserAuthenticated] = useState(false);
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadPosts());
@@ -27,7 +27,7 @@ function App(props) {
       {/* <Route exact path="/" component={IndexPage}/> */}
       <Route exact path="/" render={props => {
         return(
-          isUserAuthenticated ?
+           isAuthenticated?
           <IndexPage {...props} title="Trang chủ" href="/dashboard" /> : 
           <LoginPage {...props} title="Đăng nhập" href="/login" />
         )

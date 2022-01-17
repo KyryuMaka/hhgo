@@ -4,11 +4,11 @@ import * as bootstrap from 'bootstrap';
 import _ from 'lodash'
 import {Helmet} from 'react-helmet';
 
+import { isAuthenticated } from '../redux/constants/post';
+
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
 const credentials = Realm.Credentials.anonymous();
 var realm_user
-
-let realmUser;
 
 
 function LogIn(props){
@@ -18,7 +18,7 @@ function LogIn(props){
     const handleSubmit = (e) => {
         e.preventDefault();
         if(user.toLowerCase() === 'ad@hunghau.vn' && pass === 'HH@@2016'){
-            // props.handleChange = true;
+            console.log(isAuthenticated);
             window.location.href = '/';
         }else{
             var trigger = document.getElementById('falseLoginToast');
