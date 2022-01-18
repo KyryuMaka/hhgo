@@ -20,14 +20,15 @@ function LogIn(props){
         async function dataName(params){
             const realmUser = await realmapp.logIn(credentials);
             setDT(await realmUser.callFunction('getUserbyName', {"user": user}));
+            console.log(dt);
         }
         dataName();
-    });
+    },[dt]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         dt.map(u => {
-            if(!_.isEmpty(dt) || pass === u.pass){
+            if(!_.isEmpty(dt) && pass === u.pass){
                 console.log("Đăng nhập thành công");
                 // window.location.href = '/';
             }else{
