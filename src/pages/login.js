@@ -4,8 +4,6 @@ import * as bootstrap from 'bootstrap';
 import _ from 'lodash'
 import {Helmet} from 'react-helmet';
 
-import { isAuthenticated } from '../redux/constants/post';
-
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
 const credentials = Realm.Credentials.anonymous();
 var realm_user
