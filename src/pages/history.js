@@ -5,7 +5,6 @@ import _ from 'lodash'
 import {Helmet} from 'react-helmet';
 
 import SideBar from '../components/sideBar'
-import axios from 'axios';
 
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
 const credentials = Realm.Credentials.anonymous();

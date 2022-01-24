@@ -6,25 +6,24 @@ import {Helmet} from 'react-helmet';
 
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
 const credentials = Realm.Credentials.anonymous();
-var realm_user
-
 
 function LogIn(props){
     const [user, setUser] = useState('');
     const [pass, setPass] = useState('');
     const [dt, setDT] = useState([]);
 
-    useEffect(()=>{
+    const getData = useEffect(()=>{
         async function dataName(params){
             const realmUser = await realmapp.logIn(credentials);
             setDT(await realmUser.callFunction('getUserbyName', {"user": user}));
             console.log(dt);
         }
         dataName();
-    },[dt]);
+    },[]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        getData();
         dt.map(u => {
             if(!_.isEmpty(dt) && pass === u.pass){
                 console.log("Đăng nhập thành công");
@@ -64,7 +63,7 @@ function LogIn(props){
                             <input type="checkbox" value="remember-me" /> Ghi nhớ đăng nhập
                         </div>
                         <button className="w-100 btn btn-lg btn-primary" id="loginBtn" type="submit">Đăng nhập</button>
-                        <p className="mt-5">Copyright 2021 &copy; <b>HungHau Holding</b></p>
+                        <p className="mt-5">Copyright 2022 &copy; <b>HungHau Holding</b></p>
                     </form>
                     <div className="toast-container position-fixed top-0 end-0 p-3" id="notifications" style={{"zIndex": "11"}}>
                         <div id="falseLoginToast" className="toast" role="alert" aria-live="assertive" aria-atomic="true">

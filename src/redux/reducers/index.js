@@ -1,9 +1,6 @@
-// reducers/index.jsjs
-import { combineReducers } from 'redux';
-import postReducer from './postReducer';
+import { combineReducers } from "redux";
+import authReducer from './authReducer';
 
-const reducers = combineReducers({
-	posts: postReducer,
+export default combineReducers({
+    auth: authReducer
 });
-
-export default (state, action) => reducers(state, action);

@@ -1,45 +1,20 @@
-// import constants
-import {
-    FETCH_POST_REQUEST,
-    FETCH_POST_SUCCESS,
-    FETCH_POST_ERROR,
-} from '../constants/post';
+import { TEST_DISPATCH } from "../actions/types";
 
-// khởi tạo một init state
 const initialState = {
-    requesting: false,
-    success: false,
-    message: null,
-    data: null,
-    isAuthenticated: null
+    isAuthenticated: false,
+    user: {}
 }
 
-// bắt từng action type
-function authReducers(state = initialState, payload) {
-    switch (payload.type) {
-        case FETCH_POST_REQUEST:
-            return {
+function authReducer(state = initialState, action) {
+    switch(action.type){
+        case TEST_DISPATCH:
+            return{
                 ...state,
-                requesting: true
-            };
-        case FETCH_POST_SUCCESS:
-            return {
-                ...state,
-                requesting: false,
-                success: true,
-                data: payload.data,
-                isAuthenticated: true
-            };
-        case FETCH_POST_ERROR:
-            return {
-                ...state,
-                requesting: false,
-                message: payload.message
-            };
-
+                user: action.payload
+            }
         default:
             return state;
     }
 }
 
-export default authReducers;
+export default authReducer;
