@@ -1,14 +1,9 @@
 # HungHau Holdings | HHGo
 Copyright 2022 &copy; [HungHau Holdings](https://hunghau.vn/).
 
-## Available Scripts
-
-In the project directory, you can:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Creator Team
+**Leader: HHO DuyNK.
+Member:
+1. HHO ThongLV
+2. HHO TruongNL
+3. HHO VanPTC
