@@ -1,5 +1,5 @@
 # HungHau Holdings | HHGo
-Copyright &copy; [HungHau](https://hunghau.vn/) 2022.
+Copyright 2022 &copy; [HungHau Holdings](https://hunghau.vn/).
 
 ## Available Scripts
 
