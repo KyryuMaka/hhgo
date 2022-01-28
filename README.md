@@ -1,6 +1,5 @@
 # HungHau Holdings | HHGo
-
-This project was created by [HungHau](https://hunghau.vn/).
+Copyright &copy; [HungHau](https://hunghau.vn/) 2022.
 
 ## Available Scripts
 
