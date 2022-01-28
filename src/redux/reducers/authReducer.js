@@ -1,16 +1,18 @@
-import { TEST_DISPATCH } from "../actions/types";
+import { SET_CURRENT_USER } from '../actions/types';
+import _ from 'lodash';
 
 const initialState = {
     isAuthenticated: false,
-    user: {}
+    users: {}
 }
 
 function authReducer(state = initialState, action) {
     switch(action.type){
-        case TEST_DISPATCH:
+        case SET_CURRENT_USER:
             return{
                 ...state,
-                user: action.payload
+                isAuthenticated: !_.isEmpty(action.payload),
+                users: action.payload
             }
         default:
             return state;

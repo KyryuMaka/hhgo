@@ -1,46 +1,41 @@
 import React, {useEffect, useState} from 'react'
-import * as Realm from "realm-web";
 import * as bootstrap from 'bootstrap';
 import _ from 'lodash'
 import {Helmet} from 'react-helmet';
 
-const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
-const credentials = Realm.Credentials.anonymous();
+import { loginUser } from '../redux/actions/authAction';
+import { useDispatch, useSelector } from 'react-redux';
 
 function LogIn(props){
     const [user, setUser] = useState('');
     const [pass, setPass] = useState('');
-    const [dt, setDT] = useState([]);
 
-    const getData = useEffect(()=>{
-        async function dataName(params){
-            const realmUser = await realmapp.logIn(credentials);
-            setDT(await realmUser.callFunction('getUserbyName', {"user": user}));
-            console.log(dt);
-        }
-        dataName();
-    },[]);
-
-    const handleSubmit = (e) => {
+    const dispatch = useDispatch();
+    const {users} = useSelector((state) => state.auth)
+    
+    const handleSubmit = async function(e){
         e.preventDefault();
-        getData();
-        dt.map(u => {
-            if(!_.isEmpty(dt) && pass === u.pass){
+        const u = {
+            user: user,
+            pass: pass
+        }
+        dispatch(loginUser(u,()=>{
+            if(!_.isEmpty(users)){
                 console.log("Đăng nhập thành công");
-                // window.location.href = '/';
+                window.location.href = '/';
             }else{
                 var trigger = document.getElementById('falseLoginToast');
                 var toast = new bootstrap.Toast(trigger);
                 toast.show();
                 setUser("");
                 setPass("");
-            }
-        });
+            };
+        }));
     }
 
 
     return(
-        <div className="signin">
+        <>
             <Helmet titleTemplate="%s | HHGo">
                 <title>{props.title}</title>
                 <meta name="description" content="Đội xe Hùng Hậu"/>
@@ -80,7 +75,7 @@ function LogIn(props){
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 

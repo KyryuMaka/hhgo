@@ -8,7 +8,6 @@ import SideBar from '../components/sideBar'
 
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
 const credentials = Realm.Credentials.anonymous();
-var realmUser;
 
 // const getData = async (folder,name) =>{
 //     return await fetch('data/'+folder+name+'.json')
