@@ -22,7 +22,7 @@ function App(props) {
           <div className="d-flex">
             <SideBar />
             <Route exact path="/" render={props => <IndexPage {...props} title="Trang chủ" />} />
-            <Route exact path="/history" render={props => <AboutPage {...props} title="Lịch sử" href="/history"/>} />
+            <Route exact path="/history" render={props => <AboutPage {...props} title="Lịch sử"/>} />
           </div>
         </>:
         <Route exact path="/" render={props => <LoginPage {...props} title="Đăng nhập" />} />
