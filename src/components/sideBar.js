@@ -13,10 +13,17 @@ function SideBar(props){
         e.preventDefault();
         var slidebarTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
         slidebarTriggerList.shift();
-        console.log(slidebarTriggerList);
-        // slidebarTriggerList.map(function (slidebarTrigger){
-            
-        // });
+        // console.log(slidebarTriggerList);
+        // console.log(e);
+        slidebarTriggerList.map(li => {
+            li.className = li.className.replace('active','');
+        });
+        if(e.target.localName == 'a'){
+            e.target.className += ' active';
+        }else{
+            e.target.parentElement.className += ' active';
+        }
+        window.location.href = e.target.href;
     };
 
     return(
@@ -27,27 +34,27 @@ function SideBar(props){
                 </a>
                 <ul className="nav nav-pills nav-flush flex-column mb-auto text-center">
                     <li className="nav-item">
-                        <a href="/dashboard" className="nav-link active py-3 border-bottom text-white" aria-current="page" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="/dashboard" className="nav-link py-3 border-bottom text-white active" onClick={slidebarClick} aria-current="page" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-speedometer2"></i>
                         </a>
                     </li>
                     <li className="nav-item">
-                        <a href="/history" className="nav-link py-3 border-bottom text-white" title="History" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="/history" className="nav-link py-3 border-bottom text-white" onClick={slidebarClick} title="History" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-clock-history"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#" className="nav-link py-3 border-bottom text-white" title="Orders" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="#" className="nav-link py-3 border-bottom text-white" onClick={slidebarClick} title="Orders" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-table"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#" className="nav-link py-3 border-bottom text-white" title="Products" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="#" className="nav-link py-3 border-bottom text-white" onClick={slidebarClick} title="Products" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-grid"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#" className="nav-link py-3 border-bottom text-white" title="Customers" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="#" className="nav-link py-3 border-bottom text-white" onClick={slidebarClick} title="Customers" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-person-circle"></i>
                         </a>
                     </li>

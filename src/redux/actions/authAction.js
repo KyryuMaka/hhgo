@@ -11,8 +11,7 @@ export const loginUser = (userData, callback) => dispatch => {
         const realmUser = await realmapp.logIn(credentials);
         return await realmUser.callFunction('getUser', {user: userData.user, pass: userData.pass});
     }
-    var data = dataName();
-    data
+    dataName()
     .then(res => {
         dispatch({
             type: SET_CURRENT_USER,
@@ -24,4 +23,5 @@ export const loginUser = (userData, callback) => dispatch => {
         type: ERROR,
         payload: err
     }))
+    
 }

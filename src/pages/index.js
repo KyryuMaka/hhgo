@@ -33,7 +33,7 @@ function Dashboard(props){
             setData(await realmUser.callFunction('getDBData', {}));
         }
         dataName();
-    });
+    },[]);
         
     return(
         <>

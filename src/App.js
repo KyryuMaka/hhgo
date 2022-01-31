@@ -12,7 +12,8 @@ import AboutPage from './pages/history';
 // import ContactPage from './pages/contact';
 
 function App(props) {
-  const {isAuthenticated} = useSelector((state) => state.auth)
+  const {isAuthenticated} = useSelector((state) => state.auth);
+  console.log(isAuthenticated);
   return (
     <BrowserRouter>
       {/* <Route exact path="/" component={IndexPage}/> */}

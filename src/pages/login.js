@@ -26,13 +26,22 @@ function LogIn(props){
             }else{
                 var trigger = document.getElementById('falseLoginToast');
                 var toast = new bootstrap.Toast(trigger);
-                toast.show();
                 setUser("");
                 setPass("");
+                if(toast._element.className.search('fade') === -1){
+                    toast._element.className += ' fade';
+                }
+                if(toast._element.className.search('hide') === -1 && toast._element.className.search('show') === -1){
+                    toast._element.className += ' show';
+                }else{
+                    if(toast._element.className.search('hide') !== -1) toast._element.className = toast._element.className.replace('hide','show');
+                }
+                setTimeout(() => {
+                    toast._element.className = toast._element.className.replace('show','hide');
+                },1000);
             };
         }));
     }
-
 
     return(
         <>
