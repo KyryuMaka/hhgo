@@ -3,6 +3,7 @@ import * as Realm from "realm-web";
 import * as bootstrap from 'bootstrap';
 import _ from 'lodash';
 import {Helmet} from 'react-helmet';
+import { useHistory } from 'react-router-dom';
 
 
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
@@ -15,6 +16,9 @@ const credentials = Realm.Credentials.anonymous();
 // }
 
 function Dashboard(props){
+    const history = useHistory();
+    const detail = "Chi tiết>>";
+
     var stt1 = 0;
     var stt2 = 0;
     const [data, setData] = useState([]);
@@ -42,6 +46,52 @@ function Dashboard(props){
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>
             <div className="main">
+                <div className="row m-0 pt-3">
+                    <div className="col-lg-3">
+                        <div className="container p-3">
+                            <div className="card " style={{"backgroundImage":"linear-gradient(to bottom, rgb(13, 110, 253, 0.5), rgba(13, 110, 253, 0.8))"}}>
+                                <div class="card-body">
+                                    <h5 className="card-title">Tài xế</h5>
+                                    <p className="card-text">Hiện đang có 0 tài xế sẵn sàng!</p>
+                                    <a href="#">{detail}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-lg-3">
+                        <div className="container p-3">
+                            <div className="card" style={{"backgroundImage":"linear-gradient(to bottom, rgba(13, 202, 240, 0.5), rgba(13, 202, 240, 0.8))"}}>
+                                <div class="card-body">
+                                    <h5 className="card-title">Xe</h5>
+                                    <p className="card-text">Hiện đang có 0 xe sẵn sàng!</p>
+                                    <a href="#">{detail}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-lg-3">
+                        <div className="container p-3">
+                            <div className="card" style={{"backgroundImage":"linear-gradient(to bottom, rgba(32, 201, 151, 0.5), rgba(32, 201, 151, 0.8))"}}>
+                                <div class="card-body">
+                                    <h5 className="card-title">Địa điểm</h5>
+                                    <p className="card-text">Những địa điểm thường xuyên di chuyển</p>
+                                    <a href="#">{detail}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-lg-3">
+                        <div className="container p-3">
+                            <div className="card" style={{"backgroundImage":"linear-gradient(to bottom, rgba(255, 193, 7, 0.5), rgba(255, 193, 7, 0.8))"}}>
+                                <div class="card-body">
+                                    <h5 className="card-title">Lịch sử</h5>
+                                    <p className="card-text">Lịch sử di chuyển</p>
+                                    <a href="/history" onClick={(e) => {e.preventDefault(); history.push(e.target.pathname)}}>{detail}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div className="row m-0">
                     <div className="col-xxl-6">
                         <div className="container p-3">

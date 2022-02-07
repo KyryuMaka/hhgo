@@ -4,28 +4,12 @@ import { useHistory } from 'react-router-dom';
 
 function SideBar(props){
     let history = useHistory();
-    useEffect(() => {
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-        tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl)
-        });
-    },[]);
 
     function slidebarClick(e){
         e.preventDefault();
-        var slidebarTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-        slidebarTriggerList.shift();
-        // console.log(slidebarTriggerList);
-        // console.log(e);
-        // eslint-disable-next-line array-callback-return
-        slidebarTriggerList.map(li => {
-            li.className = li.className.replace('active','');
-        });
         if(e.target.localName === 'a'){
-            e.target.className += ' active';
             history.push(e.target.pathname);
         }else{
-            e.target.parentElement.className += ' active';
             history.push(e.target.parentElement.pathname);
         }
     };
@@ -33,12 +17,12 @@ function SideBar(props){
     return(
         <div className="sticky">
             <div className="d-flex flex-column flex-shrink-0 sidebar">
-                <a href="/" className="d-block p-3 link-dark text-decoration-none text-center" onClick={(e) => {e.preventDefault(); history.push(e.target.pathname)}} title="HungHau Holdings" data-bs-toggle="tooltip" data-bs-placement="right">
-                    <img alt='' src="./favicon.ico" width="40" onClick={(e) => {e.preventDefault(); history.push(e.target.parentElement.pathname)}}/>
+                <a href="/" className="d-block p-3 link-dark text-decoration-none text-center" onClick={slidebarClick} title="HungHau Holdings" data-bs-toggle="tooltip" data-bs-placement="right">
+                    <img alt='' src="./favicon.ico" width="40" />
                 </a>
                 <ul className="nav nav-pills nav-flush flex-column mb-auto text-center">
                     <li className="nav-item">
-                        <a href="/" className="nav-link py-3 border-bottom text-white active" onClick={slidebarClick} aria-current="page" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="/" className="nav-link py-3 border-bottom text-white border-top" onClick={slidebarClick} aria-current="page" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-speedometer2"></i>
                         </a>
                     </li>

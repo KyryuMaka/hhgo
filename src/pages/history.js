@@ -42,7 +42,6 @@ function History(props){
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>
             <div className="d-flex">
-                <SideBar />
                 <div className="main">
                     <div className="container p-3">
                         <h3 className="table-caption">DANH SÁCH CÁC XE ĐANG ĐƯA ĐÓN</h3>
