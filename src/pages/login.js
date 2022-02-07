@@ -13,7 +13,7 @@ function LogIn(props){
     const dispatch = useDispatch();
     const {users} = useSelector((state) => state.auth)
     
-    const handleSubmit = async function(e){
+    const handleSubmit = (e) => {
         e.preventDefault();
         const u = {
             user: user,
