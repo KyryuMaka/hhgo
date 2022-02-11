@@ -3,6 +3,8 @@ import * as bootstrap from 'bootstrap';
 import _ from 'lodash'
 import {Helmet} from 'react-helmet';
 
+import $ from "jquery";
+
 import { loginUser } from '../redux/actions/authAction';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -19,26 +21,17 @@ function LogIn(props){
             user: user,
             pass: pass
         }
+        $("#loginBtn")[0].innerHTML=`<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Loading...`;
         dispatch(loginUser(u,()=>{
             if(!_.isEmpty(users)){
-                console.log("Đăng nhập thành công");
                 window.location.href = '/';
             }else{
+                $("#loginBtn")[0].innerHTML=`Đăng nhập`;
                 var trigger = document.getElementById('falseLoginToast');
                 var toast = new bootstrap.Toast(trigger);
                 setUser("");
                 setPass("");
-                if(toast._element.className.search('fade') === -1){
-                    toast._element.className += ' fade';
-                }
-                if(toast._element.className.search('hide') === -1 && toast._element.className.search('show') === -1){
-                    toast._element.className += ' show';
-                }else{
-                    if(toast._element.className.search('hide') !== -1) toast._element.className = toast._element.className.replace('hide','show');
-                }
-                setTimeout(() => {
-                    toast._element.className = toast._element.className.replace('show','hide');
-                },1000);
+                toast.show();
             };
         }));
     }

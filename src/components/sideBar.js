@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import * as bootstrap from 'bootstrap';
 import { useHistory } from 'react-router-dom';
 
-function SideBar(props){
+function SideBar(){
     let history = useHistory();
 
     function slidebarClick(e){

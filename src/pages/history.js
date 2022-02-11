@@ -1,10 +1,11 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState,useEffect} from 'react';
 import * as Realm from "realm-web";
 import * as bootstrap from 'bootstrap';
 import _ from 'lodash'
 import {Helmet} from 'react-helmet';
 
-import SideBar from '../components/sideBar'
+import $ from "jquery";
+import {DataTable} from 'datatables.net-bs5';
 
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
 const credentials = Realm.Credentials.anonymous();
@@ -16,7 +17,6 @@ const credentials = Realm.Credentials.anonymous();
 // }
 
 function History(props){
-    var stt = 0;
     const [data, setData] = useState([]);
     // const [driver, setDriver] = useState();
     // const [car, setCar] = useState();
@@ -33,54 +33,73 @@ function History(props){
             setData(await realmUser.callFunction('getDBData', {}));
         }
         dataName();
-    });
-        
+    },[]);
+    
+    useEffect(()=>{
+        (_.isEmpty(data))?
+        console.log(data):
+        $('#historyTable').DataTable({
+            retrieve: true,
+            data:data,
+            pageLength:10,
+            columns:[
+                {data:"driver"},
+                {data:"car"},
+                {data:"carNumber"},
+                {data:"cary"},
+                {data:"from"},
+                {data:"to"},
+                {data:"when"},
+                {data:"status"},
+            ]
+        });
+    })
+
     return(
-        <div>
+        <>
             <Helmet titleTemplate="%s | HHGo">
                 <title>{props.title}</title>
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>
-            <div className="d-flex">
-                <div className="main">
-                    <div className="container p-3">
-                        <h3 className="table-caption">DANH SÁCH CÁC XE ĐANG ĐƯA ĐÓN</h3>
-                        <table className="table table-striped table-hover table-bordered table-sm align-middle">
-                            <thead>
+            <div className="main">
+                <div className="container p-3">
+                    <h3 className="">LỊCH SỬ DI CHUYỂN</h3>
+                    <table className="table table-striped table-hover table-bordered align-middle table-sm display" id="historyTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tài xế</th>
+                                <th scope="col">Xe</th>
+                                <th scope="col">Biển số xe</th>
+                                <th scope="col">Chở</th>
+                                <th scope="col">Từ</th>
+                                <th scope="col">Đến</th>
+                                <th scope="col">Vào lúc</th>
+                                <th scope="col">Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {/* {
+                            data.map(item => {
+                                stt++;
+                                return(
                                 <tr>
-                                    <th scope="col">TT</th>
-                                    <th scope="col">Tài xế</th>
-                                    <th scope="col">Xe</th>
-                                    <th scope="col">Biển số xe</th>
-                                    <th scope="col">Chở</th>
-                                    <th scope="col">Từ</th>
-                                    <th scope="col">Đến</th>
-                                    <th scope="col">Vào lúc</th>
-                                    <th scope="col">Trạng thái</th>
+                                    <th scope="row">{stt}</th>
+                                    <td>{item.driver}</td>
+                                    <td>{item.car}</td>
+                                    <td>{item.carNumber}</td>
+                                    <td>{item.cary}</td>
+                                    <td>{item.from}</td>
+                                    <td>{item.to}</td>
+                                    <td>{item.when}</td>
+                                    <td>{item.status}</td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {data.map(item => {
-                                    stt++;
-                                    return(
-                                    <tr>
-                                        <th scope="row">{stt}</th>
-                                        <td>{item.driver}</td>
-                                        <td>{item.car}</td>
-                                        <td>{item.carNumber}</td>
-                                        <td>{item.cary}</td>
-                                        <td>{item.from}</td>
-                                        <td>{item.to}</td>
-                                        <td>{item.when}</td>
-                                        <td>{item.status}</td>
-                                    </tr>
-                                )})}
-                            </tbody>
-                        </table>
-                    </div>
+                            )})
+                            } */}
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 export default History;
