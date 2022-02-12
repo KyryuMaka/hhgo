@@ -11,6 +11,8 @@ import IndexPage from './pages/index';
 import AboutPage from './pages/history';
 // import ContactPage from './pages/contact';
 
+import NotFound from './components/notfound';
+
 function App() {
   const { isAuthenticated } = useSelector((state) => state.auth);
   return (
@@ -27,6 +29,7 @@ function App() {
         </> :
         <Route exact path="/" render={props => <LoginPage {...props} title="Đăng nhập" />} />
       }
+      {/* <Route component={NotFound} /> */}
     </BrowserRouter>
   );
 }

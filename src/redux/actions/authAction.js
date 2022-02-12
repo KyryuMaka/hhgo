@@ -23,5 +23,4 @@ export const loginUser = (userData, callback) => dispatch => {
         type: ERROR,
         payload: err
     }))
-    
 }

@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import * as bootstrap from 'bootstrap';
 import _ from 'lodash'
 import {Helmet} from 'react-helmet';
+import { useHistory } from 'react-router-dom';
 
 import $ from "jquery";
 
@@ -14,7 +15,9 @@ function LogIn(props){
     const [pass, setPass] = useState('');
 
     const dispatch = useDispatch();
-    const {users} = useSelector((state) => state.auth)
+    const {users} = useSelector((state) => state.auth);
+    
+    let history = useHistory();
     
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,7 +28,7 @@ function LogIn(props){
         $("#loginBtn")[0].innerHTML=loading;
         dispatch(loginUser(u,()=>{
             if(!_.isEmpty(users)){
-                window.location.href = '/';
+                history.push("/");
             }else{
                 $("#loginBtn")[0].innerHTML=`Đăng nhập`;
                 var trigger = document.getElementById('falseLoginToast');
