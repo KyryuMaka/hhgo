@@ -7,6 +7,7 @@ import $ from "jquery";
 
 import { loginUser } from '../redux/actions/authAction';
 import { useDispatch, useSelector } from 'react-redux';
+import { loading } from '../constant';
 
 function LogIn(props){
     const [user, setUser] = useState('');
@@ -21,7 +22,7 @@ function LogIn(props){
             user: user,
             pass: pass
         }
-        $("#loginBtn")[0].innerHTML=`<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Loading...`;
+        $("#loginBtn")[0].innerHTML=loading;
         dispatch(loginUser(u,()=>{
             if(!_.isEmpty(users)){
                 window.location.href = '/';

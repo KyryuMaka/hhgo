@@ -6,6 +6,7 @@ import {Helmet} from 'react-helmet';
 
 import $ from "jquery";
 import {DataTable} from 'datatables.net-bs5';
+import { loading } from '../constant';
 
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
 const credentials = Realm.Credentials.anonymous();
@@ -36,8 +37,6 @@ function History(props){
     },[]);
     
     useEffect(()=>{
-        (_.isEmpty(data))?
-        console.log(data):
         $('#historyTable').DataTable({
             retrieve: true,
             data:data,
@@ -58,48 +57,36 @@ function History(props){
     return(
         <>
             <Helmet titleTemplate="%s | HHGo">
-                <title>{props.title}</title>
+                {(_.isEmpty(data))?<title>Loading...</title>:<title>{props.title}</title>}
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>
-            <div className="main">
+            <div className="main vh-100">
                 <div className="container p-3">
-                    <h3 className="">LỊCH SỬ DI CHUYỂN</h3>
-                    <table className="table table-striped table-hover table-bordered align-middle table-sm display" id="historyTable">
-                        <thead>
-                            <tr>
-                                <th scope="col">Tài xế</th>
-                                <th scope="col">Xe</th>
-                                <th scope="col">Biển số xe</th>
-                                <th scope="col">Chở</th>
-                                <th scope="col">Từ</th>
-                                <th scope="col">Đến</th>
-                                <th scope="col">Vào lúc</th>
-                                <th scope="col">Trạng thái</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {/* {
-                            data.map(item => {
-                                stt++;
-                                return(
+                    {(_.isEmpty(data))?
+                    <div className="vh-100"><span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Loading...</div>:
+                    <>
+                        <h3 className="">LỊCH SỬ DI CHUYỂN</h3>
+                        <table className="table table-striped table-hover table-bordered align-middle table-sm" id="historyTable">
+                            <thead>
                                 <tr>
-                                    <th scope="row">{stt}</th>
-                                    <td>{item.driver}</td>
-                                    <td>{item.car}</td>
-                                    <td>{item.carNumber}</td>
-                                    <td>{item.cary}</td>
-                                    <td>{item.from}</td>
-                                    <td>{item.to}</td>
-                                    <td>{item.when}</td>
-                                    <td>{item.status}</td>
+                                    <th scope="col">Tài xế</th>
+                                    <th scope="col">Xe</th>
+                                    <th scope="col">Biển số xe</th>
+                                    <th scope="col">Chở</th>
+                                    <th scope="col">Từ</th>
+                                    <th scope="col">Đến</th>
+                                    <th scope="col">Vào lúc</th>
+                                    <th scope="col">Trạng thái</th>
                                 </tr>
-                            )})
-                            } */}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </>
+                    }
                 </div>
             </div>
         </>
-    );
+    );    
 }
 export default History;
