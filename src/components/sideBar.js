@@ -65,7 +65,7 @@ function SideBar(){
                 </ul>
                 <div className="dropdown border-top">
                     <a href=" " className="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none text-white" id="dropdownSetting" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-gear" />
+                        <i className="bi bi-gear" />
                     </a>
                     <ul className="dropdown-menu text-small shadow" aria-labelledby="dropdownSetting">
                         <li><a className="dropdown-item" href=" ">Tài khoản</a></li>

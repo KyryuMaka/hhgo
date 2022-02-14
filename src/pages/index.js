@@ -77,7 +77,7 @@ function Dashboard(props){
                 {(_.isEmpty(data))?
                 <div className="vh-100 d-flex justify-content-center">
                     <div className="align-self-center">
-                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>{loading}
+                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>{loading}
                     </div>
                 </div>:
                 <>
@@ -85,35 +85,35 @@ function Dashboard(props){
                         <div className="col-lg-3">
                             <div className="container p-3">
                                 <div className="card border-top-0 border-bottom-0 border-end-0 border-4 shadow h-100 py-2" style={{borderColor: "#4e73df"}}>
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col me-2">
-                                                <div class="fw-bold text-uppercase mb-1" style={{color: "#4e73df"}}>Tài xế</div>
-                                                <div class="fs-6 mb-0 text-black-50">Hiện đang có 0 tài xế sẵn sàng!</div>
+                                    <div className="card-body">
+                                        <div className="row no-gutters align-items-center">
+                                            <div className="col me-2">
+                                                <div className="fw-bold text-uppercase mb-1" style={{color: "#4e73df"}}>Tài xế</div>
+                                                <div className="fs-6 mb-0 text-black-50">Hiện đang có 0 tài xế sẵn sàng!</div>
+                                                <a href=" ">{detail}</a>
                                             </div>
-                                            <div class="col-auto">
-                                                {/* icon here */}
+                                            <div className="col-auto">
+                                                <i className="bi bi-person-fill fs-1" style={{color: "#dddfeb"}}></i>
                                             </div>
                                         </div>
-                                        <a href=" ">{detail}</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="col-lg-3">
-                        <div className="container p-3">
+                            <div className="container p-3">
                                 <div className="card border-top-0 border-bottom-0 border-end-0 border-4 shadow h-100 py-2" style={{borderColor: "#1cc88a"}}>
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col me-2">
-                                                <div class="fw-bold text-uppercase mb-1" style={{color: "#1cc88a"}}>Xe</div>
-                                                <div class="fs-6 mb-0 text-black-50">Hiện đang có 0 xe sẵn sàng!</div>
+                                    <div className="card-body">
+                                        <div className="row no-gutters align-items-center">
+                                            <div className="col me-2">
+                                                <div className="fw-bold text-uppercase mb-1" style={{color: "#1cc88a"}}>Xe</div>
+                                                <div className="fs-6 mb-0 text-black-50">Hiện đang có 0 xe sẵn sàng!</div>
+                                                <a href=" ">{detail}</a>
                                             </div>
-                                            <div class="col-auto">
-                                                {/* icon here */}
+                                            <div className="col-auto">
+                                                <span className="fs-1" style={{color: "#dddfeb"}}>&#9951;</span>
                                             </div>
                                         </div>
-                                        <a href=" ">{detail}</a>
                                     </div>
                                 </div>
                             </div>
@@ -121,17 +121,17 @@ function Dashboard(props){
                         <div className="col-lg-3">
                             <div className="container p-3">
                                 <div className="card border-top-0 border-bottom-0 border-end-0 border-4 shadow h-100 py-2" style={{borderColor: "#36b9cc"}}>
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col me-2">
-                                                <div class="fw-bold text-uppercase mb-1" style={{color: "#36b9cc"}}>Địa điểm</div>
-                                                <div class="fs-6 mb-0 text-black-50">Những địa điểm thường xuyên di chuyển</div>
+                                    <div className="card-body">
+                                        <div className="row no-gutters align-items-center">
+                                            <div className="col me-2">
+                                                <div className="fw-bold text-uppercase mb-1" style={{color: "#36b9cc"}}>Địa điểm</div>
+                                                <div className="fs-6 mb-0 text-black-50">Quản lý địa điểm</div>
+                                                <a href=" ">{detail}</a>
                                             </div>
-                                            <div class="col-auto">
-                                                {/* icon here */}
+                                            <div className="col-auto">
+                                                <i class="bi bi-geo-alt-fill fs-1" style={{color: "#dddfeb"}}></i>
                                             </div>
                                         </div>
-                                        <a href=" ">{detail}</a>
                                     </div>
                                 </div>
                             </div>
@@ -139,17 +139,17 @@ function Dashboard(props){
                         <div className="col-lg-3">
                             <div className="container p-3">
                                 <div className="card border-top-0 border-bottom-0 border-end-0 border-4 shadow h-100 py-2" style={{borderColor: "#f6c23e"}}>
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col me-2">
-                                                <div class="fw-bold text-uppercase mb-1" style={{color: "#f6c23e"}}>Lịch sử</div>
-                                                <div class="fs-6 mb-0 text-black-50">Lịch sử di chuyển</div>
+                                    <div className="card-body">
+                                        <div className="row no-gutters align-items-center">
+                                            <div className="col me-2">
+                                                <div className="fw-bold text-uppercase mb-1" style={{color: "#f6c23e"}}>Lịch sử</div>
+                                                <div className="fs-6 mb-0 text-black-50">Lịch sử di chuyển</div>
+                                                <a href="/history" onClick={(e) => {e.preventDefault(); history.push(e.target.pathname)}}>{detail}</a>
                                             </div>
-                                            <div class="col-auto">
-                                                {/* icon here */}
+                                            <div className="col-auto">
+                                                <i class="bi bi-clock-fill fs-1" style={{color: "#dddfeb"}}></i>
                                             </div>
                                         </div>
-                                        <a href="/history" onClick={(e) => {e.preventDefault(); history.push(e.target.pathname)}}>{detail}</a>
                                     </div>
                                 </div>
                             </div>

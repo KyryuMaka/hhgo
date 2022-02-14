@@ -66,7 +66,7 @@ function History(props){
                 {(_.isEmpty(data))?
                 <div className="vh-100 d-flex justify-content-center">
                     <div className="align-self-center">
-                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>{loading}
+                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>{loading}
                     </div>
                 </div>:
                 <div className="container p-3">
