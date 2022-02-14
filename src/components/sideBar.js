@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import * as bootstrap from 'bootstrap';
 import { useHistory } from 'react-router-dom';
+import $ from 'jquery';
 
 function SideBar(){
     let history = useHistory();
@@ -14,6 +15,13 @@ function SideBar(){
         }
     };
 
+    $(document).ready(function(){
+        $('ul li a').click(function(){
+            $('li a').removeClass("active");
+            $(this).addClass("active");
+        });
+    });
+
     return(
         <div className="sticky">
             <div className="d-flex flex-column flex-shrink-0 sidebar">
@@ -22,7 +30,7 @@ function SideBar(){
                 </a>
                 <ul className="nav nav-pills nav-flush flex-column mb-auto text-center">
                     <li className="nav-item">
-                        <a href="/" className="nav-link py-3 border-bottom text-white border-top" onClick={slidebarClick} aria-current="page" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="/" className="nav-link py-3 border-bottom text-white border-top active" onClick={slidebarClick} aria-current="page" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-speedometer2"></i>
                         </a>
                     </li>

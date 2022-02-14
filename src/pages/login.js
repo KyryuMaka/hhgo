@@ -8,7 +8,7 @@ import $ from "jquery";
 
 import { loginUser } from '../redux/actions/authAction';
 import { useDispatch, useSelector } from 'react-redux';
-import { loading } from '../constant';
+import { loadingHTML } from '../constant';
 
 function LogIn(props){
     const [user, setUser] = useState('');
@@ -25,7 +25,7 @@ function LogIn(props){
             user: user,
             pass: pass
         }
-        $("#loginBtn")[0].innerHTML=loading;
+        $("#loginBtn")[0].innerHTML=loadingHTML;
         dispatch(loginUser(u,()=>{
             if(!_.isEmpty(users)){
                 history.push("/");

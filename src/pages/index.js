@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 
 import $ from "jquery";
 import {DataTable} from 'datatables.net-bs5';
-import { detail } from '../constant';
+import { detail, loading } from '../constant';
 
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
 const credentials = Realm.Credentials.anonymous();
@@ -68,12 +68,16 @@ function Dashboard(props){
     return(
         <>
             <Helmet titleTemplate="%s | HHGo">
-                {(_.isEmpty(data))?<title>Loading...</title>:<title>{props.title}</title>}
+                {(_.isEmpty(data))?<title>{loading}</title>:<title>{props.title}</title>}
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>
             <div className="main">
                 {(_.isEmpty(data))?
-                <div className="vh-100"><span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Loading...</div>:
+                <div className="vh-100 d-flex justify-content-center">
+                    <div className="align-self-center">
+                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>{loading}
+                    </div>
+                </div>:
                 <>
                     <div className="row m-0 pt-3">
                         <div className="col-lg-3">
