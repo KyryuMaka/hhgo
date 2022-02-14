@@ -54,6 +54,7 @@ function Dashboard(props){
             data:data,
             pageLength:10,
             lengthChange: false,
+            info: false,
             columns: columns
         });
         $('#emptyTable').DataTable({
@@ -61,13 +62,14 @@ function Dashboard(props){
             data:data,
             pageLength:10,
             lengthChange: false,
+            info: false,
             columns: columns
         });
     })
         
     return(
         <>
-            <Helmet titleTemplate="%s | HHGo">
+            <Helmet titleTemplate="%s · HHGo">
                 {(_.isEmpty(data))?<title>{loading}</title>:<title>{props.title}</title>}
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>
@@ -82,43 +84,71 @@ function Dashboard(props){
                     <div className="row m-0 pt-3">
                         <div className="col-lg-3">
                             <div className="container p-3">
-                                <div className="card " style={{"backgroundImage":"linear-gradient(to bottom, rgb(13, 110, 253, 0.5), rgba(13, 110, 253, 0.8))"}}>
+                                <div className="card border-top-0 border-bottom-0 border-end-0 border-4 shadow h-100 py-2" style={{borderColor: "#4e73df"}}>
                                     <div class="card-body">
-                                        <h5 className="card-title">Tài xế</h5>
-                                        <p className="card-text">Hiện đang có 0 tài xế sẵn sàng!</p>
-                                        <a href="#">{detail}</a>
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col me-2">
+                                                <div class="fw-bold text-uppercase mb-1" style={{color: "#4e73df"}}>Tài xế</div>
+                                                <div class="fs-6 mb-0 text-black-50">Hiện đang có 0 tài xế sẵn sàng!</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                {/* icon here */}
+                                            </div>
+                                        </div>
+                                        <a href=" ">{detail}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-lg-3">
+                        <div className="container p-3">
+                                <div className="card border-top-0 border-bottom-0 border-end-0 border-4 shadow h-100 py-2" style={{borderColor: "#1cc88a"}}>
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col me-2">
+                                                <div class="fw-bold text-uppercase mb-1" style={{color: "#1cc88a"}}>Xe</div>
+                                                <div class="fs-6 mb-0 text-black-50">Hiện đang có 0 xe sẵn sàng!</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                {/* icon here */}
+                                            </div>
+                                        </div>
+                                        <a href=" ">{detail}</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="col-lg-3">
                             <div className="container p-3">
-                                <div className="card" style={{"backgroundImage":"linear-gradient(to bottom, rgba(13, 202, 240, 0.5), rgba(13, 202, 240, 0.8))"}}>
+                                <div className="card border-top-0 border-bottom-0 border-end-0 border-4 shadow h-100 py-2" style={{borderColor: "#36b9cc"}}>
                                     <div class="card-body">
-                                        <h5 className="card-title">Xe</h5>
-                                        <p className="card-text">Hiện đang có 0 xe sẵn sàng!</p>
-                                        <a href="#">{detail}</a>
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col me-2">
+                                                <div class="fw-bold text-uppercase mb-1" style={{color: "#36b9cc"}}>Địa điểm</div>
+                                                <div class="fs-6 mb-0 text-black-50">Những địa điểm thường xuyên di chuyển</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                {/* icon here */}
+                                            </div>
+                                        </div>
+                                        <a href=" ">{detail}</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="col-lg-3">
                             <div className="container p-3">
-                                <div className="card" style={{"backgroundImage":"linear-gradient(to bottom, rgba(32, 201, 151, 0.5), rgba(32, 201, 151, 0.8))"}}>
+                                <div className="card border-top-0 border-bottom-0 border-end-0 border-4 shadow h-100 py-2" style={{borderColor: "#f6c23e"}}>
                                     <div class="card-body">
-                                        <h5 className="card-title">Địa điểm</h5>
-                                        <p className="card-text">Những địa điểm thường xuyên di chuyển</p>
-                                        <a href="#">{detail}</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-3">
-                            <div className="container p-3">
-                                <div className="card" style={{"backgroundImage":"linear-gradient(to bottom, rgba(255, 193, 7, 0.5), rgba(255, 193, 7, 0.8))"}}>
-                                    <div class="card-body">
-                                        <h5 className="card-title">Lịch sử</h5>
-                                        <p className="card-text">Lịch sử di chuyển</p>
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col me-2">
+                                                <div class="fw-bold text-uppercase mb-1" style={{color: "#f6c23e"}}>Lịch sử</div>
+                                                <div class="fs-6 mb-0 text-black-50">Lịch sử di chuyển</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                {/* icon here */}
+                                            </div>
+                                        </div>
                                         <a href="/history" onClick={(e) => {e.preventDefault(); history.push(e.target.pathname)}}>{detail}</a>
                                     </div>
                                 </div>

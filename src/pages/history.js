@@ -42,6 +42,7 @@ function History(props){
             data:data,
             pageLength:10,
             lengthChange: false,
+            info: false,
             columns:[
                 {data:"driver"},
                 {data:"car"},
@@ -57,7 +58,7 @@ function History(props){
 
     return(
         <>
-            <Helmet titleTemplate="%s | HHGo">
+            <Helmet titleTemplate="%s · HHGo">
                 {(_.isEmpty(data))?<title>{loading}</title>:<title>{props.title}</title>}
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>
@@ -70,7 +71,7 @@ function History(props){
                 </div>:
                 <div className="container p-3">
                     <h3 className="">LỊCH SỬ DI CHUYỂN</h3>
-                    <table className="table table-striped table-hover table-bordered align-middle table-sm" id="historyTable">
+                    <table className="table table-striped table-hover table-bordered align-middle" id="historyTable">
                         <thead>
                             <tr>
                                 <th scope="col">Tài xế</th>

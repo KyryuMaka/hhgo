@@ -42,7 +42,7 @@ function LogIn(props){
 
     return(
         <>
-            <Helmet titleTemplate="%s | HHGo">
+            <Helmet titleTemplate="%s · HHGo">
                 <title>{props.title}</title>
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>
