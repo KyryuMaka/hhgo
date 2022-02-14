@@ -40,7 +40,7 @@ function History(props){
         $('#historyTable').DataTable({
             retrieve: true,
             data:data,
-            pageLength:10,
+            pageLength:15,
             lengthChange: false,
             info: false,
             columns:[
@@ -69,8 +69,8 @@ function History(props){
                         <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>{loading}
                     </div>
                 </div>:
-                <div className="container p-3">
-                    <h3 className="">LỊCH SỬ DI CHUYỂN</h3>
+                <div className="container p-3 shadow mt-5 rounded">
+                    <h3 className="pt-2">LỊCH SỬ DI CHUYỂN</h3>
                     <table className="table table-striped table-hover table-bordered align-middle" id="historyTable">
                         <thead>
                             <tr>

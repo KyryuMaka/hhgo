@@ -19,15 +19,13 @@ function App() {
     <BrowserRouter>
       <Switch>
         {/* <Route exact path="/" component={IndexPage}/> */}
-        {/* <Route exact path="/contact" render={props => <ContactPage {...props} title="Liên hệ" />}/> */}
         {isAuthenticated ?
-          <>
-            <div className="d-flex">
-              <SideBar />
-              <Route exact path="/" render={props => <IndexPage {...props} title="Trang chủ" />} />
-              <Route exact path="/history" render={props => <AboutPage {...props} title="Lịch sử"/>} />
-            </div>
-          </> :
+          <div className="d-flex">
+            <SideBar />
+            <Route exact path="/" render={props => <IndexPage {...props} title="Trang chủ" />} />
+            <Route exact path="/history" render={props => <AboutPage {...props} title="Lịch sử"/>} />
+          </div>
+          :
           <Route exact path="/" render={props => <LoginPage {...props} title="Đăng nhập" />} />
         }
         <Route component={NotFound} />

@@ -1,7 +1,7 @@
 import React from 'react';
 import * as bootstrap from 'bootstrap';
 
-function SideBar(){
+function NotFound(){
 
     return(
         <div>
@@ -10,4 +10,4 @@ function SideBar(){
     );
 }
 
-export default SideBar;
+export default NotFound;

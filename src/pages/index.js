@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 
 import $ from "jquery";
 import {DataTable} from 'datatables.net-bs5';
-import { detail, loading } from '../constant';
+import { Detail, loading } from '../constant';
 
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
 const credentials = Realm.Credentials.anonymous();
@@ -66,6 +66,11 @@ function Dashboard(props){
             columns: columns
         });
     })
+
+    const handleClick = (e) => {
+        e.preventDefault(); 
+        history.push(e.target.pathname)
+    }
         
     return(
         <>
@@ -90,7 +95,7 @@ function Dashboard(props){
                                             <div className="col me-2">
                                                 <div className="fw-bold text-uppercase mb-1" style={{color: "#4e73df"}}>Tài xế</div>
                                                 <div className="fs-6 mb-0 text-black-50">Hiện đang có 0 tài xế sẵn sàng!</div>
-                                                <a href=" ">{detail}</a>
+                                                <a href=" " onClick={handleClick}><Detail/></a>
                                             </div>
                                             <div className="col-auto">
                                                 <i className="bi bi-person-fill fs-1" style={{color: "#dddfeb"}}></i>
@@ -108,7 +113,7 @@ function Dashboard(props){
                                             <div className="col me-2">
                                                 <div className="fw-bold text-uppercase mb-1" style={{color: "#1cc88a"}}>Xe</div>
                                                 <div className="fs-6 mb-0 text-black-50">Hiện đang có 0 xe sẵn sàng!</div>
-                                                <a href=" ">{detail}</a>
+                                                <a href=" " onClick={handleClick}><Detail/></a>
                                             </div>
                                             <div className="col-auto">
                                                 <span className="fs-1" style={{color: "#dddfeb"}}>&#9951;</span>
@@ -126,10 +131,10 @@ function Dashboard(props){
                                             <div className="col me-2">
                                                 <div className="fw-bold text-uppercase mb-1" style={{color: "#36b9cc"}}>Địa điểm</div>
                                                 <div className="fs-6 mb-0 text-black-50">Quản lý địa điểm</div>
-                                                <a href=" ">{detail}</a>
+                                                <a href=" " onClick={handleClick}><Detail/></a>
                                             </div>
                                             <div className="col-auto">
-                                                <i class="bi bi-geo-alt-fill fs-1" style={{color: "#dddfeb"}}></i>
+                                                <i className="bi bi-geo-alt-fill fs-1" style={{color: "#dddfeb"}}></i>
                                             </div>
                                         </div>
                                     </div>
@@ -144,10 +149,10 @@ function Dashboard(props){
                                             <div className="col me-2">
                                                 <div className="fw-bold text-uppercase mb-1" style={{color: "#f6c23e"}}>Lịch sử</div>
                                                 <div className="fs-6 mb-0 text-black-50">Lịch sử di chuyển</div>
-                                                <a href="/history" onClick={(e) => {e.preventDefault(); history.push(e.target.pathname)}}>{detail}</a>
+                                                <a href="/history" onClick={handleClick}><Detail/></a>
                                             </div>
                                             <div className="col-auto">
-                                                <i class="bi bi-clock-fill fs-1" style={{color: "#dddfeb"}}></i>
+                                                <i className="bi bi-clock-fill fs-1" style={{color: "#dddfeb"}}></i>
                                             </div>
                                         </div>
                                     </div>
@@ -155,10 +160,10 @@ function Dashboard(props){
                             </div>
                         </div>
                     </div>
-                    <div className="row m-0">
+                    <div className="row m-0 p-3 pt-2">
                         <div className="col-xl-6">
-                            <div className="container p-3">
-                                <h3 className="table-caption">DANH SÁCH CÁC XE ĐANG ĐƯA ĐÓN</h3>
+                            <div className="container p-3 shadow rounded">
+                                <h3 className="text-center pt-2 pb-2">DANH SÁCH CÁC XE ĐANG ĐƯA ĐÓN</h3>
                                 <table className="table table-striped table-hover table-bordered table-sm align-middle" id="drivingTable">
                                     <thead>
                                         <tr>
@@ -177,11 +182,11 @@ function Dashboard(props){
                             </div>
                         </div>
                         <div className="col-xl-6">
-                            <div className="container p-3">
-                                <h3 className="table-caption">DANH SÁCH CÁC XE ĐANG TRỐNG</h3>
+                            <div className="container p-3 shadow rounded">
+                                <h3 className="text-center pt-2 pb-2">DANH SÁCH CÁC XE ĐANG TRỐNG</h3>
                                 <table className="table table-striped table-hover table-bordered table-sm align-middle" id="emptyTable">
                                     <thead>
-                                        <tr key={null}>
+                                        <tr>
                                             <th scope="col">Tài xế</th>
                                             <th scope="col">Xe</th>
                                             <th scope="col">Biển số</th>
