@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 
 import $ from "jquery";
 import {DataTable} from 'datatables.net-bs5';
-import { loading, detail } from '../constant';
+import { detail } from '../constant';
 
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
 const credentials = Realm.Credentials.anonymous();
@@ -20,9 +20,6 @@ const credentials = Realm.Credentials.anonymous();
 
 function Dashboard(props){
     const history = useHistory();
-
-    var stt1 = 0;
-    var stt2 = 0;
     const [data, setData] = useState([]);
     // const [driver, setDriver] = useState(); 
     // const [car, setCar] = useState();
@@ -41,36 +38,30 @@ function Dashboard(props){
         dataName();
     },[]);
 
+    const columns = [
+        {data:"driver"},
+        {data:"car"},
+        {data:"carNumber"},
+        {data:"cary"},
+        {data:"from"},
+        {data:"to"},
+        {data:"when"},
+        {data:"status"},
+    ];
     useEffect(()=>{
         $('#drivingTable').DataTable({
             retrieve: true,
             data:data,
             pageLength:10,
-            columns:[
-                {data:"driver"},
-                {data:"car"},
-                {data:"carNumber"},
-                {data:"cary"},
-                {data:"from"},
-                {data:"to"},
-                {data:"when"},
-                {data:"status"},
-            ]
+            lengthChange: false,
+            columns: columns
         });
         $('#emptyTable').DataTable({
             retrieve: true,
             data:data,
             pageLength:10,
-            columns:[
-                {data:"driver"},
-                {data:"car"},
-                {data:"carNumber"},
-                {data:"cary"},
-                {data:"from"},
-                {data:"to"},
-                {data:"when"},
-                {data:"status"},
-            ]
+            lengthChange: false,
+            columns: columns
         });
     })
         
@@ -131,7 +122,7 @@ function Dashboard(props){
                         </div>
                     </div>
                     <div className="row m-0">
-                        <div className="col-xxl-6">
+                        <div className="col-xl-6">
                             <div className="container p-3">
                                 <h3 className="table-caption">DANH SÁCH CÁC XE ĐANG ĐƯA ĐÓN</h3>
                                 <table className="table table-striped table-hover table-bordered table-sm align-middle" id="drivingTable">
@@ -139,7 +130,7 @@ function Dashboard(props){
                                         <tr>
                                             <th scope="col">Tài xế</th>
                                             <th scope="col">Xe</th>
-                                            <th scope="col">Biển số xe</th>
+                                            <th scope="col">Biển số</th>
                                             <th scope="col">Chở</th>
                                             <th scope="col">Từ</th>
                                             <th scope="col">Đến</th>
@@ -147,12 +138,11 @@ function Dashboard(props){
                                             <th scope="col">Trạng thái</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                    </tbody>
+                                    <tbody></tbody>
                                 </table>
                             </div>
                         </div>
-                        <div className="col-xxl-6">
+                        <div className="col-xl-6">
                             <div className="container p-3">
                                 <h3 className="table-caption">DANH SÁCH CÁC XE ĐANG TRỐNG</h3>
                                 <table className="table table-striped table-hover table-bordered table-sm align-middle" id="emptyTable">
@@ -160,7 +150,7 @@ function Dashboard(props){
                                         <tr key={null}>
                                             <th scope="col">Tài xế</th>
                                             <th scope="col">Xe</th>
-                                            <th scope="col">Biển số xe</th>
+                                            <th scope="col">Biển số</th>
                                             <th scope="col">Chở</th>
                                             <th scope="col">Từ</th>
                                             <th scope="col">Đến</th>
@@ -168,8 +158,7 @@ function Dashboard(props){
                                             <th scope="col">Trạng thái</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                    </tbody>
+                                    <tbody></tbody>
                                 </table>
                             </div>
                         </div>

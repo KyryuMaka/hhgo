@@ -6,7 +6,6 @@ import {Helmet} from 'react-helmet';
 
 import $ from "jquery";
 import {DataTable} from 'datatables.net-bs5';
-import { loading } from '../constant';
 
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
 const credentials = Realm.Credentials.anonymous();
@@ -41,6 +40,7 @@ function History(props){
             retrieve: true,
             data:data,
             pageLength:10,
+            lengthChange: false,
             columns:[
                 {data:"driver"},
                 {data:"car"},
@@ -79,8 +79,7 @@ function History(props){
                                     <th scope="col">Trạng thái</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </>
                     }
