@@ -27,15 +27,15 @@ function LogIn(props){
         }
         $("#loginBtn")[0].innerHTML=loadingHTML;
         dispatch(loginUser(u,()=>{
-            if(!_.isEmpty(users)){
-                history.push("/");
-            }else{
+            if(_.isEmpty(users)){
                 $("#loginBtn")[0].innerHTML=`Đăng nhập`;
                 var trigger = document.getElementById('falseLoginToast');
                 var toast = new bootstrap.Toast(trigger);
                 setUser("");
                 setPass("");
                 toast.show();
+            }else{
+                history.push("/");
             };
         }));
     }
