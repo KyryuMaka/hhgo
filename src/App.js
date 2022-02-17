@@ -8,7 +8,8 @@ import SideBar from './components/sideBar'
 
 import LoginPage from './pages/login';
 import IndexPage from './pages/index';
-import AboutPage from './pages/history';
+import HistoryPage from './pages/history';
+import UserPage from './pages/user'
 // import ContactPage from './pages/contact';
 
 import NotFound from './components/notfound';
@@ -23,7 +24,8 @@ function App() {
           <div className="d-flex">
             <SideBar />
             <Route exact path="/" render={props => <IndexPage {...props} title="Trang chủ" />} />
-            <Route exact path="/history" render={props => <AboutPage {...props} title="Lịch sử"/>} />
+            <Route exact path="/history" render={props => <HistoryPage {...props} title="Lịch sử"/>} />
+            <Route exact path="/users" render={props => <UserPage {...props} title="Người dùng"/>} />
           </div>
           :
           <Route exact path="/" render={props => <LoginPage {...props} title="Đăng nhập" />} />

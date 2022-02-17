@@ -9,7 +9,7 @@ export const loginUser = (userData, callback) => dispatch => {
 
     async function dataName(params){
         const realmUser = await realmapp.logIn(credentials);
-        return await realmUser.callFunction('getUser', {user: userData.user, pass: userData.pass});
+        return await realmUser.callFunction('getLoginUser', {user: userData.user, pass: userData.pass});
     }
     dataName()
     .then(res => {

@@ -2,7 +2,7 @@ import React from 'react';
 import * as bootstrap from 'bootstrap';
 import _ from 'lodash';
 import { useHistory } from 'react-router-dom';
-import $, { data } from 'jquery';
+import $ from 'jquery';
 import { useSelector } from 'react-redux';
 
 function SideBar(){
@@ -60,18 +60,23 @@ function SideBar(){
                     <ul className="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
                         <li>
                             <a className="dropdown-item" href=" " data-bs-toggle="modal" data-bs-target="#userModal">
-                                <i class="bi bi-person"></i> Tài khoản
+                                <i className="bi bi-person"></i> Tài khoản
                             </a>
                         </li>
-                        <li><a className="dropdown-item" href=" "><i class="bi bi-gear"></i> Cài đặt</a></li>
+                        <li><a className="dropdown-item" href=" "><i className="bi bi-gear"></i> Cài đặt</a></li>
                         <li><hr className="dropdown-divider"/></li>
-                        <li><a className="dropdown-item text-danger" href=" "><i class="bi bi-box-arrow-right"></i> Đăng xuất</a></li>
+                        <li><a className="dropdown-item text-danger" href="/"><i className="bi bi-box-arrow-right"></i> Đăng xuất</a></li>
                     </ul>
                 </div>
                 <ul className="nav nav-pills nav-flush flex-column mb-auto text-center sb-ul">
                     <li className="nav-item sb-li">
                         <a href="/" className="nav-link py-3 border-bottom text-white border-top sb-a active" onClick={slidebarClick} aria-current="page" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-speedometer2"></i>
+                        </a>
+                    </li>
+                    <li className="nav-item sb-li">
+                        <a href="/users" className="nav-link py-3 border-bottom text-white sb-a" onClick={slidebarClick} title="Driver" data-bs-toggle="tooltip" data-bs-placement="right">
+                            <i className="bi bi-person-circle"></i>
                         </a>
                     </li>
                     <li className="nav-item sb-li">
@@ -89,11 +94,6 @@ function SideBar(){
                             <i className="bi bi-grid"></i>
                         </a>
                     </li>
-                    <li className="nav-item sb-li">
-                        <a href="/" className="nav-link py-3 border-bottom text-white sb-a" onClick={slidebarClick} title="Customers" data-bs-toggle="tooltip" data-bs-placement="right">
-                            <i className="bi bi-person-circle"></i>
-                        </a>
-                    </li>
                 </ul>
                 <div className="dropdown border-top">
                     <a href=" " className="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none text-white" id="dropdownSetting" data-bs-toggle="dropdown" aria-expanded="false">
@@ -102,25 +102,25 @@ function SideBar(){
                     <ul className="dropdown-menu text-small shadow" aria-labelledby="dropdownSetting">
                         <li>
                             <a className="dropdown-item" href=" " data-bs-toggle="modal" data-bs-target="#userModal">
-                                <i class="bi bi-person"></i> Tài khoản
+                                <i className="bi bi-person"></i> Tài khoản
                             </a>
                         </li>
-                        <li><a className="dropdown-item" href=" "><i class="bi bi-gear"></i> Cài đặt</a></li>
-                        <li><a className="dropdown-item" href=" "><i class="bi bi-info-circle"></i> Giới thiệu</a></li>
+                        <li><a className="dropdown-item" href=" "><i className="bi bi-gear"></i> Cài đặt</a></li>
+                        <li><a className="dropdown-item" href=" "><i className="bi bi-info-circle"></i> Giới thiệu</a></li>
                         <li><hr className="dropdown-divider"/></li>
-                        <li><a className="dropdown-item text-danger" href=" "><i class="bi bi-box-arrow-right"></i> Đăng xuất</a></li>
+                        <li><a className="dropdown-item text-danger" href="/"><i className="bi bi-box-arrow-right"></i> Đăng xuất</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="userModalLabel">Thông tin tài khoản</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div className="modal fade" id="userModal" tabIndex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+            <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="userModalLabel">Thông tin tài khoản</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                         <div className="row">
                             <div className="col-md-4">
                                 <div className="text-center">

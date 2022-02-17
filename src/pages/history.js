@@ -31,7 +31,7 @@ function History(props){
     useEffect(()=>{
         async function dataName(params){
             const realmUser = await realmapp.logIn(credentials);
-            setData(await realmUser.callFunction('getDBData', {}));
+            setData(await realmUser.callFunction('getTripHistory', {}));
         }
         dataName();
     },[]);

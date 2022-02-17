@@ -33,7 +33,7 @@ function Dashboard(props){
     useEffect(()=>{
         async function dataName(params){
             const realmUser = await realmapp.logIn(credentials);
-            setData(await realmUser.callFunction('getDBData', {}));
+            setData(await realmUser.callFunction('getTripHistory', {}));
         }
         dataName();
     },[]);
@@ -48,17 +48,21 @@ function Dashboard(props){
         {data:"when"},
         {data:"status"},
     ];
+
     useEffect(()=>{
         $('#drivingTable').DataTable({
             retrieve: true,
+            select: true,
             data:data,
             pageLength:10,
             lengthChange: false,
             info: false,
-            columns: columns
+            columns: columns,
+            buttons: ['print']
         });
         $('#emptyTable').DataTable({
             retrieve: true,
+            select: true,
             data:data,
             pageLength:10,
             lengthChange: false,
