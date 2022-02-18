@@ -5,7 +5,6 @@ import _ from 'lodash'
 import {Helmet} from 'react-helmet';
 
 import $ from "jquery";
-import {DataTable} from 'datatables.net-bs5';
 import { loading } from '../constant';
 
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
@@ -35,29 +34,18 @@ function User(props){
         }
         dataName();
     },[]);
-    
-    useEffect(()=>{
-        $('#userTable').DataTable({
-            retrieve: true,
-            responsive: true,
-            select: true,
-            data:data,
-            pageLength:15,
-            lengthChange: false,
-            info: false,
-            columns:[
-                {data:"fullName"},
-                {data:"namSinh"},
-                {data:"gender"},
-                {data:"phone1"},
-                {data:"phone2"},
-                {data:"email"},
-                {data:"donVi"},
-                {data:"chuyenCho"},
-                {data:"permission"},
-            ],
-        });
-    })
+
+    const columns = [
+        {data:"fullName"},
+        {data:"namSinh"},
+        {data:"gender"},
+        {data:"phone1"},
+        {data:"phone2"},
+        {data:"email"},
+        {data:"donVi"},
+        {data:"chuyenCho"},
+        {data:"permission"},
+    ];
 
     return(
         <>
@@ -74,7 +62,7 @@ function User(props){
                 </div>:
                 <div className="container p-3 shadow mt-5 rounded">
                     <h3 className="pt-2">Danh sách người dùng</h3>
-                    <table className="table table-striped table-hover table-bordered align-middle display" id="userTable">
+                    <table className="table table-striped table-hover table-bordered align-middle" id="userTable">
                         <thead>
                             <tr>
                                 <th scope="col">Họ và tên</th>

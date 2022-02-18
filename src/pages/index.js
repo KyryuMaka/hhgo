@@ -6,7 +6,6 @@ import {Helmet} from 'react-helmet';
 import { useHistory } from 'react-router-dom';
 
 import $ from "jquery";
-import {DataTable} from 'datatables.net-bs5';
 import { Detail, loading } from '../constant';
 
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
@@ -48,28 +47,6 @@ function Dashboard(props){
         {data:"when"},
         {data:"status"},
     ];
-
-    useEffect(()=>{
-        $('#drivingTable').DataTable({
-            retrieve: true,
-            select: true,
-            data:data,
-            pageLength:10,
-            lengthChange: false,
-            info: false,
-            columns: columns,
-            buttons: ['print']
-        });
-        $('#emptyTable').DataTable({
-            retrieve: true,
-            select: true,
-            data:data,
-            pageLength:10,
-            lengthChange: false,
-            info: false,
-            columns: columns
-        });
-    })
 
     const handleClick = (e) => {
         e.preventDefault(); 
@@ -166,7 +143,7 @@ function Dashboard(props){
                     </div>
                     <div className="row m-0 p-3 pt-2">
                         <div className="col-xl-6">
-                            <div className="container p-3 shadow rounded">
+                            <div className="container p-3 shadow rounded table-responsive">
                                 <h3 className="text-center pt-2 pb-2">DANH SÁCH CÁC XE ĐANG ĐƯA ĐÓN</h3>
                                 <table className="table table-striped table-hover table-bordered table-sm align-middle" id="drivingTable">
                                     <thead>

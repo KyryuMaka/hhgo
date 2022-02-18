@@ -5,7 +5,6 @@ import _ from 'lodash'
 import {Helmet} from 'react-helmet';
 
 import $ from "jquery";
-import {DataTable} from 'datatables.net-bs5';
 import { loading } from '../constant';
 
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
@@ -35,26 +34,6 @@ function History(props){
         }
         dataName();
     },[]);
-    
-    useEffect(()=>{
-        $('#historyTable').DataTable({
-            retrieve: true,
-            data:data,
-            pageLength:15,
-            lengthChange: false,
-            info: false,
-            columns:[
-                {data:"driver"},
-                {data:"car"},
-                {data:"carNumber"},
-                {data:"cary"},
-                {data:"from"},
-                {data:"to"},
-                {data:"when"},
-                {data:"status"},
-            ]
-        });
-    })
 
     return(
         <>
