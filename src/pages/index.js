@@ -8,6 +8,8 @@ import { useHistory } from 'react-router-dom';
 import $ from "jquery";
 import { Detail, loading } from '../constant';
 
+import { DataGrid } from '@mui/x-data-grid';
+
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
 const credentials = Realm.Credentials.anonymous();
 
@@ -37,21 +39,30 @@ function Dashboard(props){
         dataName();
     },[]);
 
-    const columns = [
-        {data:"driver"},
-        {data:"car"},
-        {data:"carNumber"},
-        {data:"cary"},
-        {data:"from"},
-        {data:"to"},
-        {data:"when"},
-        {data:"status"},
-    ];
-
     const handleClick = (e) => {
         e.preventDefault(); 
         history.push(e.target.pathname)
     }
+
+    const columns = [
+        { field: 'driver', headerName: 'Tài xế' },
+        { field: 'car', headerName: 'Xe' },
+        { field: 'carNumber', headerName: 'Biển số' },
+        { field: 'cary', headerName: 'Chở' },
+        { field: 'from', headerName: 'Từ' },
+        { field: 'to', headerName: 'Đến' },
+        { field: 'when', headerName: 'Vào lúc' },
+        { field: 'status', headerName: 'Trạng thái' }
+        // {
+        //   field: 'fullName',
+        //   headerName: 'Full name',
+        //   description: 'This column has a value getter and is not sortable.',
+        //   sortable: false,
+        //   width: 160,
+        //   valueGetter: (params) =>
+        //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+        // },
+    ];
         
     return(
         <>
@@ -143,23 +154,17 @@ function Dashboard(props){
                     </div>
                     <div className="row m-0 p-3 pt-2">
                         <div className="col-xl-6">
-                            <div className="container p-3 shadow rounded table-responsive">
+                            <div className="container p-3 shadow rounded">
                                 <h3 className="text-center pt-2 pb-2">DANH SÁCH CÁC XE ĐANG ĐƯA ĐÓN</h3>
-                                <table className="table table-striped table-hover table-bordered table-sm align-middle" id="drivingTable">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Tài xế</th>
-                                            <th scope="col">Xe</th>
-                                            <th scope="col">Biển số</th>
-                                            <th scope="col">Chở</th>
-                                            <th scope="col">Từ</th>
-                                            <th scope="col">Đến</th>
-                                            <th scope="col">Vào lúc</th>
-                                            <th scope="col">Trạng thái</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
+                                <div style={{height: "400px", width: "100%"}}>
+                                    <DataGrid
+                                        rows={data}
+                                        columns={columns}
+                                        pageSize={5}
+                                        rowsPerPageOptions={[5]}
+                                        checkboxSelection
+                                    />
+                                </div>
                             </div>
                         </div>
                         <div className="col-xl-6">
