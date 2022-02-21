@@ -7,6 +7,8 @@ import {Helmet} from 'react-helmet';
 import $ from "jquery";
 import { loading } from '../constant';
 
+import { DataGrid } from '@mui/x-data-grid';
+
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
 const credentials = Realm.Credentials.anonymous();
 
@@ -36,15 +38,15 @@ function User(props){
     },[]);
 
     const columns = [
-        {data:"fullName"},
-        {data:"namSinh"},
-        {data:"gender"},
-        {data:"phone1"},
-        {data:"phone2"},
-        {data:"email"},
-        {data:"donVi"},
-        {data:"chuyenCho"},
-        {data:"permission"},
+        {field:"fullName",      headerAlign: 'center', headerName: "Họ và tên",         flex: 2},
+        {field:"namSinh",       headerAlign: 'center', headerName: "Năm sinh",          flex: 1,    align: "center"},
+        {field:"gender",        headerAlign: 'center', headerName: "Giới tính",         flex: 1,    align: "center"},
+        {field:"phone1",        headerAlign: 'center', headerName: "Số điện thoại 1",   flex: 1.5,  align: "center"},
+        {field:"phone2",        headerAlign: 'center', headerName: "Số điện thoại 2",   flex: 1.5,  align: "center"},
+        {field:"email",         headerAlign: 'center', headerName: "Email",             flex: 2},
+        {field:"donVi",         headerAlign: 'center', headerName: "Đơn vị",            flex: 1,    align: "center"},
+        {field:"chuyenCho",     headerAlign: 'center', headerName: "Chuyên chở",        flex: 2},
+        {field:"permission",    headerAlign: 'center', headerName: "Quyền",             flex: 1,    align: "center"},
     ];
 
     return(
@@ -53,31 +55,20 @@ function User(props){
                 {(_.isEmpty(data))?<title>{loading}</title>:<title>{props.title}</title>}
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>
-            <div className="main vh-100">
+            <div className="main vh-100 d-flex align-items-center justify-content-center">
                 {(_.isEmpty(data))?
-                <div className="vh-100 d-flex justify-content-center">
-                    <div className="align-self-center">
-                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>{loading}
+                <div><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>{loading}</div>:
+                <div className="container p-3 shadow rounded">
+                    <h3 className="pt-2 pb-2">Danh sách người dùng</h3>
+                    <div style={{height: "650px", width: "100%"}}>
+                        <DataGrid
+                            rows={data}
+                            columns={columns}
+                            pageSize={10}
+                            checkboxSelection
+                            getRowId={(row) => row._id}
+                        />
                     </div>
-                </div>:
-                <div className="container p-3 shadow mt-5 rounded">
-                    <h3 className="pt-2">Danh sách người dùng</h3>
-                    <table className="table table-striped table-hover table-bordered align-middle" id="userTable">
-                        <thead>
-                            <tr>
-                                <th scope="col">Họ và tên</th>
-                                <th scope="col">Năm sinh</th>
-                                <th scope="col">Giới tính</th>
-                                <th scope="col">Số điện thoại 1</th>
-                                <th scope="col">Số điện thoại 2</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Đơn vị</th>
-                                <th scope="col">Chuyên chở</th>
-                                <th scope="col">Quyền</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
                 </div>
                 }
             </div>

@@ -75,7 +75,7 @@ function SideBar(){
                         </a>
                     </li>
                     <li className="nav-item sb-li">
-                        <a href="/users" className="nav-link py-3 border-bottom text-white sb-a" onClick={slidebarClick} title="Driver" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="/users" className="nav-link py-3 border-bottom text-white sb-a" onClick={slidebarClick} title="Users" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-person-circle"></i>
                         </a>
                     </li>

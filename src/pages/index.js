@@ -45,14 +45,12 @@ function Dashboard(props){
     }
 
     const columns = [
-        { field: 'driver', headerName: 'Tài xế' },
-        { field: 'car', headerName: 'Xe' },
-        { field: 'carNumber', headerName: 'Biển số' },
-        { field: 'cary', headerName: 'Chở' },
-        { field: 'from', headerName: 'Từ' },
-        { field: 'to', headerName: 'Đến' },
-        { field: 'when', headerName: 'Vào lúc' },
-        { field: 'status', headerName: 'Trạng thái' }
+        { field: 'driver',      headerName: 'Tài xế',       headerAlign: 'center', flex: 2},
+        { field: 'car',         headerName: 'Xe',           headerAlign: 'center', flex: 1.5},
+        { field: 'carNumber',   headerName: 'Biển số',      headerAlign: 'center', flex: 1, align: "center"},
+        { field: 'cary',        headerName: 'Chở',          headerAlign: 'center', flex: 2},
+        { field: 'from',        headerName: 'Từ',           headerAlign: 'center', flex: 2},
+        { field: 'to',          headerName: 'Đến',          headerAlign: 'center', flex: 2},
         // {
         //   field: 'fullName',
         //   headerName: 'Full name',
@@ -156,13 +154,13 @@ function Dashboard(props){
                         <div className="col-xl-6">
                             <div className="container p-3 shadow rounded">
                                 <h3 className="text-center pt-2 pb-2">DANH SÁCH CÁC XE ĐANG ĐƯA ĐÓN</h3>
-                                <div style={{height: "400px", width: "100%"}}>
+                                <div style={{height: "650px", width: "100%"}}>
                                     <DataGrid
                                         rows={data}
                                         columns={columns}
-                                        pageSize={5}
-                                        rowsPerPageOptions={[5]}
+                                        pageSize={10}
                                         checkboxSelection
+                                        getRowId={(row) => row._id}
                                     />
                                 </div>
                             </div>
@@ -170,21 +168,15 @@ function Dashboard(props){
                         <div className="col-xl-6">
                             <div className="container p-3 shadow rounded">
                                 <h3 className="text-center pt-2 pb-2">DANH SÁCH CÁC XE ĐANG TRỐNG</h3>
-                                <table className="table table-striped table-hover table-bordered table-sm align-middle" id="emptyTable">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Tài xế</th>
-                                            <th scope="col">Xe</th>
-                                            <th scope="col">Biển số</th>
-                                            <th scope="col">Chở</th>
-                                            <th scope="col">Từ</th>
-                                            <th scope="col">Đến</th>
-                                            <th scope="col">Vào lúc</th>
-                                            <th scope="col">Trạng thái</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
+                                <div style={{height: "650px", width: "100%"}}>
+                                    <DataGrid
+                                        rows={data}
+                                        columns={columns}
+                                        pageSize={10}
+                                        checkboxSelection
+                                        getRowId={(row) => row._id}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>

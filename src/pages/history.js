@@ -7,6 +7,8 @@ import {Helmet} from 'react-helmet';
 import $ from "jquery";
 import { loading } from '../constant';
 
+import { DataGrid } from '@mui/x-data-grid';
+
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
 const credentials = Realm.Credentials.anonymous();
 
@@ -35,36 +37,46 @@ function History(props){
         dataName();
     },[]);
 
+    const columns = [
+        { field: 'driver',      headerName: 'Tài xế',       headerAlign: 'center', flex: 2},
+        { field: 'car',         headerName: 'Xe',           headerAlign: 'center', flex: 1.5},
+        { field: 'carNumber',   headerName: 'Biển số',      headerAlign: 'center', flex: 1, align: "center"},
+        { field: 'cary',        headerName: 'Chở',          headerAlign: 'center', flex: 2},
+        { field: 'from',        headerName: 'Từ',           headerAlign: 'center', flex: 2},
+        { field: 'to',          headerName: 'Đến',          headerAlign: 'center', flex: 2},
+        { field: 'when',        headerName: 'Vào lúc',      headerAlign: 'center', flex: 2, align: "center"},
+        { field: 'status',      headerName: 'Trạng thái',   headerAlign: 'center', flex: 2},
+        // {
+        //   field: 'fullName',
+        //   headerName: 'Full name',
+        //   description: 'This column has a value getter and is not sortable.',
+        //   sortable: false,
+        //   width: 160,
+        //   valueGetter: (params) =>
+        //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+        // },
+    ];
+
     return(
         <>
             <Helmet titleTemplate="%s · HHGo">
                 {(_.isEmpty(data))?<title>{loading}</title>:<title>{props.title}</title>}
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>
-            <div className="main vh-100">
+            <div className="main vh-100 d-flex align-items-center justify-content-center">
                 {(_.isEmpty(data))?
-                <div className="vh-100 d-flex justify-content-center">
-                    <div className="align-self-center">
-                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>{loading}
+                <div><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>{loading}</div>:
+                <div className="container p-3 shadow rounded">
+                    <h3 className="pt-2 pb-2">LỊCH SỬ DI CHUYỂN</h3>
+                    <div style={{height: "650px", width: "100%"}}>
+                        <DataGrid
+                            rows={data}
+                            columns={columns}
+                            pageSize={10}
+                            checkboxSelection
+                            getRowId={(row) => row._id}
+                        />
                     </div>
-                </div>:
-                <div className="container p-3 shadow mt-5 rounded">
-                    <h3 className="pt-2">LỊCH SỬ DI CHUYỂN</h3>
-                    <table className="table table-striped table-hover table-bordered align-middle" id="historyTable">
-                        <thead>
-                            <tr>
-                                <th scope="col">Tài xế</th>
-                                <th scope="col">Xe</th>
-                                <th scope="col">Biển số xe</th>
-                                <th scope="col">Chở</th>
-                                <th scope="col">Từ</th>
-                                <th scope="col">Đến</th>
-                                <th scope="col">Vào lúc</th>
-                                <th scope="col">Trạng thái</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
                 </div>
                 }
             </div>
