@@ -4,7 +4,7 @@ import './App.css';
 import {Route, BrowserRouter, Switch} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import SideBar from './components/sideBar'
+import SideBar from './components/BS-SideBar'
 
 import LoginPage from './pages/login';
 import IndexPage from './pages/index';
