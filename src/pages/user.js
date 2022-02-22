@@ -8,6 +8,8 @@ import $ from "jquery";
 import { loading } from '../constant';
 
 import { DataGrid } from '@mui/x-data-grid';
+import CustomPagination from '../components/MUI-DGPagination';
+import CustomToolbar from '../components/MUI-DGToolbar'
 
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
 const credentials = Realm.Credentials.anonymous();
@@ -39,7 +41,6 @@ function User(props){
 
     const columns = [
         {field:"fullName",      headerAlign: 'center', headerName: "Họ và tên",         flex: 2},
-        {field:"namSinh",       headerAlign: 'center', headerName: "Năm sinh",          flex: 1,    align: "center"},
         {field:"gender",        headerAlign: 'center', headerName: "Giới tính",         flex: 1,    align: "center"},
         {field:"phone1",        headerAlign: 'center', headerName: "Số điện thoại 1",   flex: 1.5,  align: "center"},
         {field:"phone2",        headerAlign: 'center', headerName: "Số điện thoại 2",   flex: 1.5,  align: "center"},
@@ -60,13 +61,18 @@ function User(props){
                 <div><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>{loading}</div>:
                 <div className="container p-3 shadow rounded">
                     <h3 className="pt-2 pb-2">Danh sách người dùng</h3>
-                    <div style={{height: "650px", width: "100%"}}>
+                    <div style={{height: "680px", width: "100%"}}>
                         <DataGrid
                             rows={data}
                             columns={columns}
                             pageSize={10}
                             checkboxSelection
                             getRowId={(row) => row._id}
+                            density="comfortable"
+                            components={{ 
+                                Toolbar: CustomToolbar,
+                                Pagination: CustomPagination,
+                            }}
                         />
                     </div>
                 </div>

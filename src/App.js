@@ -12,7 +12,7 @@ import HistoryPage from './pages/history';
 import UserPage from './pages/user'
 // import ContactPage from './pages/contact';
 
-import NotFound from './components/notfound';
+import NotFound from './pages/notfound';
 
 function App() {
   const { isAuthenticated } = useSelector((state) => state.auth);

@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom';
 import $ from 'jquery';
 import { useSelector } from 'react-redux';
 
+import Avatar from '@mui/material/Avatar';
+
 function SideBar(){
     let history = useHistory();
 
@@ -26,28 +28,55 @@ function SideBar(){
         });
     });
 
-    function generateAvatar(text, foregroundColor, backgroundColor) {
-        const canvas = document.createElement("canvas");
-        const context = canvas.getContext("2d");
-    
-        canvas.width = 200;
-        canvas.height = 200;
-    
-        // Draw background
-        context.fillStyle = backgroundColor;
-        context.fillRect(0, 0, canvas.width, canvas.height);
-    
-        // Draw text
-        context.font = "bold 80px Assistant";
-        context.fillStyle = foregroundColor;
-        context.textAlign = "center";
-        context.textBaseline = "middle";
-        context.fillText(text.match(/(\b\S)?/g).join("").match(/(^\S|\S$)?/g).join("").toUpperCase(), canvas.width / 2, canvas.height / 2);
-    
-        return canvas.toDataURL("image/png");
+    function stringToColor(string) {
+        let hash = 0;
+        let i;
+        let color = '#';
+
+        /* eslint-disable no-bitwise */
+        for (i = 0; i < string.length; i += 1) {
+            hash = string.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        for (i = 0; i < 3; i += 1) {
+            const value = (hash >> (i * 8)) & 0xff;
+            color += `00${value.toString(16)}`.substr(-2);
+        }
+        /* eslint-enable no-bitwise */
+        return color;
+    }
+      
+    function stringAvatar(name, height, width) {
+        return {
+            sx: {
+                bgcolor: '#61CC0A',
+                width: width, height: height
+            },
+            children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+        };
     }
 
-    const avatarSrc = _.isEmpty(users[0].avatar)?generateAvatar(users[0].displayName,"white","#1cc88a"):users[0].avatar;
+    // function generateAvatar(text, foregroundColor, backgroundColor) {
+    //     const canvas = document.createElement("canvas");
+    //     const context = canvas.getContext("2d");
+    
+    //     canvas.width = 200;
+    //     canvas.height = 200;
+    
+    //     // Draw background
+    //     context.fillStyle = backgroundColor;
+    //     context.fillRect(0, 0, canvas.width, canvas.height);
+    
+    //     // Draw text
+    //     context.font = "bold 80px Assistant";
+    //     context.fillStyle = foregroundColor;
+    //     context.textAlign = "center";
+    //     context.textBaseline = "middle";
+    //     context.fillText(text.match(/(\b\S)?/g).join("").match(/(^\S|\S$)?/g).join("").toUpperCase(), canvas.width / 2, canvas.height / 2);
+    
+    //     return canvas.toDataURL("image/png");
+    // }
+
+    // const avatarSrc = _.isEmpty(users[0].avatar)?generateAvatar(users[0].displayName, 'white', '#1cc88a'):users[0].avatar;
 
     return(
         <>
@@ -55,7 +84,9 @@ function SideBar(){
             <div className="d-flex flex-column flex-shrink-0 sidebar">
                 <div className="dropdown">
                     <a href=" " className="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none text-white" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src={avatarSrc} alt="mdo" width="48" height="48" className="rounded-circle" />
+                        {_.isEmpty(users[0].avatar)?
+                        <Avatar {...stringAvatar(users[0].displayName, 48, 48)} />:
+                        <img src={users[0].displayName} className="rounded-circle mt-1 mb-1" height="48px" width="48px" alt="mdo" />}
                     </a>
                     <ul className="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
                         <li>
@@ -122,14 +153,16 @@ function SideBar(){
                     </div>
                     <div className="modal-body">
                         <div className="row">
-                            <div className="col-md-4">
+                            <div className="col-md-4 d-flex align-items-center justify-content-center">
                                 <div className="text-center">
-                                    <img src={avatarSrc} className="rounded-circle mt-1 mb-1" height="120px" width="120px" alt="mdo" />
+                                    {_.isEmpty(users[0].avatar)?
+                                    <Avatar {...stringAvatar(users[0].displayName, 120, 120)} />:
+                                    <img src={users[0].displayName} className="rounded-circle mt-1 mb-1" height="120px" width="120px" alt="mdo" />}
                                 </div>
                             </div>
                             <div className="col-md-8">
                                 <h3 className="fw-bold">{users[0].displayName}</h3>
-                                <p className="text-dark-50">Nhân viên</p>
+                                <p className="text-dark-50">{users[0].position}</p>
                                 <table>
                                     <tr>
                                         <td><p className="fw-bold me-3">Địa chỉ email:</p></td>

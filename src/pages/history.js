@@ -8,6 +8,8 @@ import $ from "jquery";
 import { loading } from '../constant';
 
 import { DataGrid } from '@mui/x-data-grid';
+import CustomToolbar from '../components/MUI-DGToolbar';
+import CustomPagination from '../components/MUI-DGPagination';
 
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
 const credentials = Realm.Credentials.anonymous();
@@ -68,13 +70,17 @@ function History(props){
                 <div><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>{loading}</div>:
                 <div className="container p-3 shadow rounded">
                     <h3 className="pt-2 pb-2">LỊCH SỬ DI CHUYỂN</h3>
-                    <div style={{height: "650px", width: "100%"}}>
+                    <div style={{height: "680px", width: "100%"}}>
                         <DataGrid
                             rows={data}
                             columns={columns}
                             pageSize={10}
                             checkboxSelection
                             getRowId={(row) => row._id}
+                            components={{
+                                Toolbar: CustomToolbar,
+                                Pagination: CustomPagination,
+                            }}
                         />
                     </div>
                 </div>

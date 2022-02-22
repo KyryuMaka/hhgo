@@ -9,6 +9,8 @@ import $ from "jquery";
 import { Detail, loading } from '../constant';
 
 import { DataGrid } from '@mui/x-data-grid';
+import CustomPagination from '../components/MUI-DGPagination';
+import CustomToolbar from '../components/MUI-DGToolbar';
 
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-xxssb"});
 const credentials = Realm.Credentials.anonymous();
@@ -41,7 +43,9 @@ function Dashboard(props){
 
     const handleClick = (e) => {
         e.preventDefault(); 
-        history.push(e.target.pathname)
+        history.push(e.target.pathname);
+        $('.sb-li .sb-a').removeClass("active");
+        $("a[href='"+e.target.pathname+"']").addClass("active");
     }
 
     const columns = [
@@ -154,13 +158,18 @@ function Dashboard(props){
                         <div className="col-xl-6">
                             <div className="container p-3 shadow rounded">
                                 <h3 className="text-center pt-2 pb-2">DANH SÁCH CÁC XE ĐANG ĐƯA ĐÓN</h3>
-                                <div style={{height: "650px", width: "100%"}}>
+                                <div style={{height: "520px", width: "100%"}}>
                                     <DataGrid
                                         rows={data}
                                         columns={columns}
-                                        pageSize={10}
+                                        pageSize={5}
                                         checkboxSelection
                                         getRowId={(row) => row._id}
+                                        density="comfortable"
+                                        components={{ 
+                                            Toolbar: CustomToolbar,
+                                            Pagination: CustomPagination,
+                                        }}
                                     />
                                 </div>
                             </div>
@@ -168,13 +177,18 @@ function Dashboard(props){
                         <div className="col-xl-6">
                             <div className="container p-3 shadow rounded">
                                 <h3 className="text-center pt-2 pb-2">DANH SÁCH CÁC XE ĐANG TRỐNG</h3>
-                                <div style={{height: "650px", width: "100%"}}>
+                                <div style={{height: "520px", width: "100%"}}>
                                     <DataGrid
                                         rows={data}
                                         columns={columns}
-                                        pageSize={10}
+                                        pageSize={5}
                                         checkboxSelection
                                         getRowId={(row) => row._id}
+                                        density="comfortable"
+                                        components={{ 
+                                            Toolbar: CustomToolbar,
+                                            Pagination: CustomPagination,
+                                        }}
                                     />
                                 </div>
                             </div>
