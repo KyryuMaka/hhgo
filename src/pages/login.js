@@ -1,43 +1,42 @@
 import React, {useState} from 'react'
-import * as bootstrap from 'bootstrap';
 import _ from 'lodash'
+import * as bootstrap from 'bootstrap';
+import * as Realm from 'realm-web';
 import {Helmet} from 'react-helmet';
-import { useHistory } from 'react-router-dom';
 
 import $ from "jquery";
 
-import { loginUser } from '../redux/actions/authAction';
-import { useDispatch, useSelector } from 'react-redux';
 import { loadingHTML } from '../constant';
+
+const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-dehpw"});
+const credentials = Realm.Credentials.anonymous();
 
 function LogIn(props){
     const [user, setUser] = useState('');
     const [pass, setPass] = useState('');
 
-    const dispatch = useDispatch();
-    const {users} = useSelector((state) => state.auth);
-    
-    let history = useHistory();
-    
-    const handleSubmit = (e) => {
+    async function handleSubmit(e){
         e.preventDefault();
         const u = {
             user: user,
             pass: pass
         }
         $("#loginBtn")[0].innerHTML=loadingHTML;
-        dispatch(loginUser(u,()=>{
-            if(_.isEmpty(users)){
-                $("#loginBtn")[0].innerHTML=`Đăng nhập`;
-                var trigger = document.getElementById('falseLoginToast');
-                var toast = new bootstrap.Toast(trigger);
-                setUser("");
-                setPass("");
-                toast.show();
-            }else{
-                history.push("/");
-            };
-        }));
+        const realmUser = await realmapp.logIn(credentials);
+        const rs = await realmUser.callFunction('getLoginUser', {user: u.user, pass: u.pass});
+
+        if(_.isEmpty(rs)){
+            $("#loginBtn")[0].innerHTML=`Đăng nhập`;
+            var trigger = document.getElementById('falseLoginToast');
+            var toast = new bootstrap.Toast(trigger);
+            setUser("");
+            setPass("");
+            toast.show();
+        }else{
+            sessionStorage.setItem("isAuthenticated", true);
+            sessionStorage.setItem("id-user", rs[0]._id);
+            window.location.href = "/home";
+        };
     }
 
     return(

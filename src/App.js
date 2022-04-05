@@ -2,7 +2,6 @@ import React from 'react';
 import bootstrap from 'bootstrap';
 import './App.css';
 import {Route, BrowserRouter, Switch} from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 import SideBar from './components/BS-SideBar'
 
@@ -15,7 +14,7 @@ import UserPage from './pages/user'
 import NotFound from './pages/notfound';
 
 function App() {
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const isAuthenticated = sessionStorage.getItem('isAuthenticated');
   return (
     <BrowserRouter>
       <Switch>
@@ -23,7 +22,7 @@ function App() {
         {isAuthenticated ?
           <div className="d-flex">
             <SideBar />
-            <Route exact path="/" render={props => <IndexPage {...props} title="Trang chủ" />} />
+            <Route exact path="/home" render={props => <IndexPage {...props} title="Trang chủ" />} />
             <Route exact path="/history" render={props => <HistoryPage {...props} title="Lịch sử"/>} />
             <Route exact path="/users" render={props => <UserPage {...props} title="Người dùng"/>} />
           </div>

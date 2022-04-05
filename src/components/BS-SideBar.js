@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import * as bootstrap from 'bootstrap';
+import * as Realm from "realm-web";
 import _ from 'lodash';
 import { useHistory } from 'react-router-dom';
 import $ from 'jquery';
-import { useSelector } from 'react-redux';
-
 import Avatar from '@mui/material/Avatar';
+
+const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-dehpw"});
+const credentials = Realm.Credentials.anonymous();
 
 function SideBar(){
     let history = useHistory();
+    const [users, setUser] = useState([]);
+    const id = sessionStorage.getItem("id-user");
 
-    const {users} = useSelector((state) => state.auth);
+    async function dataName(params){
+        const realmUser = await realmapp.logIn(credentials);
+        setUser(await realmUser.callFunction('getLoginUser', {_id: Realm.BSON.ObjectID(id)}));
+    }
+
+    useEffect(()=>{
+        dataName();
+    },[]);
 
     function slidebarClick(e){
         e.preventDefault();
@@ -79,7 +90,7 @@ function SideBar(){
     // const avatarSrc = _.isEmpty(users[0].avatar)?generateAvatar(users[0].displayName, 'white', '#1cc88a'):users[0].avatar;
 
     return(
-        <>
+        (_.isEmpty(users))?<></>:<>
         <div className="sticky">
             <div className="d-flex flex-column flex-shrink-0 sidebar">
                 <div className="dropdown">
@@ -101,7 +112,7 @@ function SideBar(){
                 </div>
                 <ul className="nav nav-pills nav-flush flex-column mb-auto text-center sb-ul">
                     <li className="nav-item sb-li">
-                        <a href="/" className="nav-link py-3 border-bottom text-white border-top sb-a active" onClick={slidebarClick} aria-current="page" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="/home" className="nav-link py-3 border-bottom text-white border-top sb-a active" onClick={slidebarClick} aria-current="page" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-speedometer2"></i>
                         </a>
                     </li>
