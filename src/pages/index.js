@@ -1,9 +1,7 @@
 import React, {useState,useEffect} from 'react'
 import * as Realm from "realm-web";
-import * as bootstrap from 'bootstrap';
 import _ from 'lodash';
 import {Helmet} from 'react-helmet';
-import $ from "jquery";
 import { DataGrid } from '@mui/x-data-grid';
 import Chart from "react-apexcharts";
 
@@ -116,7 +114,7 @@ function Dashboard(props){
                 <>
                     <div className="row m-0 p-3">
                         <BSCard href="/users" color="#4e73df" title="Người dùng" statusText="Quản lý người dùng" icon={<i className="bi bi-person-fill fs-1" style={{color: "#dddfeb"}}></i>}/>
-                        <BSCard href=" " color="#1cc88a" title="Xe" statusText="Hiện đang có 0 xe sẵn sàng!" icon={<span className="fs-1" style={{color: "#dddfeb"}}>&#9951;</span>}/>
+                        <BSCard href=" " color="#1cc88a" title="Xe" statusText="Quản lý xe và phân công tài xế" icon={<span className="fs-1" style={{color: "#dddfeb"}}>&#9951;</span>}/>
                         <BSCard href=" " color="#36b9cc" title="Địa điểm" statusText="Quản lý địa điểm" icon={<i className="bi bi-geo-alt-fill fs-1" style={{color: "#dddfeb"}}></i>}/>
                         <BSCard href="/history" color="#f6c23e" title="Lịch sử" statusText="Lịch sử di chuyển" icon={<i className="bi bi-clock-fill fs-1" style={{color: "#dddfeb"}}></i>}/>
                     </div>

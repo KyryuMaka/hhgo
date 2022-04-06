@@ -122,6 +122,11 @@ function SideBar(){
                         </a>
                     </li>
                     <li className="nav-item sb-li">
+                        <a href="/vehicles" className="nav-link py-3 border-bottom text-white sb-a" onClick={slidebarClick} title="Vehicles" data-bs-toggle="tooltip" data-bs-placement="right">
+                            <span className="fs-5">&#9951;</span>
+                        </a>
+                    </li>
+                    <li className="nav-item sb-li">
                         <a href="/history" className="nav-link py-3 border-bottom text-white sb-a" onClick={slidebarClick} title="History" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-clock-history"></i>
                         </a>

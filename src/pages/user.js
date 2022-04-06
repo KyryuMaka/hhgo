@@ -1,6 +1,5 @@
 import React, {useState,useEffect} from 'react';
 import * as Realm from "realm-web";
-import * as bootstrap from 'bootstrap';
 import _ from 'lodash'
 import {Helmet} from 'react-helmet';
 
@@ -11,7 +10,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import Divider from '@mui/material/Divider';
 
 import CustomPagination from '../components/MUI-DGPagination';
-import QuickSearchToolbar from '../components/MUI-QuickSearchToolBar';
+import {QuickSearchToolbar} from '../components/MUI-DGToolbar';
 
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-dehpw"});
 const credentials = Realm.Credentials.anonymous();
@@ -20,7 +19,7 @@ const getData = async (folder,name) =>{
     return await fetch('data/'+folder+name+'.json')
     .then(response => response.json())
     .then(data => {return data});
-  }
+}
 
 function User(props){
     const [data, setData] = useState([]);
@@ -57,7 +56,7 @@ function User(props){
     
     const handleChange = (e)=>{
         setSelected(e);
-        setObjData(data.find(dt => dt._id == e[0]));
+        setObjData(data.find(dt => dt._id === e[0]));
         if(_.isEmpty(e)){
             $('#updateButton').addClass("Mui-disabled");
             $('#deleteButton').addClass("Mui-disabled");

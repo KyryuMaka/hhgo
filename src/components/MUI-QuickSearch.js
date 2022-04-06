@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -60,19 +59,4 @@ QuickSearch.propTypes = {
     value: PropTypes.string.isRequired,
 };
 
-function QuickSearchToolbar(props){
-    return(
-        <div className="d-flex align-items-center">
-            <div className="ps-2 me-auto">
-                <QuickSearch />
-            </div>
-            <div className="pe-2">
-                <Button data-bs-toggle="modal" data-bs-target={props.idAddModal} id="addButton">Thêm</Button>
-                <Button data-bs-toggle="modal" data-bs-target={props.idUpdateModal} id="updateButton" disabled>Sửa</Button>
-                <Button data-bs-toggle="modal" data-bs-target={props.idDeleteModal} id="deleteButton" disabled>Xóa</Button>
-            </div>
-        </div>
-    );
-}
-
-export default QuickSearchToolbar;
+export default QuickSearch;
