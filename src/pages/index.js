@@ -97,6 +97,41 @@ function Dashboard(props){
         name: 'chuyến',
         data: [10,15,10,15,12,8,11]
     }];
+
+    var option2 = {
+        labels: ["613 Âu Cơ", "740 ĐBP", "624 Âu Cơ", "642 Âu Cơ"],
+        dataLabels: {
+            enabled: true,
+            formatter: function (val) {
+                return val.toFixed(2) + "%"
+            }
+        },
+        plotOptions: {
+            pie: {
+                donut: {
+                    labels: {
+                        show: true,
+                        total: {
+                            show: true,
+                            showAlways: true,
+                            label: 'Tổng',
+                            fontSize: '22px',
+                            fontFamily: 'Helvetica, Arial, sans-serif',
+                            fontWeight: 600,
+                            color: '#373d3f',
+                            formatter: function (w) {
+                                return w.globals.seriesTotals.reduce((a, b) => {
+                                    return a + b
+                                }, 0) + " chuyến"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    var series2 = [15, 10, 5, 5];
         
     return(
         <>
@@ -113,10 +148,34 @@ function Dashboard(props){
                 </div>:
                 <>
                     <div className="row m-0 p-3">
-                        <BSCard href="/users" color="#4e73df" title="Người dùng" statusText="Quản lý người dùng" icon={<i className="bi bi-person-fill fs-1" style={{color: "#dddfeb"}}></i>}/>
-                        <BSCard href=" " color="#1cc88a" title="Xe" statusText="Quản lý xe và phân công tài xế" icon={<span className="fs-1" style={{color: "#dddfeb"}}>&#9951;</span>}/>
-                        <BSCard href=" " color="#36b9cc" title="Địa điểm" statusText="Quản lý địa điểm" icon={<i className="bi bi-geo-alt-fill fs-1" style={{color: "#dddfeb"}}></i>}/>
-                        <BSCard href="/history" color="#f6c23e" title="Lịch sử" statusText="Lịch sử di chuyển" icon={<i className="bi bi-clock-fill fs-1" style={{color: "#dddfeb"}}></i>}/>
+                        <BSCard 
+                            href="/users"
+                            color="#4e73df" 
+                            title="Người dùng"  
+                            statusText="Quản lý người dùng"             
+                            icon={<i className="bi bi-person-fill fs-1" style={{color: "#dddfeb"}}></i>}
+                        />
+                        <BSCard 
+                            href="/vehicles"    
+                            color="#1cc88a" 
+                            title="Xe"          
+                            statusText="Quản lý xe và phân công tài xế" 
+                            icon={<span className="fs-1" style={{color: "#dddfeb"}}>&#9951;</span>}
+                        />
+                        <BSCard 
+                            href=" "
+                            color="#36b9cc" 
+                            title="Địa điểm"    
+                            statusText="Quản lý địa điểm"               
+                            icon={<i className="bi bi-geo-alt-fill fs-1" style={{color: "#dddfeb"}}></i>}
+                        />
+                        <BSCard 
+                            href="/history"
+                            color="#f6c23e" 
+                            title="Lịch sử"     
+                            statusText="Lịch sử di chuyển"              
+                            icon={<i className="bi bi-clock-fill fs-1" style={{color: "#dddfeb"}}></i>}
+                        />
                     </div>
                     <div className="row m-0 p-3">
                         <div className="col-xl-6">
@@ -131,7 +190,7 @@ function Dashboard(props){
                             <div className="p-3 shadow rounded">
                                 <h3 className="text-center pt-2 pb-2">BIỂU ĐỒ SỐ CHUYẾN ĐI TRONG TUẦN</h3>
                                 <div style={{height: "520px"}}>
-                                    <Chart options={options} series={series} type="bar"/>
+                                    <Chart height="520" options={option2} series={series2} type="donut"/>
                                 </div>
                             </div>
                         </div>

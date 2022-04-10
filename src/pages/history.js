@@ -22,14 +22,6 @@ const credentials = Realm.Credentials.anonymous();
 
 function History(props){
     const [data, setData] = useState([]);
-    // const [driver, setDriver] = useState();
-    // const [car, setCar] = useState();
-    // const [carNumber, setCarNumber] = useState();
-    // const [carry, setCarry] = useState();
-    // const [from, setFrom] = useState();
-    // const [to, setTo] = useState();
-    // const [when, setWhen] = useState();
-    // const [status, setStatus] = useState();
 
     useEffect(()=>{
         async function dataName(params){

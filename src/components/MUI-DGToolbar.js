@@ -7,7 +7,7 @@ function QuickSearchToolbar(props){
     return(
         <div className="d-flex align-items-center">
             <div className="ps-2 me-auto">
-                <QuickSearch />
+                <QuickSearch value={props.value} onChange={props.onChange} clearSearch={props.clearSearch}/>
             </div>
             <div className="pe-2">
                 <GridToolbarExport />
@@ -23,7 +23,7 @@ function VehicleToolbar(props){
     return(
         <div className="d-flex align-items-center">
             <div className="ps-2 me-auto">
-                <QuickSearch />
+                <QuickSearch value={props.value} onChange={props.onChange} clearSearch={props.clearSearch}/>
             </div>
             <div className="pe-2">
                 <GridToolbarExport />

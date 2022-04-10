@@ -26,14 +26,9 @@ function User(props){
     const [selected, setSelected] = useState([]);
     const [objData, setObjData] = useState({});
     const [DonViPB, setDonViPB] = useState();
-    // const [driver, setDriver] = useState();
-    // const [car, setCar] = useState();
-    // const [carNumber, setCarNumber] = useState();
-    // const [carry, setCarry] = useState();
-    // const [from, setFrom] = useState();
-    // const [to, setTo] = useState();
-    // const [when, setWhen] = useState();
-    // const [status, setStatus] = useState();
+
+    const [searchText, setSearchText] = useState('');
+    const [rows, setRows] = useState(data);
 
     useEffect(()=>{
         async function dataName(params){
@@ -53,6 +48,25 @@ function User(props){
         {field:"chuyenCho",     headerAlign: 'center', headerName: "Chuyên chở",        flex: 2},
         {field:"permission",    headerAlign: 'center', headerName: "Quyền",             flex: 1,    align: "center"},
     ];
+
+    function escapeRegExp(value) {
+        return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+    }
+
+    const requestSearch = (searchValue) => {
+        setSearchText(searchValue);
+        const searchRegex = new RegExp(escapeRegExp(searchValue), 'i');
+        const filteredRows = data.filter((row) => {
+            return Object.keys(row).some((field) => {
+                return searchRegex.test(row[field].toString());
+            });
+        });
+        setRows(filteredRows);
+    };
+
+    useEffect(() => {
+        setRows(data);
+    },[data]);
     
     const handleChange = (e)=>{
         setSelected(e);
@@ -74,7 +88,9 @@ function User(props){
     if(objData !== undefined)
     if(objData.permission === "Driver"){
         $("[driver=true]").removeAttr("disabled");
+        $("[driver=false]").attr("disabled", true);
     }else{
+        $("[driver=false]").removeAttr("disabled");
         $("[driver=true]").attr("disabled", true);
         $("[driver=true]").val("");
     }
@@ -125,7 +141,7 @@ function User(props){
                     <h3 className="pt-2 pb-2">Danh sách người dùng</h3>
                     <div style={{height: "680px", width: "100%"}}>
                         <DataGrid
-                            rows={data}
+                            rows={rows}
                             columns={columns}
                             pageSize={10}
                             checkboxSelection
@@ -137,7 +153,10 @@ function User(props){
                                 Pagination: CustomPagination,
                             }}
                             componentsProps={{
-                                toolbar: { 
+                                toolbar: {
+                                    value: searchText,
+                                    onChange: (event) => requestSearch(event.target.value),
+                                    clearSearch: () => requestSearch(''),
                                     idAddModal: "#addUserModal",
                                     idUpdateModal: "#updateUserModal",
                                     idDeleteModal: "#deleteUserModal"
@@ -198,7 +217,7 @@ function User(props){
                                         <div className="row mb-3">
                                             <div className="col-sm-6">
                                                 <div className="form-floating">
-                                                    <input type="email" className="form-control" id="email" placeholder="Email" required/>
+                                                    <input type="email" className="form-control" id="email" placeholder="Email" driver="false" required/>
                                                     <label for="email">Email</label>
                                                 </div>
                                             </div>

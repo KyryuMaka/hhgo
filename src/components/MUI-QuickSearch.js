@@ -7,10 +7,6 @@ import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
 import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
-
-function escapeRegExp(value){
-    return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
-}
   
 function QuickSearch(props){
     return (
@@ -19,7 +15,7 @@ function QuickSearch(props){
             variant="standard"
             value={props.value}
             onChange={props.onChange}
-            placeholder="Search…"
+            placeholder="Tìm..."
             InputProps={{
                 startAdornment: <SearchIcon fontSize="small" />,
                 endAdornment: (

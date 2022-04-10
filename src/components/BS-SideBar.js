@@ -13,6 +13,7 @@ function SideBar(){
     let history = useHistory();
     const [users, setUser] = useState([]);
     const id = sessionStorage.getItem("id-user");
+    const path = window.location.pathname;
 
     async function dataName(params){
         const realmUser = await realmapp.logIn(credentials);
@@ -33,6 +34,11 @@ function SideBar(){
     };
 
     $(document).ready(function(){
+        Object.values($("[sideActive=false]")).forEach(element => {
+            if(element.pathname === path){
+                $(element).addClass("active");
+            }
+        })
         $('.sb-ul .sb-li .sb-a').click(function(){
             $('.sb-li .sb-a').removeClass("active");
             $(this).addClass("active");
@@ -112,32 +118,32 @@ function SideBar(){
                 </div>
                 <ul className="nav nav-pills nav-flush flex-column mb-auto text-center sb-ul">
                     <li className="nav-item sb-li">
-                        <a href="/home" className="nav-link py-3 border-bottom text-white border-top sb-a active" onClick={slidebarClick} aria-current="page" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="/home" className="nav-link py-3 border-bottom text-white border-top sb-a" sideActive="false" onClick={slidebarClick} aria-current="page" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-speedometer2"></i>
                         </a>
                     </li>
                     <li className="nav-item sb-li">
-                        <a href="/users" className="nav-link py-3 border-bottom text-white sb-a" onClick={slidebarClick} title="Users" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="/users" className="nav-link py-3 border-bottom text-white sb-a" sideActive="false" onClick={slidebarClick} title="Users" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-person-circle"></i>
                         </a>
                     </li>
                     <li className="nav-item sb-li">
-                        <a href="/vehicles" className="nav-link py-3 border-bottom text-white sb-a" onClick={slidebarClick} title="Vehicles" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="/vehicles" className="nav-link py-3 border-bottom text-white sb-a" sideActive="false" onClick={slidebarClick} title="Vehicles" data-bs-toggle="tooltip" data-bs-placement="right">
                             <span className="fs-5">&#9951;</span>
                         </a>
                     </li>
                     <li className="nav-item sb-li">
-                        <a href="/history" className="nav-link py-3 border-bottom text-white sb-a" onClick={slidebarClick} title="History" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="/history" className="nav-link py-3 border-bottom text-white sb-a" sideActive="false" onClick={slidebarClick} title="History" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-clock-history"></i>
                         </a>
                     </li>
                     <li className="nav-item sb-li">
-                        <a href="/" className="nav-link py-3 border-bottom text-white sb-a" onClick={slidebarClick} title="Orders" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="/" className="nav-link py-3 border-bottom text-white sb-a" sideActive="false" onClick={slidebarClick} title="Orders" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-table"></i>
                         </a>
                     </li>
                     <li className="nav-item sb-li">
-                        <a href="/" className="nav-link py-3 border-bottom text-white sb-a" onClick={slidebarClick} title="Products" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="/" className="nav-link py-3 border-bottom text-white sb-a" sideActive="false" onClick={slidebarClick} title="Products" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-grid"></i>
                         </a>
                     </li>
