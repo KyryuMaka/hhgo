@@ -45,7 +45,6 @@ function User(props){
         {field:"phone1",        headerAlign: 'center', headerName: "Số điện thoại 1",   flex: 1.5,  align: "center"},
         {field:"phone2",        headerAlign: 'center', headerName: "Số điện thoại 2",   flex: 1.5,  align: "center"},
         {field:"donVi",         headerAlign: 'center', headerName: "Đơn vị",            flex: 1,    align: "center"},
-        {field:"chuyenCho",     headerAlign: 'center', headerName: "Chuyên chở",        flex: 2},
         {field:"permission",    headerAlign: 'center', headerName: "Quyền",             flex: 1,    align: "center"},
     ];
 

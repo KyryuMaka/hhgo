@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import * as bootstrap from 'bootstrap';
 import * as Realm from "realm-web";
 import _ from 'lodash';
 import { useHistory } from 'react-router-dom';
@@ -45,22 +44,22 @@ function SideBar(){
         });
     });
 
-    function stringToColor(string) {
-        let hash = 0;
-        let i;
-        let color = '#';
+    // function stringToColor(string) {
+    //     let hash = 0;
+    //     let i;
+    //     let color = '#';
 
-        /* eslint-disable no-bitwise */
-        for (i = 0; i < string.length; i += 1) {
-            hash = string.charCodeAt(i) + ((hash << 5) - hash);
-        }
-        for (i = 0; i < 3; i += 1) {
-            const value = (hash >> (i * 8)) & 0xff;
-            color += `00${value.toString(16)}`.substr(-2);
-        }
-        /* eslint-enable no-bitwise */
-        return color;
-    }
+    //     /* eslint-disable no-bitwise */
+    //     for (i = 0; i < string.length; i += 1) {
+    //         hash = string.charCodeAt(i) + ((hash << 5) - hash);
+    //     }
+    //     for (i = 0; i < 3; i += 1) {
+    //         const value = (hash >> (i * 8)) & 0xff;
+    //         color += `00${value.toString(16)}`.substr(-2);
+    //     }
+    //     /* eslint-enable no-bitwise */
+    //     return color;
+    // }
       
     function stringAvatar(name, height, width) {
         return {

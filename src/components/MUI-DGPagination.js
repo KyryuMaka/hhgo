@@ -1,5 +1,4 @@
 import React from 'react';
-import * as bootstrap from 'bootstrap';
 import { gridPageCountSelector, gridPageSelector, useGridApiContext, useGridSelector } from '@mui/x-data-grid';
 import Pagination from '@mui/material/Pagination';
 

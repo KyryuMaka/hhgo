@@ -31,6 +31,7 @@ function VehicleToolbar(props){
                 <Button data-bs-toggle="modal" data-bs-target={props.idUpdateModal} id="updateButton" disabled>Sửa</Button>
                 <Button data-bs-toggle="modal" data-bs-target={props.idDeleteModal} id="deleteButton" disabled>Xóa</Button>
                 <Button data-bs-toggle="modal" data-bs-target={props.idAssignmentModal} id="assignmentButton" disabled>Phân công</Button>
+                <Button data-bs-toggle="modal" data-bs-target={props.idDelAssignmentModal} id="delAssignmentButton" disabled>Hủy phân công</Button>
             </div>
         </div>
     );

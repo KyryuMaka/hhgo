@@ -65,6 +65,7 @@ function Vehicles(props){
             $('#updateButton').addClass("Mui-disabled");
             $('#deleteButton').addClass("Mui-disabled");
             $('#assignmentButton').addClass("Mui-disabled");
+            $('#delAssignmentButton').addClass("Mui-disabled");
         }else{
             if(e.length === 1){
                 $('#updateButton').removeClass("Mui-disabled");
@@ -75,6 +76,8 @@ function Vehicles(props){
                 $('#updateButton').addClass("Mui-disabled");
                 $('#assignmentButton').addClass("Mui-disabled");
             }
+            $('#delAssignmentButton').removeClass("Mui-disabled");
+            $('#delAssignmentButton').removeAttr("disabled");
             $('#deleteButton').removeClass("Mui-disabled");
             $('#deleteButton').removeAttr("disabled");
         }
@@ -88,12 +91,12 @@ function Vehicles(props){
             tmp[`${e.target[i].id}`] = e.target[i].value.toString():
             tmp[`${e.target[i].id}`] = e.target[i].value;
         }
-        tmp = {...tmp, assignment: ""};
+        tmp = {...tmp, assignment: "", assignmentType: ""};
         console.log(tmp);
-        // const realmUser = await realmapp.logIn(credentials);
-        // const tmp2 = await realmUser.callFunction('insertVehicle', tmp);
-        // console.log(tmp2.rs);
-        // window.location.reload();
+        const realmUser = await realmapp.logIn(credentials);
+        const tmp2 = await realmUser.callFunction('insertVehicle', tmp);
+        console.log(tmp2.rs);
+        window.location.reload();
     }
 
     async function handleUpdateVehicle(e){
@@ -116,10 +119,26 @@ function Vehicles(props){
         e.preventDefault();
         var tmp1 = {};
         for(var i = 0; i < e.target.length-2; i++){
+            (typeof(e.target[i].value) === "number")?
+            tmp1[`${e.target[i].id}`] = e.target[i].value.toString():
             tmp1[`${e.target[i].id}`] = e.target[i].value;
         }
         const realmUser = await realmapp.logIn(credentials);
-        const tmp = await realmUser.callFunction('updateVehicle', {_id: objData._id}, {$set: {assignment: tmp1.assignment}});
+        const tmp = await realmUser.callFunction('updateVehicle', {_id: objData._id}, {$set: {
+            assignment: tmp1.assignment, 
+            assignmentType: tmp1.assignmentType
+        }});
+        console.log(tmp);
+        window.location.reload();
+    }
+
+    async function handleDelAssignment(e){
+        e.preventDefault();
+        const realmUser = await realmapp.logIn(credentials);
+        const tmp = await realmUser.callFunction('updateVehicle', {_id: objData._id}, {$set: {
+            assignment: "", 
+            assignmentType: ""
+        }});
         console.log(tmp);
         window.location.reload();
     }
@@ -137,7 +156,7 @@ function Vehicles(props){
                     <h3 className="pt-2 pb-2">Danh sách các xe</h3>
                     <div style={{height: "680px", width: "100%"}}>
                         <DataGrid
-                            rows={data}
+                            rows={rows}
                             columns={columns}
                             pageSize={10}
                             checkboxSelection
@@ -149,11 +168,15 @@ function Vehicles(props){
                                 Pagination: CustomPagination,
                             }}
                             componentsProps={{
-                                toolbar: { 
+                                toolbar: {
+                                    value: searchText,
+                                    onChange: (event) => requestSearch(event.target.value),
+                                    clearSearch: () => requestSearch(''), 
                                     idAddModal: "#addVehicleModal",
                                     idUpdateModal: "#updateVehicleModal",
                                     idDeleteModal: "#deleteVehicleModal",
                                     idAssignmentModal: "#assignmentModal",
+                                    idDelAssignmentModal: "#delAssignmentModal"
                                 },
                             }}
                         />
@@ -534,6 +557,7 @@ function Vehicles(props){
                 </div>
             </div>
             {(objData === undefined)?null:
+            <>
             <div className="modal fade" id="assignmentModal" tabindex="-1" aria-labelledby="assignmentModalLable" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
@@ -547,6 +571,13 @@ function Vehicles(props){
                                     <input type="search" className="form-control" id="assignment" placeholder="Phân công cho" onChange={(e) => setObjData({...objData, assignment: e.target.value})} value={objData.assignment}/>
                                     <label for="assignment">Phân công cho</label>
                                 </div>
+                                <div className="form-floating mb-3">
+                                    <select className="form-select" id="assignmentType" aria-label="" required onChange={(e) => setObjData({...objData, assignmentType: e.target.value})} value={objData.assignmentType}>
+                                        <option value="Chở Ban Điều Hành">Chở Ban Điều Hành</option>
+                                        <option value="Công tác">Công tác</option>
+                                    </select>
+                                    <label for="assignmentType">Loại hình</label>
+                                </div>
                                 <div className="d-flex justify-content-center">
                                     <button type="button" className="btn btn-secondary me-2 w-100" data-bs-dismiss="modal">Hủy</button>
                                     <button type="submit" className="btn btn-primary w-100">Đồng ý</button>
@@ -555,7 +586,25 @@ function Vehicles(props){
                         </div>
                     </div>
                 </div>
-            </div>}
+            </div>
+            <div className="modal fade" id="delAssignmentModal" tabindex="-1" aria-labelledby="deleteAssignmentModal" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="deleteAssignmentModal">Xác nhận</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <h2 className="mb-4">Bạn thực sự muốn hủy phân công ?</h2>
+                            <div className="d-flex justify-content-center">
+                                <button type="button" className="btn btn-secondary me-2 w-100" data-bs-dismiss="modal">Hủy</button>
+                                <button type="button" className="btn btn-primary w-100" onClick={handleDelAssignment}>Bỏ phân công</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </>}
         </>
     );    
 }

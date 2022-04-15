@@ -21,39 +21,25 @@ const credentials = Realm.Credentials.anonymous();
 
 function Dashboard(props){
     const [data, setData] = useState([]);
-    // const [driver, setDriver] = useState(); 
-    // const [car, setCar] = useState();
-    // const [carNumber, setCarNumber] = useState();
-    // const [carry, setCarry] = useState();
-    // const [from, setFrom] = useState();
-    // const [to, setTo] = useState();
-    // const [when, setWhen] = useState();
-    // const [status, setStatus] = useState();
     async function dataName(params){
         const realmUser = await realmapp.logIn(credentials);
-        setData(await realmUser.callFunction('getTripHistory', {}));
+        setData(await realmUser.callFunction('getVehicles', {}));
     }
 
     useEffect(()=>{
         dataName();
     },[]);
+    var data1 = data.filter((val) => val.assignment === "");
+    var data2 = data.filter((val) => val.assignment !== "");
+
+    console.log(data1, data2);
 
     const columns = [
-        { field: 'driver',      headerName: 'Tài xế',       headerAlign: 'center', flex: 2},
-        { field: 'car',         headerName: 'Xe',           headerAlign: 'center', flex: 1.5},
-        { field: 'carNumber',   headerName: 'Biển số',      headerAlign: 'center', flex: 1, align: "center"},
-        { field: 'cary',        headerName: 'Chở',          headerAlign: 'center', flex: 2},
-        { field: 'from',        headerName: 'Từ',           headerAlign: 'center', flex: 2},
-        { field: 'to',          headerName: 'Đến',          headerAlign: 'center', flex: 2},
-        // {
-        //   field: 'fullName',
-        //   headerName: 'Full name',
-        //   description: 'This column has a value getter and is not sortable.',
-        //   sortable: false,
-        //   width: 160,
-        //   valueGetter: (params) =>
-        //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-        // },
+        {field:"ownerName",     headerAlign: 'center', headerName: "Tên chủ xe",    flex: 2},
+        {field:"type",          headerAlign: 'center', headerName: "Loại",          flex: 1,    align: "center"},
+        {field:"brand",         headerAlign: 'center', headerName: "Hãng",          flex: 1.5,  align: "center"},
+        {field:"plateNumber",   headerAlign: 'center', headerName: "Biển số",       flex: 1.5,  align: "center"},
+        {field:"assignment",    headerAlign: 'center', headerName: "Phân công",     flex: 2,    align: "center"}
     ];
 
     function formatDate(date){
@@ -82,7 +68,7 @@ function Dashboard(props){
     var dateArr = [];
     for(var i = 0; i < last7days.length; i++){
         dateArr = [...dateArr, last7days[i].str];
-    } 
+    }
     
     var options = {
         chart: {
@@ -201,7 +187,7 @@ function Dashboard(props){
                                 <h3 className="text-center pt-2 pb-2">DANH SÁCH CÁC XE ĐANG TRỐNG</h3>
                                 <div style={{height: "520px", width: "100%"}}>
                                     <DataGrid
-                                        rows={data}
+                                        rows={data1}
                                         columns={columns}
                                         pageSize={5}
                                         checkboxSelection
@@ -220,7 +206,7 @@ function Dashboard(props){
                             <h3 className="text-center pt-2 pb-2">DANH SÁCH CÁC XE ĐANG ĐƯA ĐÓN</h3>
                                 <div style={{height: "520px"}}>
                                     <DataGrid
-                                        rows={data}
+                                        rows={data2}
                                         columns={columns}
                                         pageSize={5}
                                         checkboxSelection
