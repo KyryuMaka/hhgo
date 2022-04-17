@@ -34,9 +34,10 @@ function Vehicles(props){
     const columns = [
         {field:"ownerName",     headerAlign: 'center', headerName: "Tên chủ xe",    flex: 2},
         {field:"type",          headerAlign: 'center', headerName: "Loại",          flex: 1,    align: "center"},
-        {field:"brand",         headerAlign: 'center', headerName: "Hãng",          flex: 1.5,  align: "center"},
-        {field:"plateNumber",   headerAlign: 'center', headerName: "Biển số",       flex: 1.5,  align: "center"},
-        {field:"assignment",    headerAlign: 'center', headerName: "Phân công",     flex: 2,    align: "center"}
+        {field:"brand",         headerAlign: 'center', headerName: "Hãng",          flex: 1,    align: "center"},
+        {field:"plateNumber",   headerAlign: 'center', headerName: "Biển số",       flex: 1,    align: "center"},
+        {field:"assignment",    headerAlign: 'center', headerName: "Phân công",     flex: 2,    align: "center"},
+        {field:"status",        headerAlign: 'center', headerName: "Tình trạng",    flex: 2,    align: "center"}
     ];
 
     function escapeRegExp(value) {
@@ -91,7 +92,7 @@ function Vehicles(props){
             tmp[`${e.target[i].id}`] = e.target[i].value.toString():
             tmp[`${e.target[i].id}`] = e.target[i].value;
         }
-        tmp = {...tmp, assignment: "", assignmentType: ""};
+        tmp = {...tmp, assignment: "", assignmentType: "", status: ""};
         console.log(tmp);
         const realmUser = await realmapp.logIn(credentials);
         const tmp2 = await realmUser.callFunction('insertVehicle', tmp);
@@ -126,7 +127,8 @@ function Vehicles(props){
         const realmUser = await realmapp.logIn(credentials);
         const tmp = await realmUser.callFunction('updateVehicle', {_id: objData._id}, {$set: {
             assignment: tmp1.assignment, 
-            assignmentType: tmp1.assignmentType
+            assignmentType: tmp1.assignmentType,
+            status: "Đã phân công"
         }});
         console.log(tmp);
         window.location.reload();
@@ -137,7 +139,8 @@ function Vehicles(props){
         const realmUser = await realmapp.logIn(credentials);
         const tmp = await realmUser.callFunction('updateVehicle', {_id: objData._id}, {$set: {
             assignment: "", 
-            assignmentType: ""
+            assignmentType: "",
+            status: ""
         }});
         console.log(tmp);
         window.location.reload();
@@ -273,7 +276,7 @@ function Vehicles(props){
                                             <div className="col-md-6">
                                                 <div className="form-floating mb-3">
                                                     <input type="number" className="form-control" id="fuelCapacity" placeholder="Dung tích xăng" required/>
-                                                    <label for="fuelCapacity">Dung tích xăng</label>
+                                                    <label for="fuelCapacity">Dung tích xăng (Diesel)</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -451,7 +454,7 @@ function Vehicles(props){
                                             <div className="col-md-6">
                                                 <div className="form-floating mb-3">
                                                     <input type="number" className="form-control" id="fuelCapacity" placeholder="Dung tích xăng" required onChange={(e) => setObjData({...objData, fuelCapacity: e.target.value})} value={objData.fuelCapacity}/>
-                                                    <label for="fuelCapacity">Dung tích xăng</label>
+                                                    <label for="fuelCapacity">Dung tích xăng (Diesel)</label>
                                                 </div>
                                             </div>
                                         </div>

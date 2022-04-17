@@ -31,14 +31,13 @@ function History(props){
     },[]);
 
     const columns = [
-        { field: 'driver',      headerName: 'Tài xế',       headerAlign: 'center', flex: 2},
-        { field: 'car',         headerName: 'Xe',           headerAlign: 'center', flex: 1.5},
-        { field: 'carNumber',   headerName: 'Biển số',      headerAlign: 'center', flex: 1, align: "center"},
-        { field: 'cary',        headerName: 'Chở',          headerAlign: 'center', flex: 2},
-        { field: 'from',        headerName: 'Từ',           headerAlign: 'center', flex: 2},
-        { field: 'to',          headerName: 'Đến',          headerAlign: 'center', flex: 2},
-        { field: 'when',        headerName: 'Vào lúc',      headerAlign: 'center', flex: 2, align: "center"},
-        { field: 'status',      headerName: 'Trạng thái',   headerAlign: 'center', flex: 2},
+        { field: 'driver',          headerName: 'Tài xế',       headerAlign: 'center', flex: 2},
+        { field: 'plateNumber',     headerName: 'Biển số',      headerAlign: 'center', flex: 1, align: "center"},
+        { field: 'from',            headerName: 'Từ',           headerAlign: 'center', flex: 2},
+        { field: 'to',              headerName: 'Đến',          headerAlign: 'center', flex: 2},
+        { field: 'whenGo',          headerName: 'Đi lúc',       headerAlign: 'center', flex: 2, align: "center"},
+        { field: 'whenComplete',    headerName: 'Đến lúc',      headerAlign: 'center', flex: 2, align: "center"},
+        { field: 'status',          headerName: 'Trạng thái',   headerAlign: 'center', flex: 2},
         // {
         //   field: 'fullName',
         //   headerName: 'Full name',
@@ -68,6 +67,11 @@ function History(props){
                             pageSize={10}
                             checkboxSelection
                             getRowId={(row) => row._id}
+                            initialState={{
+                                sorting: {
+                                    sortModel: [{ field: 'whenGo', sort: 'desc' }],
+                                },
+                            }}
                             components={{
                                 Toolbar: CustomToolbar,
                                 Pagination: CustomPagination,

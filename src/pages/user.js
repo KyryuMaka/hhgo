@@ -210,8 +210,8 @@ function User(props){
                                             </div>
                                         </div>
                                         <div className="form-floating mb-3">
-                                            <input type="text" className="form-control" id="adddress" placeholder="Địa chỉ" required/>
-                                            <label for="adddress">Địa chỉ</label>
+                                            <input type="text" className="form-control" id="address" placeholder="Địa chỉ" required/>
+                                            <label for="address">Địa chỉ</label>
                                         </div>
                                         <div className="row mb-3">
                                             <div className="col-sm-6">
@@ -300,10 +300,6 @@ function User(props){
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="form-floating mb-3">
-                                            <input type="text" className="form-control" id="chuyenCho" placeholder="Chuyên Chở" required driver="true" disabled/>
-                                            <label for="chuyenCho">Chuyên Chở</label>
-                                        </div>
                                     </div>
                                 </div>
                                 <div className="d-flex justify-content-end">
@@ -360,8 +356,8 @@ function User(props){
                                             </div>
                                         </div>
                                         <div className="form-floating mb-3">
-                                            <input type="text" className="form-control" id="adddress" placeholder="Địa chỉ" required onChange={(e) => setObjData({...objData, adddress: e.target.value})} value={objData.adddress}/>
-                                            <label for="adddress">Địa chỉ</label>
+                                            <input type="text" className="form-control" id="address" placeholder="Địa chỉ" required onChange={(e) => setObjData({...objData, address: e.target.value})} value={objData.address}/>
+                                            <label for="address">Địa chỉ</label>
                                         </div>
                                         <div className="row mb-3">
                                             <div className="col-sm-6">
@@ -449,10 +445,6 @@ function User(props){
                                                     <label for="giaTriGPLX">Giá trị GPLX</label>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="form-floating mb-3">
-                                            <input type="text" className="form-control" id="chuyenCho" placeholder="Chuyên Chở" required driver="true" disabled onChange={(e) => setObjData({...objData, chuyenCho: e.target.value})} value={objData.chuyenCho}/>
-                                            <label for="chuyenCho">Chuyên Chở</label>
                                         </div>
                                     </div>
                                 </div>
