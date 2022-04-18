@@ -1,5 +1,4 @@
 import React from 'react';
-import * as bootstrap from 'bootstrap';
 import $ from "jquery";
 import { Detail } from '../constant';
 import { useHistory } from 'react-router-dom';

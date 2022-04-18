@@ -3,7 +3,6 @@ import * as Realm from "realm-web";
 import _ from 'lodash'
 import {Helmet} from 'react-helmet';
 
-import $ from "jquery";
 import { loading } from '../constant';
 
 import { DataGrid } from '@mui/x-data-grid';
