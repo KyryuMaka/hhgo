@@ -136,16 +136,6 @@ function SideBar(){
                             <i className="bi bi-clock-history"></i>
                         </a>
                     </li>
-                    <li className="nav-item sb-li">
-                        <a href="/" className="nav-link py-3 border-bottom text-white sb-a" sideActive="false" onClick={slidebarClick} title="Orders" data-bs-toggle="tooltip" data-bs-placement="right">
-                            <i className="bi bi-table"></i>
-                        </a>
-                    </li>
-                    <li className="nav-item sb-li">
-                        <a href="/" className="nav-link py-3 border-bottom text-white sb-a" sideActive="false" onClick={slidebarClick} title="Products" data-bs-toggle="tooltip" data-bs-placement="right">
-                            <i className="bi bi-grid"></i>
-                        </a>
-                    </li>
                 </ul>
                 <div className="dropdown border-top">
                     <a href=" " className="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none text-white" id="dropdownSetting" data-bs-toggle="dropdown" aria-expanded="false">
