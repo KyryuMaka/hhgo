@@ -93,7 +93,6 @@ function Vehicles(props){
             tmp[`${e.target[i].id}`] = e.target[i].value;
         }
         tmp = {...tmp, assignment: "", assignmentType: "", status: ""};
-        console.log(tmp);
         const realmUser = await realmapp.logIn(credentials);
         const tmp2 = await realmUser.callFunction('insertVehicle', tmp);
         console.log(tmp2.rs);

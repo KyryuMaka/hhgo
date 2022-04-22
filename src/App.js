@@ -23,6 +23,7 @@ function App() {
         {isAuthenticated ?
           <div className="d-flex">
             <SideBar />
+            <Route exact path="/" render={props => <IndexPage {...props} title="Trang chủ" />} />
             <Route exact path="/home" render={props => <IndexPage {...props} title="Trang chủ" />} />
             <Route exact path="/history" render={props => <HistoryPage {...props} title="Lịch sử"/>} />
             <Route exact path="/users" render={props => <UserPage {...props} title="Người dùng"/>} />

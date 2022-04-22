@@ -29,10 +29,9 @@ function Dashboard(props){
     useEffect(()=>{
         dataName();
     },[]);
+    
     var data1 = data.filter((val) => val.assignment === "");
     var data2 = data.filter((val) => val.assignment !== "");
-
-    console.log(data1, data2);
 
     const columns = [
         {field:"ownerName",     headerAlign: 'center', headerName: "Tên chủ xe",    flex: 2},

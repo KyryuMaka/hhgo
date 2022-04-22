@@ -181,7 +181,7 @@ function User(props){
                                         <option value="Manager">Quản trị</option>
                                         <option value="Driver">Tài xế</option>
                                     </select>
-                                    <label for="permission">Vai trò</label>
+                                    <label htmlFor="permission">Vai trò</label>
                                 </div>
                                 <div className="row">
                                     <div className="col-md-6">
@@ -190,13 +190,13 @@ function User(props){
                                         </div>
                                         <div className="form-floating mb-3">
                                             <input type="text" className="form-control" id="fullName" placeholder="Họ và tên" required/>
-                                            <label for="fullName">Họ và tên</label>
+                                            <label htmlFor="fullName">Họ và tên</label>
                                         </div>
                                         <div className="row mb-3">
                                             <div className="col-sm-6">
                                                 <div className="form-floating">
                                                     <input type="number" className="form-control" id="namSinh" placeholder="Năm sinh" required/>
-                                                    <label for="namSinh">Năm sinh</label>
+                                                    <label htmlFor="namSinh">Năm sinh</label>
                                                 </div>
                                             </div>
                                             <div className="col-sm-6">
@@ -205,19 +205,19 @@ function User(props){
                                                         <option selected value="Nam">Nam</option>
                                                         <option value="Nữ">Nữ</option>
                                                     </select>
-                                                    <label for="gender">Giới tính</label>
+                                                    <label htmlFor="gender">Giới tính</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="form-floating mb-3">
                                             <input type="text" className="form-control" id="address" placeholder="Địa chỉ" required/>
-                                            <label for="address">Địa chỉ</label>
+                                            <label htmlFor="address">Địa chỉ</label>
                                         </div>
                                         <div className="row mb-3">
                                             <div className="col-sm-6">
                                                 <div className="form-floating">
                                                     <input type="email" className="form-control" id="email" placeholder="Email" driver="false" required/>
-                                                    <label for="email">Email</label>
+                                                    <label htmlFor="email">Email</label>
                                                 </div>
                                             </div>
                                             <div className="col-sm-6">
@@ -228,7 +228,7 @@ function User(props){
                                                             <option value={dv}>{dv}</option>
                                                         ))}
                                                     </select>
-                                                    <label for="donVi">Đơn vị</label>
+                                                    <label htmlFor="donVi">Đơn vị</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -236,13 +236,13 @@ function User(props){
                                             <div className="col-sm-6">
                                                 <div className="form-floating">
                                                     <input type="text" className="form-control" id="idNumber" placeholder="CMND/CCCD" required/>
-                                                    <label for="idNumber">CMND/CCCD</label>
+                                                    <label htmlFor="idNumber">CMND/CCCD</label>
                                                 </div>
                                             </div>
                                             <div className="col-sm-6">
                                                 <div className="form-floating">
                                                     <input type="date" className="form-control" id="idDate" placeholder="Ngày cấp CMND/CCCD" required/>
-                                                    <label for="idDate">Ngày cấp CMND/CCCD</label>
+                                                    <label htmlFor="idDate">Ngày cấp CMND/CCCD</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -250,13 +250,13 @@ function User(props){
                                             <div className="col-sm-6">
                                                 <div className="form-floating">
                                                     <input type="text" className="form-control" id="phone1" placeholder="Số điện thoại 1" required/>
-                                                    <label for="phone1">Số điện thoại 1</label>
+                                                    <label htmlFor="phone1">Số điện thoại 1</label>
                                                 </div>
                                             </div>
                                             <div className="col-sm-6">
                                                 <div className="form-floating">
                                                     <input type="text" className="form-control" id="phone2" placeholder="Số điện thoại 2" />
-                                                    <label for="phone2">Số điện thoại 2</label>
+                                                    <label htmlFor="phone2">Số điện thoại 2</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -269,7 +269,7 @@ function User(props){
                                             <div className="col-sm-6">
                                                 <div className="form-floating">
                                                     <input type="text" className="form-control" id="soGPLX" placeholder="Số GPLX" driver="true" disabled/>
-                                                    <label for="soGPLX">Số GPLX</label>
+                                                    <label htmlFor="soGPLX">Số GPLX</label>
                                                 </div>
                                             </div>
                                             <div className="col-sm-6">
@@ -282,7 +282,7 @@ function User(props){
                                                         <option value="E">E</option>
                                                         <option value="F">F</option>
                                                     </select>
-                                                    <label for="hangGPLX">Hạng GPLX</label>
+                                                    <label htmlFor="hangGPLX">Hạng GPLX</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -290,13 +290,13 @@ function User(props){
                                             <div className="col-sm-6">
                                                 <div className="form-floating">
                                                     <input type="date" className="form-control" id="ngayCapGPLX" placeholder="Ngày cấp GPLX" driver="true" disabled/>
-                                                    <label for="ngayCapGPLX">Ngày cấp GPLX</label>
+                                                    <label htmlFor="ngayCapGPLX">Ngày cấp GPLX</label>
                                                 </div>
                                             </div>
                                             <div className="col-sm-6">
                                                 <div className="form-floating">
                                                     <input type="date" className="form-control" id="giaTriGPLX" placeholder="Giá trị GPLX" driver="true" disabled/>
-                                                    <label for="giaTriGPLX">Giá trị GPLX</label>
+                                                    <label htmlFor="giaTriGPLX">Giá trị GPLX</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -327,7 +327,7 @@ function User(props){
                                         <option value="Manager">Quản trị</option>
                                         <option value="Driver">Tài xế</option>
                                     </select>
-                                    <label for="permission">Vai trò</label>
+                                    <label htmlFor="permission">Vai trò</label>
                                 </div>
                                 <div className="row">
                                     <div className="col-md-6">
@@ -336,13 +336,13 @@ function User(props){
                                         </div>
                                         <div className="form-floating mb-3">
                                             <input type="text" className="form-control" id="fullName" placeholder="Họ và tên" required onChange={(e) => setObjData({...objData, fullName: e.target.value})} value={objData.fullName}/>
-                                            <label for="fullName">Họ và tên</label>
+                                            <label htmlFor="fullName">Họ và tên</label>
                                         </div>
                                         <div className="row mb-3">
                                             <div className="col-sm-6">
                                                 <div className="form-floating">
                                                     <input type="number" className="form-control" id="namSinh" placeholder="Năm sinh" required onChange={(e) => setObjData({...objData, namSinh: e.target.value})} value={objData.namSinh}/>
-                                                    <label for="namSinh">Năm sinh</label>
+                                                    <label htmlFor="namSinh">Năm sinh</label>
                                                 </div>
                                             </div>
                                             <div className="col-sm-6">
@@ -351,19 +351,19 @@ function User(props){
                                                         <option selected value="Nam">Nam</option>
                                                         <option value="Nữ">Nữ</option>
                                                     </select>
-                                                    <label for="gender">Giới tính</label>
+                                                    <label htmlFor="gender">Giới tính</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="form-floating mb-3">
                                             <input type="text" className="form-control" id="address" placeholder="Địa chỉ" required onChange={(e) => setObjData({...objData, address: e.target.value})} value={objData.address}/>
-                                            <label for="address">Địa chỉ</label>
+                                            <label htmlFor="address">Địa chỉ</label>
                                         </div>
                                         <div className="row mb-3">
                                             <div className="col-sm-6">
                                                 <div className="form-floating">
                                                     <input type="email" className="form-control" id="email" placeholder="Email" required onChange={(e) => setObjData({...objData, email: e.target.value})} value={objData.email}/>
-                                                    <label for="email">Email</label>
+                                                    <label htmlFor="email">Email</label>
                                                 </div>
                                             </div>
                                             <div className="col-sm-6">
@@ -374,7 +374,7 @@ function User(props){
                                                             <option value={dv}>{dv}</option>
                                                         ))}
                                                     </select>
-                                                    <label for="donVi">Đơn vị</label>
+                                                    <label htmlFor="donVi">Đơn vị</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -382,13 +382,13 @@ function User(props){
                                             <div className="col-sm-6">
                                                 <div className="form-floating">
                                                     <input type="text" className="form-control" id="idNumber" placeholder="CMND/CCCD" required onChange={(e) => setObjData({...objData, idNumber: e.target.value})} value={objData.idNumber}/>
-                                                    <label for="idNumber">CMND/CCCD</label>
+                                                    <label htmlFor="idNumber">CMND/CCCD</label>
                                                 </div>
                                             </div>
                                             <div className="col-sm-6">
                                                 <div className="form-floating">
                                                     <input type="date" className="form-control" id="idDate" placeholder="Ngày cấp CMND/CCCD" required onChange={(e) => setObjData({...objData, idDate: e.target.value})} value={objData.idDate}/>
-                                                    <label for="idDate">Ngày cấp CMND/CCCD</label>
+                                                    <label htmlFor="idDate">Ngày cấp CMND/CCCD</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -396,13 +396,13 @@ function User(props){
                                             <div className="col-sm-6">
                                                 <div className="form-floating">
                                                     <input type="text" className="form-control" id="phone1" placeholder="Số điện thoại 1" required onChange={(e) => setObjData({...objData, phone1: e.target.value})} value={objData.phone1}/>
-                                                    <label for="phone1">Số điện thoại 1</label>
+                                                    <label htmlFor="phone1">Số điện thoại 1</label>
                                                 </div>
                                             </div>
                                             <div className="col-sm-6">
                                                 <div className="form-floating">
                                                     <input type="text" className="form-control" id="phone2" placeholder="Số điện thoại 2" onChange={(e) => setObjData({...objData, phone2: e.target.value})} value={objData.phone2}/>
-                                                    <label for="phone2">Số điện thoại 2</label>
+                                                    <label htmlFor="phone2">Số điện thoại 2</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -415,7 +415,7 @@ function User(props){
                                             <div className="col-sm-6">
                                                 <div className="form-floating">
                                                     <input type="text" className="form-control" id="soGPLX" placeholder="Số GPLX" driver="true" disabled onChange={(e) => setObjData({...objData, soGPLX: e.target.value})} value={objData.soGPLX}/>
-                                                    <label for="soGPLX">Số GPLX</label>
+                                                    <label htmlFor="soGPLX">Số GPLX</label>
                                                 </div>
                                             </div>
                                             <div className="col-sm-6">
@@ -428,7 +428,7 @@ function User(props){
                                                         <option value="E">E</option>
                                                         <option value="F">F</option>
                                                     </select>
-                                                    <label for="hangGPLX">Hạng GPLX</label>
+                                                    <label htmlFor="hangGPLX">Hạng GPLX</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -436,13 +436,13 @@ function User(props){
                                             <div className="col-sm-6">
                                                 <div className="form-floating">
                                                     <input type="date" className="form-control" id="ngayCapGPLX" placeholder="Ngày cấp GPLX" driver="true" disabled onChange={(e) => setObjData({...objData, ngayCapGPLX: e.target.value})} value={objData.ngayCapGPLX}/>
-                                                    <label for="ngayCapGPLX">Ngày cấp GPLX</label>
+                                                    <label htmlFor="ngayCapGPLX">Ngày cấp GPLX</label>
                                                 </div>
                                             </div>
                                             <div className="col-sm-6">
                                                 <div className="form-floating">
                                                     <input type="date" className="form-control" id="giaTriGPLX" placeholder="Giá trị GPLX" driver="true" disabled onChange={(e) => setObjData({...objData, giaTriGPLX: e.target.value})} value={objData.giaTriGPLX}/>
-                                                    <label for="giaTriGPLX">Giá trị GPLX</label>
+                                                    <label htmlFor="giaTriGPLX">Giá trị GPLX</label>
                                                 </div>
                                             </div>
                                         </div>

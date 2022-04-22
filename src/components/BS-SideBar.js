@@ -23,7 +23,7 @@ function SideBar(){
         dataName();
     },[]);
 
-    function slidebarClick(e){
+    function sidebarClick(e){
         e.preventDefault();
         if(e.target.localName === 'a'){
             history.push(e.target.pathname);
@@ -117,22 +117,22 @@ function SideBar(){
                 </div>
                 <ul className="nav nav-pills nav-flush flex-column mb-auto text-center sb-ul">
                     <li className="nav-item sb-li">
-                        <a href="/home" className="nav-link py-3 border-bottom text-white border-top sb-a" sideActive="false" onClick={slidebarClick} aria-current="page" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="/home" className="nav-link py-3 border-bottom text-white border-top sb-a" sideActive="false" onClick={sidebarClick} aria-current="page" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-speedometer2"></i>
                         </a>
                     </li>
                     <li className="nav-item sb-li">
-                        <a href="/users" className="nav-link py-3 border-bottom text-white sb-a" sideActive="false" onClick={slidebarClick} title="Users" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="/users" className="nav-link py-3 border-bottom text-white sb-a" sideActive="false" onClick={sidebarClick} title="Users" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-person-circle"></i>
                         </a>
                     </li>
                     <li className="nav-item sb-li">
-                        <a href="/vehicles" className="nav-link py-3 border-bottom text-white sb-a" sideActive="false" onClick={slidebarClick} title="Vehicles" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="/vehicles" className="nav-link py-3 border-bottom text-white sb-a" sideActive="false" onClick={sidebarClick} title="Vehicles" data-bs-toggle="tooltip" data-bs-placement="right">
                             <span className="fs-5">&#9951;</span>
                         </a>
                     </li>
                     <li className="nav-item sb-li">
-                        <a href="/history" className="nav-link py-3 border-bottom text-white sb-a" sideActive="false" onClick={slidebarClick} title="History" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="/history" className="nav-link py-3 border-bottom text-white sb-a" sideActive="false" onClick={sidebarClick} title="History" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-clock-history"></i>
                         </a>
                     </li>
