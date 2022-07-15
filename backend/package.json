@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "develop": "npm run server"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "express-rate-limit": "^6.3.0",
+    "expressjs": "^1.0.1",
+    "helmet": "^5.0.2",
+    "mongoose": "^6.3.1",
+    "passport": "^0.5.2"
+  }
+}
