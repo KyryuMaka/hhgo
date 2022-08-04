@@ -31,7 +31,6 @@ function App() {
             <Route exact path="/users" render={props => <UserPage {...props} title="Người dùng"/>} />
             <Route exact path="/vehicles" render={props => <Vehicles {...props} title="Xe"/>} />
           </div>
-          <Route component={NotFound} />
           </>
           :
           <Route exact path="/" render={props => <LoginPage {...props} title="Đăng nhập" />} />
