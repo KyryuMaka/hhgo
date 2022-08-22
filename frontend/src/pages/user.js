@@ -26,6 +26,8 @@ function User(props){
     const [selected, setSelected] = useState([]);
     const [objData, setObjData] = useState({});
     const [DonViPB, setDonViPB] = useState();
+    const [tmpName, setTName] = useState("");
+    const [tmpDV, setTDV] = useState("");
 
     const [searchText, setSearchText] = useState('');
     const [rows, setRows] = useState(data);
@@ -86,9 +88,11 @@ function User(props){
     }
     if(objData !== undefined)
     if(objData.permission === "Driver"){
+        $("[pdriver=true]").show();
         $("[driver=true]").removeAttr("disabled");
         $("[driver=false]").attr("disabled", true);
     }else{
+        $("[pdriver=true]").hide();
         $("[driver=false]").removeAttr("disabled");
         $("[driver=true]").attr("disabled", true);
         $("[driver=true]").val("");
@@ -98,12 +102,37 @@ function User(props){
         setObjData({...objData, permission: e.target.value});
     }
 
+    function changeName(fullName){
+        var tmp = fullName.split(" ");
+        for(var i = 0; i < tmp.length-1; i++){
+            tmp[i] = tmp[i].charAt(0);
+        }
+        var tmp2 = tmp[tmp.length-1];
+        tmp.unshift(tmp2);
+        tmp.splice(-1);
+        
+        var rs = tmp.toString().replace(/,/g,"")
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '')
+                    .replace(/đ/g, 'd').replace(/Đ/g, 'D');
+        return rs;
+    }
+
     async function handleAddUser(e){
         e.preventDefault();
         var tmp = {};
         for(var i = 0; i < e.target.length-2; i++){
             tmp[`${e.target[i].id}`] = e.target[i].value;
         }
+        if(tmp.permission !== "Driver"){
+            delete tmp.idNumber;
+            delete tmp.idDate;
+            delete tmp.soGPLX;
+            delete tmp.hangGPLX;
+            delete tmp.ngayCapGPLX;
+            delete tmp.giaTriGPLX;
+        }
+        tmp.displayName = `${tmp.donVi} ${changeName(tmp.fullName)}`;
         console.log(tmp);
         const realmUser = await realmapp.logIn(credentials);
         const tmp2 = await realmUser.callFunction('insertUser', tmp);
@@ -184,22 +213,41 @@ function User(props){
                                     <label htmlFor="permission">Vai trò</label>
                                 </div>
                                 <div className="row">
-                                    <div className="col-md-6">
+                                    <div className="col-md">
                                         <div className="mb-3">
                                             <Divider textAlign="left">Thông tin cơ bản (Bắt buộc)</Divider>
                                         </div>
-                                        <div className="form-floating mb-3">
-                                            <input type="text" className="form-control" id="fullName" placeholder="Họ và tên" required/>
-                                            <label htmlFor="fullName">Họ và tên</label>
+                                        <div className="row">
+                                            <div className="col-sm-6 mb-3">
+                                                <div className="form-floating">
+                                                    <input type="text" className="form-control" id="fullName" placeholder="Họ và tên" required onChange={(e) => setTName(changeName(e.target.value))}/>
+                                                    <label htmlFor="fullName">Họ và tên</label>
+                                                </div>
+                                            </div>
+                                            <div className="col-sm-6 mb-3">
+                                                <div className="form-floating">
+                                                    <select className="form-select" id="donVi" aria-label="" required onChange={(e) => setTDV(e.target.value)}>
+                                                        <option selected hidden>Vui lòng chọn đơn vị</option>
+                                                        {_.isEmpty(DonViPB)?null:Object.keys(DonViPB).map(dv => (
+                                                            <option value={dv}>{dv}</option>
+                                                        ))}
+                                                    </select>
+                                                    <label htmlFor="donVi">Đơn vị</label>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="row mb-3">
-                                            <div className="col-sm-6">
+                                        <div className="form-floating mb-3">
+                                            <input type="text" className="form-control" id="displayName" placeholder="Địa chỉ" required disabled value={`${tmpDV} ${tmpName}`}/>
+                                            <label htmlFor="displayName">Tên hiển thị</label>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
                                                     <input type="number" className="form-control" id="namSinh" placeholder="Năm sinh" required/>
                                                     <label htmlFor="namSinh">Năm sinh</label>
                                                 </div>
                                             </div>
-                                            <div className="col-sm-6">
+                                            <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
                                                     <select className="form-select" id="gender" aria-label="" required>
                                                         <option selected value="Nam">Nam</option>
@@ -213,47 +261,19 @@ function User(props){
                                             <input type="text" className="form-control" id="address" placeholder="Địa chỉ" required/>
                                             <label htmlFor="address">Địa chỉ</label>
                                         </div>
-                                        <div className="row mb-3">
-                                            <div className="col-sm-6">
-                                                <div className="form-floating">
-                                                    <input type="email" className="form-control" id="email" placeholder="Email" driver="false" required/>
-                                                    <label htmlFor="email">Email</label>
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-6">
-                                                <div className="form-floating">
-                                                    <select className="form-select" id="donVi" aria-label="" required>
-                                                        <option selected hidden>Vui lòng chọn đơn vị</option>
-                                                        {_.isEmpty(DonViPB)?null:Object.keys(DonViPB).map(dv => (
-                                                            <option value={dv}>{dv}</option>
-                                                        ))}
-                                                    </select>
-                                                    <label htmlFor="donVi">Đơn vị</label>
-                                                </div>
-                                            </div>
+                                        <div className="form-floating mb-3">
+                                            <input type="email" className="form-control" id="email" placeholder="Email" driver="false" required/>
+                                            <label htmlFor="email">Email</label>
                                         </div>
-                                        <div className="row mb-3">
-                                            <div className="col-sm-6">
-                                                <div className="form-floating">
-                                                    <input type="text" className="form-control" id="idNumber" placeholder="CMND/CCCD" required/>
-                                                    <label htmlFor="idNumber">CMND/CCCD</label>
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-6">
-                                                <div className="form-floating">
-                                                    <input type="date" className="form-control" id="idDate" placeholder="Ngày cấp CMND/CCCD" required/>
-                                                    <label htmlFor="idDate">Ngày cấp CMND/CCCD</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="row mb-3">
-                                            <div className="col-sm-6">
+                                        
+                                        <div className="row">
+                                            <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
                                                     <input type="text" className="form-control" id="phone1" placeholder="Số điện thoại 1" required/>
                                                     <label htmlFor="phone1">Số điện thoại 1</label>
                                                 </div>
                                             </div>
-                                            <div className="col-sm-6">
+                                            <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
                                                     <input type="text" className="form-control" id="phone2" placeholder="Số điện thoại 2" />
                                                     <label htmlFor="phone2">Số điện thoại 2</label>
@@ -261,18 +281,32 @@ function User(props){
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-6">
+                                    <div className="col-md" pdriver="true">
                                         <div className="mb-3">
                                             <Divider textAlign="left">Thông tin tài xế</Divider>
                                         </div>
-                                        <div className="row mb-3">
-                                            <div className="col-sm-6">
+                                        <div className="row">
+                                            <div className="col-sm-6 mb-3">
+                                                <div className="form-floating">
+                                                    <input type="text" className="form-control" id="idNumber" placeholder="CMND/CCCD" driver="true" disabled required/>
+                                                    <label htmlFor="idNumber">CMND/CCCD</label>
+                                                </div>
+                                            </div>
+                                            <div className="col-sm-6 mb-3">
+                                                <div className="form-floating">
+                                                    <input type="date" className="form-control" id="idDate" placeholder="Ngày cấp CMND/CCCD" driver="true" disabled required/>
+                                                    <label htmlFor="idDate">Ngày cấp CMND/CCCD</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
                                                     <input type="text" className="form-control" id="soGPLX" placeholder="Số GPLX" driver="true" disabled/>
                                                     <label htmlFor="soGPLX">Số GPLX</label>
                                                 </div>
                                             </div>
-                                            <div className="col-sm-6">
+                                            <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
                                                     <select className="form-select" id="hangGPLX" aria-label="" driver="true" disabled>
                                                         <option value="B1">B1</option>
@@ -286,14 +320,14 @@ function User(props){
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="row mb-3">
-                                            <div className="col-sm-6">
+                                        <div className="row">
+                                            <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
                                                     <input type="date" className="form-control" id="ngayCapGPLX" placeholder="Ngày cấp GPLX" driver="true" disabled/>
                                                     <label htmlFor="ngayCapGPLX">Ngày cấp GPLX</label>
                                                 </div>
                                             </div>
-                                            <div className="col-sm-6">
+                                            <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
                                                     <input type="date" className="form-control" id="giaTriGPLX" placeholder="Giá trị GPLX" driver="true" disabled/>
                                                     <label htmlFor="giaTriGPLX">Giá trị GPLX</label>
@@ -329,23 +363,43 @@ function User(props){
                                     </select>
                                     <label htmlFor="permission">Vai trò</label>
                                 </div>
+                                
                                 <div className="row">
-                                    <div className="col-md-6">
+                                    <div className="col-md">
                                         <div className="mb-3">
                                             <Divider textAlign="left">Thông tin cơ bản (Bắt buộc)</Divider>
                                         </div>
-                                        <div className="form-floating mb-3">
-                                            <input type="text" className="form-control" id="fullName" placeholder="Họ và tên" required onChange={(e) => setObjData({...objData, fullName: e.target.value})} value={objData.fullName}/>
-                                            <label htmlFor="fullName">Họ và tên</label>
+                                        <div className="row">
+                                            <div className="col-sm-6 mb-3">
+                                                <div className="form-floating">
+                                                    <input type="text" className="form-control" id="fullName" placeholder="Họ và tên" required onChange={(e) => {setObjData({...objData, fullName: e.target.value})}} value={objData.fullName}/>
+                                                    <label htmlFor="fullName">Họ và tên</label>
+                                                </div>
+                                            </div>
+                                            <div className="col-sm-6 mb-3">
+                                                <div className="form-floating">
+                                                    <select className="form-select" id="donVi" aria-label="" required onChange={(e) => {setObjData({...objData, donVi: e.target.value})}} value={objData.donVi}>
+                                                        <option selected hidden>Vui lòng chọn đơn vị</option>
+                                                        {_.isEmpty(DonViPB)?null:Object.keys(DonViPB).map(dv => (
+                                                            <option value={dv}>{dv}</option>
+                                                        ))}
+                                                    </select>
+                                                    <label htmlFor="donVi">Đơn vị</label>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="row mb-3">
-                                            <div className="col-sm-6">
+                                        <div className="form-floating mb-3">
+                                            <input type="text" className="form-control" id="displayName" placeholder="Địa chỉ" required disabled value={`${objData.donVi} ${changeName(objData.fullName)}`}/>
+                                            <label htmlFor="displayName">Tên hiển thị</label>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
                                                     <input type="number" className="form-control" id="namSinh" placeholder="Năm sinh" required onChange={(e) => setObjData({...objData, namSinh: e.target.value})} value={objData.namSinh}/>
                                                     <label htmlFor="namSinh">Năm sinh</label>
                                                 </div>
                                             </div>
-                                            <div className="col-sm-6">
+                                            <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
                                                     <select className="form-select" id="gender" aria-label="" required onChange={(e) => setObjData({...objData, gender: e.target.value})} value={objData.gender}>
                                                         <option selected value="Nam">Nam</option>
@@ -359,47 +413,18 @@ function User(props){
                                             <input type="text" className="form-control" id="address" placeholder="Địa chỉ" required onChange={(e) => setObjData({...objData, address: e.target.value})} value={objData.address}/>
                                             <label htmlFor="address">Địa chỉ</label>
                                         </div>
-                                        <div className="row mb-3">
-                                            <div className="col-sm-6">
-                                                <div className="form-floating">
-                                                    <input type="email" className="form-control" id="email" placeholder="Email" required onChange={(e) => setObjData({...objData, email: e.target.value})} value={objData.email}/>
-                                                    <label htmlFor="email">Email</label>
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-6">
-                                                <div className="form-floating">
-                                                    <select className="form-select" id="donVi" aria-label="" required onChange={(e) => setObjData({...objData, donVi: e.target.value})} value={objData.donVi}>
-                                                        <option selected hidden>Vui lòng chọn đơn vị</option>
-                                                        {_.isEmpty(DonViPB)?null:Object.keys(DonViPB).map(dv => (
-                                                            <option value={dv}>{dv}</option>
-                                                        ))}
-                                                    </select>
-                                                    <label htmlFor="donVi">Đơn vị</label>
-                                                </div>
-                                            </div>
+                                        <div className="form-floating mb-3">
+                                            <input type="email" className="form-control" id="email" placeholder="Email" required onChange={(e) => setObjData({...objData, email: e.target.value})} value={objData.email}/>
+                                            <label htmlFor="email">Email</label>
                                         </div>
-                                        <div className="row mb-3">
-                                            <div className="col-sm-6">
-                                                <div className="form-floating">
-                                                    <input type="text" className="form-control" id="idNumber" placeholder="CMND/CCCD" required onChange={(e) => setObjData({...objData, idNumber: e.target.value})} value={objData.idNumber}/>
-                                                    <label htmlFor="idNumber">CMND/CCCD</label>
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-6">
-                                                <div className="form-floating">
-                                                    <input type="date" className="form-control" id="idDate" placeholder="Ngày cấp CMND/CCCD" required onChange={(e) => setObjData({...objData, idDate: e.target.value})} value={objData.idDate}/>
-                                                    <label htmlFor="idDate">Ngày cấp CMND/CCCD</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="row mb-3">
-                                            <div className="col-sm-6">
+                                        <div className="row">
+                                            <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
                                                     <input type="text" className="form-control" id="phone1" placeholder="Số điện thoại 1" required onChange={(e) => setObjData({...objData, phone1: e.target.value})} value={objData.phone1}/>
                                                     <label htmlFor="phone1">Số điện thoại 1</label>
                                                 </div>
                                             </div>
-                                            <div className="col-sm-6">
+                                            <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
                                                     <input type="text" className="form-control" id="phone2" placeholder="Số điện thoại 2" onChange={(e) => setObjData({...objData, phone2: e.target.value})} value={objData.phone2}/>
                                                     <label htmlFor="phone2">Số điện thoại 2</label>
@@ -407,18 +432,32 @@ function User(props){
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-6">
+                                    <div className="col-md" pdriver="true">
                                         <div className="mb-3">
                                             <Divider textAlign="left">Thông tin tài xế</Divider>
                                         </div>
-                                        <div className="row mb-3">
-                                            <div className="col-sm-6">
+                                        <div className="row">
+                                            <div className="col-sm-6 mb-3">
+                                                <div className="form-floating">
+                                                    <input type="text" className="form-control" id="idNumber" placeholder="CMND/CCCD" driver="true" required onChange={(e) => setObjData({...objData, idNumber: e.target.value})} value={objData.idNumber}/>
+                                                    <label htmlFor="idNumber">CMND/CCCD</label>
+                                                </div>
+                                            </div>
+                                            <div className="col-sm-6 mb-3">
+                                                <div className="form-floating">
+                                                    <input type="date" className="form-control" id="idDate" placeholder="Ngày cấp CMND/CCCD" driver="true" required onChange={(e) => setObjData({...objData, idDate: e.target.value})} value={objData.idDate}/>
+                                                    <label htmlFor="idDate">Ngày cấp CMND/CCCD</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
                                                     <input type="text" className="form-control" id="soGPLX" placeholder="Số GPLX" driver="true" disabled onChange={(e) => setObjData({...objData, soGPLX: e.target.value})} value={objData.soGPLX}/>
                                                     <label htmlFor="soGPLX">Số GPLX</label>
                                                 </div>
                                             </div>
-                                            <div className="col-sm-6">
+                                            <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
                                                     <select className="form-select" id="hangGPLX" aria-label="" driver="true" disabled onChange={(e) => setObjData({...objData, hangGPLX: e.target.value})} value={objData.hangGPLX}>
                                                         <option value="B1">B1</option>
@@ -432,14 +471,14 @@ function User(props){
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="row mb-3">
-                                            <div className="col-sm-6">
+                                        <div className="row">
+                                            <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
                                                     <input type="date" className="form-control" id="ngayCapGPLX" placeholder="Ngày cấp GPLX" driver="true" disabled onChange={(e) => setObjData({...objData, ngayCapGPLX: e.target.value})} value={objData.ngayCapGPLX}/>
                                                     <label htmlFor="ngayCapGPLX">Ngày cấp GPLX</label>
                                                 </div>
                                             </div>
-                                            <div className="col-sm-6">
+                                            <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
                                                     <input type="date" className="form-control" id="giaTriGPLX" placeholder="Giá trị GPLX" driver="true" disabled onChange={(e) => setObjData({...objData, giaTriGPLX: e.target.value})} value={objData.giaTriGPLX}/>
                                                     <label htmlFor="giaTriGPLX">Giá trị GPLX</label>

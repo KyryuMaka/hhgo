@@ -178,11 +178,11 @@ function SideBar(){
                                 <table>
                                     <tr>
                                         <td><p className="fw-bold me-3">Địa chỉ email:</p></td>
-                                        <td><p>{users[0].user}</p></td>
+                                        <td><p>{users[0].email}</p></td>
                                     </tr>
                                     <tr>
                                         <td><p className="fw-bold me-3">Số điện thoại:</p></td>
-                                        <td><p>{users[0].phone}</p></td>
+                                        <td><p>{users[0].phone1}</p></td>
                                     </tr>
                                 </table>
                             </div>

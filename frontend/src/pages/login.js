@@ -18,12 +18,12 @@ function LogIn(props){
     async function handleSubmit(e){
         e.preventDefault();
         const u = {
-            user: user,
+            email: user,
             pass: pass
         }
         $("#loginBtn")[0].innerHTML=loadingHTML;
         const realmUser = await realmapp.logIn(credentials);
-        const rs = await realmUser.callFunction('getLoginUser', {user: u.user, pass: u.pass});
+        const rs = await realmUser.callFunction('getLoginUser', {email: u.email, pass: u.pass});
 
         if(_.isEmpty(rs)){
             $("#loginBtn")[0].innerHTML=`Đăng nhập`;
