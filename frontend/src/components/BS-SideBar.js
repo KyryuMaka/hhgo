@@ -34,7 +34,7 @@ function SideBar(){
     };
 
     $(document).ready(function(){
-        Object.values($("[sideActive=false]")).forEach(element => {
+        Object.values($("[side-active=false]")).forEach(element => {
             if(element.pathname === path){
                 $(element).addClass("active");
             }
@@ -118,22 +118,22 @@ function SideBar(){
                 </div>
                 <ul className="nav nav-pills nav-flush flex-column mb-auto text-center sb-ul">
                     <li className="nav-item sb-li">
-                        <a href="/home" className="nav-link py-3 border-bottom text-white border-top sb-a" sideActive="false" onClick={sidebarClick} aria-current="page" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="/home" className="nav-link py-3 border-bottom text-white border-top sb-a" side-active="false" onClick={sidebarClick} aria-current="page" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-speedometer2"></i>
                         </a>
                     </li>
                     <li className="nav-item sb-li">
-                        <a href="/users" className="nav-link py-3 border-bottom text-white sb-a" sideActive="false" onClick={sidebarClick} title="Users" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="/users" className="nav-link py-3 border-bottom text-white sb-a" side-active="false" onClick={sidebarClick} title="Users" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-person-circle"></i>
                         </a>
                     </li>
                     <li className="nav-item sb-li">
-                        <a href="/vehicles" className="nav-link py-3 border-bottom text-white sb-a" sideActive="false" onClick={sidebarClick} title="Vehicles" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="/vehicles" className="nav-link py-3 border-bottom text-white sb-a" side-active="false" onClick={sidebarClick} title="Vehicles" data-bs-toggle="tooltip" data-bs-placement="right">
                             <span className="fs-5">&#9951;</span>
                         </a>
                     </li>
                     <li className="nav-item sb-li">
-                        <a href="/history" className="nav-link py-3 border-bottom text-white sb-a" sideActive="false" onClick={sidebarClick} title="History" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a href="/history" className="nav-link py-3 border-bottom text-white sb-a" side-active="false" onClick={sidebarClick} title="History" data-bs-toggle="tooltip" data-bs-placement="right">
                             <i className="bi bi-clock-history"></i>
                         </a>
                     </li>
@@ -176,14 +176,16 @@ function SideBar(){
                                 <h3 className="fw-bold">{users[0].displayName}</h3>
                                 <p className="text-dark-50">{users[0].position}</p>
                                 <table>
-                                    <tr>
-                                        <td><p className="fw-bold me-3">Địa chỉ email:</p></td>
-                                        <td><p>{users[0].email}</p></td>
-                                    </tr>
-                                    <tr>
-                                        <td><p className="fw-bold me-3">Số điện thoại:</p></td>
-                                        <td><p>{users[0].phone1}</p></td>
-                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <td><p className="fw-bold me-3">Địa chỉ email:</p></td>
+                                            <td><p>{users[0].email}</p></td>
+                                        </tr>
+                                        <tr>
+                                            <td><p className="fw-bold me-3">Số điện thoại:</p></td>
+                                            <td><p>{users[0].phone1}</p></td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

@@ -103,19 +103,23 @@ function User(props){
     }
 
     function changeName(fullName){
-        var tmp = fullName.split(" ");
-        for(var i = 0; i < tmp.length-1; i++){
-            tmp[i] = tmp[i].charAt(0);
+        if(fullName === undefined){
+            return fullName;
+        }else{
+            var tmp = fullName.split(" ");
+            for(var i = 0; i < tmp.length-1; i++){
+                tmp[i] = tmp[i].charAt(0);
+            }
+            var tmp2 = tmp[tmp.length-1];
+            tmp.unshift(tmp2);
+            tmp.splice(-1);
+            
+            var rs = tmp.toString().replace(/,/g,"")
+                        .normalize('NFD')
+                        .replace(/[\u0300-\u036f]/g, '')
+                        .replace(/đ/g, 'd').replace(/Đ/g, 'D');
+            return rs;
         }
-        var tmp2 = tmp[tmp.length-1];
-        tmp.unshift(tmp2);
-        tmp.splice(-1);
-        
-        var rs = tmp.toString().replace(/,/g,"")
-                    .normalize('NFD')
-                    .replace(/[\u0300-\u036f]/g, '')
-                    .replace(/đ/g, 'd').replace(/Đ/g, 'D');
-        return rs;
     }
 
     async function handleAddUser(e){
@@ -132,12 +136,19 @@ function User(props){
             delete tmp.ngayCapGPLX;
             delete tmp.giaTriGPLX;
         }
-        tmp.displayName = `${tmp.donVi} ${changeName(tmp.fullName)}`;
         console.log(tmp);
         const realmUser = await realmapp.logIn(credentials);
         const tmp2 = await realmUser.callFunction('insertUser', tmp);
         console.log(tmp2.rs);
         window.location.reload();
+    }
+
+    function emptyData(e){
+        e.preventDefault();
+        for(var i = 0; i < e.target.length-2; i++){
+            e.target[i].value = "";
+        }
+        console.log(e.target);
     }
 
     async function handleUpdateUser(e){
@@ -195,7 +206,7 @@ function User(props){
                 </div>
                 }
             </div>
-            <div className="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+            <div className="modal fade" id="addUserModal" tabIndex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -203,12 +214,12 @@ function User(props){
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <form onSubmit={handleAddUser}>
+                            <form onSubmit={handleAddUser} onReset={emptyData}>
                                 <div className="form-floating mb-3">
-                                    <select className="form-select" id="permission" aria-label="" onChange={handleChangePermission}>
-                                        <option selected value="Admin">Admin</option>
-                                        <option value="Manager">Quản trị</option>
-                                        <option value="Driver">Tài xế</option>
+                                    <select defaultValue="Admin" className="form-select" id="permission" aria-label="" onChange={handleChangePermission}>
+                                        <option key="Admin" value="Admin">Admin</option>
+                                        <option key="Manager" value="Manager">Quản trị</option>
+                                        <option key="Driver" value="Driver">Tài xế</option>
                                     </select>
                                     <label htmlFor="permission">Vai trò</label>
                                 </div>
@@ -227,18 +238,28 @@ function User(props){
                                             <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
                                                     <select className="form-select" id="donVi" aria-label="" required onChange={(e) => setTDV(e.target.value)}>
-                                                        <option selected hidden>Vui lòng chọn đơn vị</option>
+                                                        <option key="" hidden>Vui lòng chọn đơn vị</option>
                                                         {_.isEmpty(DonViPB)?null:Object.keys(DonViPB).map(dv => (
-                                                            <option value={dv}>{dv}</option>
+                                                            <option key={dv.toString()} value={dv}>{dv}</option>
                                                         ))}
                                                     </select>
                                                     <label htmlFor="donVi">Đơn vị</label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="form-floating mb-3">
-                                            <input type="text" className="form-control" id="displayName" placeholder="Địa chỉ" required disabled value={`${tmpDV} ${tmpName}`}/>
-                                            <label htmlFor="displayName">Tên hiển thị</label>
+                                        <div className="row">
+                                            <div className="col-sm-6 mb-3">
+                                                <div className="form-floating">
+                                                    <input type="text" className="form-control" id="displayName" placeholder="displayName" required disabled value={`${tmpDV} ${tmpName}`}/>
+                                                    <label htmlFor="displayName">Tên hiển thị</label>
+                                                </div>
+                                            </div>
+                                            <div className="col-sm-6 mb-3">
+                                                <div className="form-floating">
+                                                    <input type="text" className="form-control" id="pass" placeholder="pass" required disabled value={`${tmpDV} ${tmpName}`}/>
+                                                    <label htmlFor="pass">Mật khảu</label>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div className="row">
                                             <div className="col-sm-6 mb-3">
@@ -249,9 +270,9 @@ function User(props){
                                             </div>
                                             <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
-                                                    <select className="form-select" id="gender" aria-label="" required>
-                                                        <option selected value="Nam">Nam</option>
-                                                        <option value="Nữ">Nữ</option>
+                                                    <select defaultValue="Nam" className="form-select" id="gender" aria-label="" required>
+                                                        <option key="Nam" value="Nam">Nam</option>
+                                                        <option key="Nữ" value="Nữ">Nữ</option>
                                                     </select>
                                                     <label htmlFor="gender">Giới tính</label>
                                                 </div>
@@ -309,12 +330,13 @@ function User(props){
                                             <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
                                                     <select className="form-select" id="hangGPLX" aria-label="" driver="true" disabled>
-                                                        <option value="B1">B1</option>
-                                                        <option value="B2">B2</option>
-                                                        <option value="C">C</option>
-                                                        <option value="D">D</option>
-                                                        <option value="E">E</option>
-                                                        <option value="F">F</option>
+                                                        <option key="" hidden>Vui lòng chọn</option>
+                                                        <option key="B1" value="B1">B1</option>
+                                                        <option key="B2" value="B2">B2</option>
+                                                        <option key="C" value="C">C</option>
+                                                        <option key="D" value="D">D</option>
+                                                        <option key="E" value="E">E</option>
+                                                        <option key="F" value="F">F</option>
                                                     </select>
                                                     <label htmlFor="hangGPLX">Hạng GPLX</label>
                                                 </div>
@@ -337,7 +359,7 @@ function User(props){
                                     </div>
                                 </div>
                                 <div className="d-flex justify-content-end">
-                                    <button type="button" className="btn btn-secondary me-2" data-bs-dismiss="modal">Hủy</button>
+                                    <button type="reset" className="btn btn-secondary me-2" data-bs-dismiss="modal">Hủy</button>
                                     <button type="submit" className="btn btn-primary">Thêm</button>
                                 </div>
                             </form>
@@ -346,7 +368,7 @@ function User(props){
                 </div>
             </div>
             {(objData === undefined)?null:
-            <div className="modal fade" id="updateUserModal" tabindex="-1" aria-labelledby="updateUserModalLabel" aria-hidden="true">
+            <div className="modal fade" id="updateUserModal" tabIndex="-1" aria-labelledby="updateUserModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -356,10 +378,10 @@ function User(props){
                         <div className="modal-body">
                             <form onSubmit={handleUpdateUser}>
                                 <div className="form-floating mb-3">
-                                    <select className="form-select" id="permission" aria-label="" onChange={handleChangePermission} value={objData.permission}>
-                                        <option selected value="Admin">Admin</option>
-                                        <option value="Manager">Quản trị</option>
-                                        <option value="Driver">Tài xế</option>
+                                    <select defaultValue="Admin" className="form-select" id="permission" aria-label="" onChange={handleChangePermission} value={objData.permission}>
+                                        <option key="Admin" value="Admin">Admin</option>
+                                        <option key="Manager" value="Manager">Quản trị</option>
+                                        <option key="Driver" value="Driver">Tài xế</option>
                                     </select>
                                     <label htmlFor="permission">Vai trò</label>
                                 </div>
@@ -379,9 +401,9 @@ function User(props){
                                             <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
                                                     <select className="form-select" id="donVi" aria-label="" required onChange={(e) => {setObjData({...objData, donVi: e.target.value})}} value={objData.donVi}>
-                                                        <option selected hidden>Vui lòng chọn đơn vị</option>
+                                                        <option key="" hidden>Vui lòng chọn đơn vị</option>
                                                         {_.isEmpty(DonViPB)?null:Object.keys(DonViPB).map(dv => (
-                                                            <option value={dv}>{dv}</option>
+                                                            <option key={dv.toString()} value={dv}>{dv}</option>
                                                         ))}
                                                     </select>
                                                     <label htmlFor="donVi">Đơn vị</label>
@@ -389,7 +411,7 @@ function User(props){
                                             </div>
                                         </div>
                                         <div className="form-floating mb-3">
-                                            <input type="text" className="form-control" id="displayName" placeholder="Địa chỉ" required disabled value={`${objData.donVi} ${changeName(objData.fullName)}`}/>
+                                            <input type="text" className="form-control" id="displayName" placeholder="Tên hiển thị" required disabled value={`${objData.donVi} ${changeName(objData.fullName)}`}/>
                                             <label htmlFor="displayName">Tên hiển thị</label>
                                         </div>
                                         <div className="row">
@@ -401,9 +423,9 @@ function User(props){
                                             </div>
                                             <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
-                                                    <select className="form-select" id="gender" aria-label="" required onChange={(e) => setObjData({...objData, gender: e.target.value})} value={objData.gender}>
-                                                        <option selected value="Nam">Nam</option>
-                                                        <option value="Nữ">Nữ</option>
+                                                    <select defaultValue="Nam" className="form-select" id="gender" aria-label="" required onChange={(e) => setObjData({...objData, gender: e.target.value})} value={objData.gender}>
+                                                        <option key="Nam" value="Nam">Nam</option>
+                                                        <option key="Nữ" value="Nữ">Nữ</option>
                                                     </select>
                                                     <label htmlFor="gender">Giới tính</label>
                                                 </div>
@@ -460,12 +482,13 @@ function User(props){
                                             <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
                                                     <select className="form-select" id="hangGPLX" aria-label="" driver="true" disabled onChange={(e) => setObjData({...objData, hangGPLX: e.target.value})} value={objData.hangGPLX}>
-                                                        <option value="B1">B1</option>
-                                                        <option value="B2">B2</option>
-                                                        <option value="C">C</option>
-                                                        <option value="D">D</option>
-                                                        <option value="E">E</option>
-                                                        <option value="F">F</option>
+                                                        <option key="" hidden>Vui lòng chọn</option>
+                                                        <option key="B1" value="B1">B1</option>
+                                                        <option key="B2" value="B2">B2</option>
+                                                        <option key="C" value="C">C</option>
+                                                        <option key="D" value="D">D</option>
+                                                        <option key="E" value="E">E</option>
+                                                        <option key="F" value="F">F</option>
                                                     </select>
                                                     <label htmlFor="hangGPLX">Hạng GPLX</label>
                                                 </div>
@@ -496,7 +519,7 @@ function User(props){
                     </div>
                 </div>
             </div>}
-            <div className="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+            <div className="modal fade" id="deleteUserModal" tabIndex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
                         <div className="modal-header">
