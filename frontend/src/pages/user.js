@@ -144,11 +144,9 @@ function User(props){
     }
 
     function emptyData(e){
-        e.preventDefault();
-        for(var i = 0; i < e.target.length-2; i++){
-            e.target[i].value = "";
-        }
-        console.log(e.target);
+        e.target.reset();
+        setTDV("");
+        setTName("");
     }
 
     async function handleUpdateUser(e){
@@ -256,7 +254,7 @@ function User(props){
                                             </div>
                                             <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
-                                                    <input type="text" className="form-control" id="pass" placeholder="pass" required disabled value={`${tmpDV} ${tmpName}`}/>
+                                                    <input type="text" className="form-control" id="pass" placeholder="pass" required disabled value={`${Math.random().toString(36).slice(-8)}`}/>
                                                     <label htmlFor="pass">Mật khảu</label>
                                                 </div>
                                             </div>
