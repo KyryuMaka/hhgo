@@ -12,7 +12,7 @@ function BSCard(props) {
         $("a[href='"+e.target.pathname+"']").addClass("active");
     }
     return (
-    <div className="col-xl-3">
+    <div className="col-xl">
         <div className="container p-3 shadow">
             <div className="card border-top-0 border-bottom-0 border-end-0 border-4 py-2" style={{borderColor: props.color}}>
                 <div className="card-body">

@@ -45,6 +45,12 @@ function SideBar(){
         });
     });
 
+    function logout(){
+        localStorage.clear();
+        sessionStorage.clear();
+        window.location.href="/";
+    }
+
     // function stringToColor(string) {
     //     let hash = 0;
     //     let i;
@@ -113,7 +119,7 @@ function SideBar(){
                         </li>
                         <li><a className="dropdown-item" href=" "><i className="bi bi-gear"></i> Cài đặt</a></li>
                         <li><hr className="dropdown-divider"/></li>
-                        <li><a className="dropdown-item text-danger" href="/"><i className="bi bi-box-arrow-right"></i> Đăng xuất</a></li>
+                        <li><p className="dropdown-item text-danger mb-0" onClick={logout}><i className="bi bi-box-arrow-right"></i> Đăng xuất</p></li>
                     </ul>
                 </div>
                 <ul className="nav nav-pills nav-flush flex-column mb-auto text-center sb-ul">
@@ -130,6 +136,11 @@ function SideBar(){
                     <li className="nav-item sb-li">
                         <a href="/vehicles" className="nav-link py-3 border-bottom text-white sb-a" side-active="false" onClick={sidebarClick} title="Vehicles" data-bs-toggle="tooltip" data-bs-placement="right">
                             <span className="fs-5">&#9951;</span>
+                        </a>
+                    </li>
+                    <li className="nav-item sb-li">
+                        <a href="/maintenance" className="nav-link py-3 border-bottom text-white sb-a" side-active="false" onClick={sidebarClick} title="Users" data-bs-toggle="tooltip" data-bs-placement="right">
+                            <i className="bi bi-tools"></i>
                         </a>
                     </li>
                     <li className="nav-item sb-li">
@@ -151,7 +162,7 @@ function SideBar(){
                         <li><a className="dropdown-item" href=" "><i className="bi bi-gear"></i> Cài đặt</a></li>
                         <li><a className="dropdown-item" href=" "><i className="bi bi-info-circle"></i> Giới thiệu</a></li>
                         <li><hr className="dropdown-divider"/></li>
-                        <li><a className="dropdown-item text-danger" href="/"><i className="bi bi-box-arrow-right"></i> Đăng xuất</a></li>
+                        <li><p className="dropdown-item text-danger mb-0" onClick={logout}><i className="bi bi-box-arrow-right"></i> Đăng xuất</p></li>
                     </ul>
                 </div>
             </div>

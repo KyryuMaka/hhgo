@@ -41,6 +41,26 @@ function Dashboard(props){
         {field:"assignment",    headerAlign: 'center', headerName: "Phân công",     flex: 2,    align: "center"}
     ];
 
+    const doneButton = (params) => {
+        return (
+            <strong>
+                <button type="button" class="btn btn-primary btn-sm">Hoàn thành</button>
+            </strong>
+        )
+    }
+
+    const cl2 = [...columns, 
+        {
+            field:"action",
+            headerAlign: 'center', 
+            headerName: "Hành động",
+            flex: 1.5,
+            align: "center",
+            renderCell: doneButton,
+            disableClickEventBubbling: true,
+        }
+    ];
+
     function formatDate(date){
         var dd = date.getDate();
         var mm = date.getMonth()+1;
@@ -137,22 +157,15 @@ function Dashboard(props){
                             href="/users"
                             color="#4e73df" 
                             title="Người dùng"  
-                            statusText="Quản lý người dùng"             
+                            statusText="QL người dùng"             
                             icon={<i className="bi bi-person-fill fs-1" style={{color: "#dddfeb"}}></i>}
                         />
                         <BSCard 
                             href="/vehicles"    
                             color="#1cc88a" 
                             title="Xe"          
-                            statusText="Quản lý xe và phân công tài xế" 
+                            statusText="Quản lý xe" 
                             icon={<span className="fs-1" style={{color: "#dddfeb"}}>&#9951;</span>}
-                        />
-                        <BSCard 
-                            href=" "
-                            color="#36b9cc" 
-                            title="Địa điểm"    
-                            statusText="Quản lý địa điểm"               
-                            icon={<i className="bi bi-geo-alt-fill fs-1" style={{color: "#dddfeb"}}></i>}
                         />
                         <BSCard 
                             href="/history"
@@ -206,7 +219,7 @@ function Dashboard(props){
                                 <div style={{height: "520px"}}>
                                     <DataGrid
                                         rows={data2}
-                                        columns={columns}
+                                        columns={cl2}
                                         pageSize={5}
                                         checkboxSelection
                                         getRowId={(row) => row._id}

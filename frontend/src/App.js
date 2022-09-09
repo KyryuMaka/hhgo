@@ -11,6 +11,7 @@ import IndexPage from './pages/index';
 import HistoryPage from './pages/history';
 import UserPage from './pages/user';
 import Vehicles from './pages/vehicles';
+import Maintenance from './pages/maintenance';
 // import ContactPage from './pages/contact';
 
 import NotFound from './pages/notfound';
@@ -30,6 +31,7 @@ function App() {
             <Route exact path="/history" render={props => <HistoryPage {...props} title="Lịch sử"/>} />
             <Route exact path="/users" render={props => <UserPage {...props} title="Người dùng"/>} />
             <Route exact path="/vehicles" render={props => <Vehicles {...props} title="Xe"/>} />
+            <Route exact path="/maintenance" render={props => <Maintenance {...props} title="Bảo trì"/>} />
           </div>
           </>
           :
