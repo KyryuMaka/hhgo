@@ -2,12 +2,14 @@ import React, {useState,useEffect} from 'react'
 import * as Realm from "realm-web";
 import _ from 'lodash';
 import {Helmet} from 'react-helmet';
+
+import $ from "jquery";
 import { DataGrid } from '@mui/x-data-grid';
 import Chart from "react-apexcharts";
 
 import { loading } from '../constant';
 import CustomPagination from '../components/MUI-DGPagination';
-import CustomToolbar from '../components/MUI-DGToolbar';
+import CustomToolbar, {VehicleDoneJob} from '../components/MUI-DGToolbar';
 import BSCard from '../components/BS-Card';
 
 const realmapp = new Realm.App({id: "ql-doi-xe-hunghau-dehpw"});
@@ -21,6 +23,7 @@ const credentials = Realm.Credentials.anonymous();
 
 function Dashboard(props){
     const [data, setData] = useState([]);
+    const [objData, setObjData] = useState({});
     async function dataName(params){
         const realmUser = await realmapp.logIn(credentials);
         setData(await realmUser.callFunction('getVehicles', {}));
@@ -41,25 +44,27 @@ function Dashboard(props){
         {field:"assignment",    headerAlign: 'center', headerName: "Phân công",     flex: 2,    align: "center"}
     ];
 
-    const doneButton = (params) => {
-        return (
-            <strong>
-                <button type="button" class="btn btn-primary btn-sm">Hoàn thành</button>
-            </strong>
-        )
+    const handleChange = (e)=>{
+        setObjData(data.find(dt => dt._id === e[0]));
+        if(_.isEmpty(e)){
+            $('#doneButton').addClass("Mui-disabled");
+        }else{
+            $('#doneButton').removeClass("Mui-disabled");
+            $('#doneButton').removeAttr("disabled");
+        }
     }
 
-    const cl2 = [...columns, 
-        {
-            field:"action",
-            headerAlign: 'center', 
-            headerName: "Hành động",
-            flex: 1.5,
-            align: "center",
-            renderCell: doneButton,
-            disableClickEventBubbling: true,
-        }
-    ];
+    async function handleDelAssignment(e){
+        e.preventDefault();
+        const realmUser = await realmapp.logIn(credentials);
+        const tmp = await realmUser.callFunction('updateVehicle', {_id: objData._id}, {$set: {
+            assignment: "", 
+            assignmentType: "",
+            status: ""
+        }});
+        console.log(tmp);
+        window.location.reload();
+    }
 
     function formatDate(date){
         var dd = date.getDate();
@@ -219,14 +224,20 @@ function Dashboard(props){
                                 <div style={{height: "520px"}}>
                                     <DataGrid
                                         rows={data2}
-                                        columns={cl2}
+                                        columns={columns}
                                         pageSize={5}
                                         checkboxSelection
                                         getRowId={(row) => row._id}
+                                        onSelectionModelChange={handleChange}
                                         density="comfortable"
                                         components={{ 
-                                            Toolbar: CustomToolbar,
+                                            Toolbar: VehicleDoneJob,
                                             Pagination: CustomPagination,
+                                        }}
+                                        componentsProps={{
+                                            toolbar: {
+                                                handleDelAssignment: handleDelAssignment
+                                            },
                                         }}
                                     />
                                 </div>

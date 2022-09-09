@@ -37,6 +37,22 @@ function VehicleToolbar(props){
     );
 }
 
+function VehicleDoneJob(props){
+    return(
+        <div className="d-flex align-items-center">
+            <div className="ps-2 me-auto">
+                <GridToolbarContainer>
+                    <GridToolbarFilterButton />
+                    <GridToolbarExport />
+                </GridToolbarContainer>
+            </div>
+            <div className="pe-2">
+                <Button onClick={props.handleDelAssignment} id="doneButton">Hoàn thành</Button>
+            </div>
+        </div>
+    );
+}
+
 function CustomToolbar() {
     return (
         <GridToolbarContainer>
@@ -47,4 +63,4 @@ function CustomToolbar() {
 }
 
 export default CustomToolbar;
-export {QuickSearchToolbar, VehicleToolbar};
+export {QuickSearchToolbar, VehicleToolbar, VehicleDoneJob};
