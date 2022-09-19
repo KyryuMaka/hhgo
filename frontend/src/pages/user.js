@@ -135,8 +135,8 @@ function User(props){
             delete tmp.hangGPLX;
             delete tmp.ngayCapGPLX;
             delete tmp.giaTriGPLX;
+            delete tmp.noiCapGPLX;
         }
-        console.log(tmp);
         const realmUser = await realmapp.logIn(credentials);
         const tmp2 = await realmUser.callFunction('insertUser', tmp);
         console.log(tmp2.rs);
@@ -255,7 +255,7 @@ function User(props){
                                             <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
                                                     <input type="text" className="form-control" id="pass" placeholder="pass" required disabled value={`${Math.random().toString(36).slice(-8)}`}/>
-                                                    <label htmlFor="pass">Mật khảu</label>
+                                                    <label htmlFor="pass">Mật khẩu</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -284,7 +284,6 @@ function User(props){
                                             <input type="email" className="form-control" id="email" placeholder="Email" driver="false" required/>
                                             <label htmlFor="email">Email</label>
                                         </div>
-                                        
                                         <div className="row">
                                             <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
@@ -353,6 +352,10 @@ function User(props){
                                                     <label htmlFor="giaTriGPLX">Giá trị GPLX</label>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div className="form-floating mb-3">
+                                            <input type="text" className="form-control" id="noiCapGPLX" placeholder="Nơi cấp GPLX" required/>
+                                            <label htmlFor="noiCapGPLX">Nơi cấp GPLX</label>
                                         </div>
                                     </div>
                                 </div>
@@ -505,6 +508,10 @@ function User(props){
                                                     <label htmlFor="giaTriGPLX">Giá trị GPLX</label>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div className="form-floating mb-3">
+                                            <input type="text" className="form-control" id="noiCapGPLX" placeholder="Nơi cấp GPLX" driver="true" disabled required onChange={(e) => setObjData({...objData, giaTriGPLX: e.target.value})} value={objData.giaTriGPLX}/>
+                                            <label htmlFor="noiCapGPLX">Nơi cấp GPLX</label>
                                         </div>
                                     </div>
                                 </div>
