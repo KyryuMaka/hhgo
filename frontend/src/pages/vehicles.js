@@ -152,8 +152,8 @@ function Vehicles(props){
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>
             <div className="main vh-100 d-flex align-items-center justify-content-center">
-                {(_.isEmpty(data))?
-                <div><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>{loading}</div>:
+                {/* {(_.isEmpty(data))?
+                <div><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>{loading}</div>: */}
                 <div className="container p-3 shadow rounded">
                     <h3 className="pt-2 pb-2">Danh sách các xe</h3>
                     <div style={{height: "75vh", width: "100%"}}>
@@ -184,7 +184,7 @@ function Vehicles(props){
                         />
                     </div>
                 </div>
-                }
+                {/* } */}
             </div>
             <div className="modal fade" id="addVehicleModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">

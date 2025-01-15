@@ -150,12 +150,12 @@ function Dashboard(props){
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>
             <div className="main">
-                {(_.isEmpty(data))?
+                {/* {(_.isEmpty(data))?
                 <div className="vh-100 d-flex justify-content-center">
                     <div className="align-self-center">
                         <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>{loading}
                     </div>
-                </div>:
+                </div>: */}
                 <>
                     <div className="row m-0 p-3">
                         <BSCard 
@@ -244,7 +244,8 @@ function Dashboard(props){
                             </div>
                         </div>
                     </div>
-                </>}
+                </>
+                {/* } */}
             </div>
         </>
     );

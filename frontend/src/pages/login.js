@@ -35,7 +35,7 @@ function LogIn(props){
         }else{
             sessionStorage.setItem("isAuthenticated", true);
             sessionStorage.setItem("id-user", rs[0]._id);
-            window.location.href = "/home";
+            window.location.href = "/";
         };
     }
 

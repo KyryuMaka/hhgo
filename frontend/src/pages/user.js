@@ -172,8 +172,8 @@ function User(props){
                 <meta name="description" content="Đội xe Hùng Hậu"/>
             </Helmet>
             <div className="main vh-100 d-flex align-items-center justify-content-center">
-                {(_.isEmpty(data))?
-                <div><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>{loading}</div>:
+                {/* {(_.isEmpty(data))?
+                <div><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>{loading}</div>: */}
                 <div className="container p-3 shadow rounded">
                     <h3 className="pt-2 pb-2">Danh sách người dùng</h3>
                     <div style={{height: "75vh", width: "100%"}}>
@@ -202,7 +202,7 @@ function User(props){
                         />
                     </div>
                 </div>
-                }
+                {/* } */}
             </div>
             <div className="modal fade" id="addUserModal" tabIndex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
@@ -262,7 +262,7 @@ function User(props){
                                         <div className="row">
                                             <div className="col-sm-6 mb-3">
                                                 <div className="form-floating">
-                                                    <input type="number" className="form-control" id="namSinh" placeholder="Năm sinh" required/>
+                                                    <input type="number" className="form-control" id="namSinh" placeholder="Năm sinh"/>
                                                     <label htmlFor="namSinh">Năm sinh</label>
                                                 </div>
                                             </div>
@@ -277,7 +277,7 @@ function User(props){
                                             </div>
                                         </div>
                                         <div className="form-floating mb-3">
-                                            <input type="text" className="form-control" id="address" placeholder="Địa chỉ" required/>
+                                            <input type="text" className="form-control" id="address" placeholder="Địa chỉ"/>
                                             <label htmlFor="address">Địa chỉ</label>
                                         </div>
                                         <div className="form-floating mb-3">
@@ -354,7 +354,7 @@ function User(props){
                                             </div>
                                         </div>
                                         <div className="form-floating mb-3">
-                                            <input type="text" className="form-control" id="noiCapGPLX" placeholder="Nơi cấp GPLX" required/>
+                                            <input type="text" className="form-control" id="noiCapGPLX" placeholder="Nơi cấp GPLX" driver="true" required/>
                                             <label htmlFor="noiCapGPLX">Nơi cấp GPLX</label>
                                         </div>
                                     </div>
